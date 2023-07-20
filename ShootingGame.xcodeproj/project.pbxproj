@@ -11,6 +11,15 @@
 		1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476432A68F760003D5DD7 /* ContentView.swift */; };
 		1B5476462A68F762003D5DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5476452A68F762003D5DD7 /* Assets.xcassets */; };
 		1B5476492A68F762003D5DD7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5476482A68F762003D5DD7 /* Preview Assets.xcassets */; };
+		1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54764F2A68F78A003D5DD7 /* GameCanvasView.swift */; };
+		1B5476532A68F90E003D5DD7 /* Notification.Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476522A68F90E003D5DD7 /* Notification.Names.swift */; };
+		1B5476562A68F96F003D5DD7 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476552A68F96F003D5DD7 /* GameManager.swift */; };
+		1B54765B2A690DF5003D5DD7 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54765A2A690DF5003D5DD7 /* Color+Extensions.swift */; };
+		1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54765D2A6910CA003D5DD7 /* UnitModel.swift */; };
+		1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54765F2A691377003D5DD7 /* CGPoint+Extensions.swift */; };
+		1B5476622A6916C2003D5DD7 /* CGRect+Extnesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */; };
+		1B5476642A691951003D5DD7 /* MovementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476632A691951003D5DD7 /* MovementUnit.swift */; };
+		1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +28,15 @@
 		1B5476432A68F760003D5DD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B5476452A68F762003D5DD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5476482A68F762003D5DD7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1B54764F2A68F78A003D5DD7 /* GameCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCanvasView.swift; sourceTree = "<group>"; };
+		1B5476522A68F90E003D5DD7 /* Notification.Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Names.swift; sourceTree = "<group>"; };
+		1B5476552A68F96F003D5DD7 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		1B54765A2A690DF5003D5DD7 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		1B54765D2A6910CA003D5DD7 /* UnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitModel.swift; sourceTree = "<group>"; };
+		1B54765F2A691377003D5DD7 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extnesions.swift"; sourceTree = "<group>"; };
+		1B5476632A691951003D5DD7 /* MovementUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementUnit.swift; sourceTree = "<group>"; };
+		1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +69,12 @@
 		1B5476402A68F760003D5DD7 /* ShootingGame */ = {
 			isa = PBXGroup;
 			children = (
+				1B54765C2A6910B9003D5DD7 /* Models */,
+				1B5476592A690DE0003D5DD7 /* Extensions */,
+				1B5476542A68F95C003D5DD7 /* SingleInstances */,
+				1B5476522A68F90E003D5DD7 /* Notification.Names.swift */,
 				1B5476412A68F760003D5DD7 /* ShootingGameApp.swift */,
-				1B5476432A68F760003D5DD7 /* ContentView.swift */,
+				1B5476512A68F797003D5DD7 /* View */,
 				1B5476452A68F762003D5DD7 /* Assets.xcassets */,
 				1B5476472A68F762003D5DD7 /* Preview Content */,
 			);
@@ -65,6 +87,43 @@
 				1B5476482A68F762003D5DD7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1B5476512A68F797003D5DD7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B5476432A68F760003D5DD7 /* ContentView.swift */,
+				1B54764F2A68F78A003D5DD7 /* GameCanvasView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B5476542A68F95C003D5DD7 /* SingleInstances */ = {
+			isa = PBXGroup;
+			children = (
+				1B5476552A68F96F003D5DD7 /* GameManager.swift */,
+			);
+			path = SingleInstances;
+			sourceTree = "<group>";
+		};
+		1B5476592A690DE0003D5DD7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1B54765A2A690DF5003D5DD7 /* Color+Extensions.swift */,
+				1B54765F2A691377003D5DD7 /* CGPoint+Extensions.swift */,
+				1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */,
+				1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1B54765C2A6910B9003D5DD7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B54765D2A6910CA003D5DD7 /* UnitModel.swift */,
+				1B5476632A691951003D5DD7 /* MovementUnit.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +196,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B5476532A68F90E003D5DD7 /* Notification.Names.swift in Sources */,
+				1B5476622A6916C2003D5DD7 /* CGRect+Extnesions.swift in Sources */,
+				1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */,
+				1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */,
+				1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */,
+				1B5476642A691951003D5DD7 /* MovementUnit.swift in Sources */,
+				1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */,
 				1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */,
 				1B5476422A68F760003D5DD7 /* ShootingGameApp.swift in Sources */,
+				1B5476562A68F96F003D5DD7 /* GameManager.swift in Sources */,
+				1B54765B2A690DF5003D5DD7 /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,11 +338,13 @@
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,11 +369,13 @@
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
