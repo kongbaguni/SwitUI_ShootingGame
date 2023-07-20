@@ -10,7 +10,8 @@ import SwiftUI
 
 class EnemyUnitModel : MovementUnitModel {
     override func draw(context: GraphicsContext, screenSize: CGSize) {
-        image = Image("enemy")
+        images[.보통] = [Image("enemy0"),Image("enemy1")]
+        
         super.draw(context: context, screenSize: screenSize)
     }
     
