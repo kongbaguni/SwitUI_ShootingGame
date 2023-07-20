@@ -18,8 +18,9 @@
 		1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54765D2A6910CA003D5DD7 /* UnitModel.swift */; };
 		1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54765F2A691377003D5DD7 /* CGPoint+Extensions.swift */; };
 		1B5476622A6916C2003D5DD7 /* CGRect+Extnesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */; };
-		1B5476642A691951003D5DD7 /* MovementUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476632A691951003D5DD7 /* MovementUnit.swift */; };
+		1B5476642A691951003D5DD7 /* MovementUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476632A691951003D5DD7 /* MovementUnitModel.swift */; };
 		1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */; };
+		1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +36,10 @@
 		1B54765D2A6910CA003D5DD7 /* UnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitModel.swift; sourceTree = "<group>"; };
 		1B54765F2A691377003D5DD7 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Extnesions.swift"; sourceTree = "<group>"; };
-		1B5476632A691951003D5DD7 /* MovementUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementUnit.swift; sourceTree = "<group>"; };
+		1B5476632A691951003D5DD7 /* MovementUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementUnitModel.swift; sourceTree = "<group>"; };
 		1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
 		1B5476672A692476003D5DD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyUnitModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				1B54765D2A6910CA003D5DD7 /* UnitModel.swift */,
-				1B5476632A691951003D5DD7 /* MovementUnit.swift */,
+				1B5476632A691951003D5DD7 /* MovementUnitModel.swift */,
+				1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,11 +206,12 @@
 				1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */,
 				1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */,
 				1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */,
-				1B5476642A691951003D5DD7 /* MovementUnit.swift in Sources */,
+				1B5476642A691951003D5DD7 /* MovementUnitModel.swift in Sources */,
 				1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */,
 				1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */,
 				1B5476422A68F760003D5DD7 /* ShootingGameApp.swift in Sources */,
 				1B5476562A68F96F003D5DD7 /* GameManager.swift in Sources */,
+				1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */,
 				1B54765B2A690DF5003D5DD7 /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

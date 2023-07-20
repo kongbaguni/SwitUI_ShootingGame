@@ -13,8 +13,8 @@ class GameManager {
     var screenSize:CGSize = .zero
     
     func addUnit() {
-        let c = CGPoint(x: .random(in: 50...350), y: .random(in: 50...100))
-        let unit = MovementUnit(center: c, range: .random(in: 50...70), movement: .init(dx: 0, dy: .random(in: 1...2)), speed: .random(in: 0.1...1))
+        let c = CGPoint(x: .random(in: 50...350), y: -100)
+        let unit = EnemyUnitModel(center: c, range: .random(in: 50...70), movement: .init(dx: 0, dy: .random(in: 1...2)), speed: .random(in: 0.1...1))
         units.append(unit)
         print(units.count)
     }

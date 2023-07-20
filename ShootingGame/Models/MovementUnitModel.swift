@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class MovementUnit : UnitModel {
+class MovementUnitModel : UnitModel {
     var movement:CGVector
     var speed:CGFloat
     
