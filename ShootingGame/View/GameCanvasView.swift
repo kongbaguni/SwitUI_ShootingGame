@@ -17,7 +17,7 @@ struct GameCanvasView : View {
     var body: some View {
         VStack {
             Canvas { ctx, size in
-                ctx.draw(Text("\(count)"), in: .zero)
+                ctx.draw(Text("\(count)"), in: .init(origin: .init(x: -100, y: -100), size: .zero))
                 gameManager.draw(context: ctx, screenSize: size)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000 / fps)) {
                     count += 1
