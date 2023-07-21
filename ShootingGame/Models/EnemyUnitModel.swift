@@ -37,9 +37,6 @@ class EnemyUnitModel : MovementUnitModel {
     func loadAd() {
         adLoader.delegate = self
         adLoader.load(.init())
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(100)) { [weak self] in
-            self?.loadAd()
-        }
     }
     
     override func draw(context: GraphicsContext, screenSize: CGSize) {
