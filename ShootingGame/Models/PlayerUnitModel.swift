@@ -13,6 +13,12 @@ class PlayerUnitModel : UnitModel {
 
     override init(center: CGPoint, range: CGFloat) {
         super.init(center: center, range: range)
+        isDrawHP = true
+
+        images[.보통] = [Image("player1"),Image("player2")]
+        images[.파괴직전] = [Image("player3")]
+        images[.공격당함] = [Image("player3"),Image("player4")]
+
         NotificationCenter.default.addObserver(forName: .dragPointerChanged, object: nil, queue: nil) { [weak self]noti in
             if let value = noti.object as? DragGesture.Value {
                 let start = self?.lastTouchLocaton?.location ?? value.startLocation
@@ -29,13 +35,6 @@ class PlayerUnitModel : UnitModel {
         }
     }
     
-    override func draw(context: GraphicsContext, screenSize: CGSize) {
-        images[.보통] = [Image("player1"),Image("player2")]
-        images[.파괴직전] = [Image("player3")]
-        images[.공격당함] = [Image("player3"),Image("player4")]
-        super.draw(context: context, screenSize: screenSize)
-        
-    }
     override func process() {
         super.process()
         let shot = PlayerShotUnitModel(center: center, range: 10, movement: .init(dx: 0, dy: -10), speed: 5)

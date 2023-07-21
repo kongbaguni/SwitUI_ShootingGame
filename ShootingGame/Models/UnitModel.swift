@@ -15,7 +15,13 @@ class UnitModel : NSObject {
         case 파괴직전
         case 힐링
     }
-    var status:Status = .보통
+    var status:Status = .보통 {
+        didSet {
+            statusChangeDate = Date()
+        }
+    }
+    
+    var statusChangeDate = Date()
     var count = 0
     var screenSize:CGSize = .zero
     var center:CGPoint
@@ -57,8 +63,7 @@ class UnitModel : NSObject {
     var isDrawHP = false
     
     func draw(context:GraphicsContext, screenSize : CGSize) {
-                
-        context.draw(image, in: rect)        
+        context.draw(image, in: rect)
         if isDrawHP {
             let r1 = CGRect(x: center.x - range, y: center.y + range + 10, width: range * 2, height: 5)
             let h = Double(hp - damage) / Double(hp)
@@ -68,11 +73,11 @@ class UnitModel : NSObject {
         }
         self.screenSize = screenSize
         process()
-        
     }
     
     func process() {
         count += 1
+        updateStatus()
     }
     
     var hp:Int = 100
@@ -85,9 +90,6 @@ class UnitModel : NSObject {
     func addDamage(value:Int) {
         damage += value
         status = .공격당함
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {[weak self] in
-            self?.updateStatus()
-        }
     }
     
     func healing(value:Int) {
@@ -96,14 +98,13 @@ class UnitModel : NSObject {
             damage = 0
         }
         status = .힐링
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?.updateStatus()            
-        }
-        updateStatus()
     }
 
     func updateStatus() {
-        status = hp - damage > 10 ? .보통 : .파괴직전
+        let interval = Date().timeIntervalSince1970 - statusChangeDate.timeIntervalSince1970 
+        if interval >= 0.5 {
+            status = hp - damage > 10 ? .보통 : .파괴직전
+        }
     }
     
     func isCrash(unit:UnitModel)->Bool {

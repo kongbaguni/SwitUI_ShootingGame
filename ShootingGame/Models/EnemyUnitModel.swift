@@ -42,21 +42,27 @@ class EnemyUnitModel : MovementUnitModel {
     override func draw(context: GraphicsContext, screenSize: CGSize) {
         super.draw(context: context, screenSize: screenSize)
         if let ad = nativeAd {
-            context.fill(Path(rect), with: .color(Color("dim")))
-            if let headline = ad.headline {
-                context.draw(Text(headline).font(.headline),
-                             in: .init(x: center.x - range,
-                                       y: center.y - range,
-                                       width: range * 2,
-                                       height: range))
+            switch status {
+            case .보통:
+                context.fill(Path(rect), with: .color(Color("dim")))
+                if let headline = ad.headline {
+                    context.draw(Text(headline).font(.headline),
+                                 in: .init(x: center.x - range,
+                                           y: center.y - range,
+                                           width: range * 2,
+                                           height: range))
+                }
+                if let str = ad.body {
+                    context.draw(Text(str).font(.caption),
+                                 in: .init(x: center.x - range,
+                                           y: center.y,
+                                           width: range * 2,
+                                           height: range))
+                }
+            default:
+                break
             }
-            if let str = ad.body {
-                context.draw(Text(str).font(.caption),
-                             in: .init(x: center.x - range,
-                                       y: center.y,
-                                       width: range * 2,
-                                       height: range))
-            }
+            
         }
     }
     override var isScreenOut: Bool {
