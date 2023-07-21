@@ -79,7 +79,7 @@
 				1B5476672A692476003D5DD7 /* Info.plist */,
 				1B54765C2A6910B9003D5DD7 /* Models */,
 				1B5476592A690DE0003D5DD7 /* Extensions */,
-				1B5476542A68F95C003D5DD7 /* SingleInstances */,
+				1B5476542A68F95C003D5DD7 /* instances */,
 				1B5476522A68F90E003D5DD7 /* Notification.Names.swift */,
 				1B5476412A68F760003D5DD7 /* ShootingGameApp.swift */,
 				1B5476512A68F797003D5DD7 /* View */,
@@ -106,12 +106,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1B5476542A68F95C003D5DD7 /* SingleInstances */ = {
+		1B5476542A68F95C003D5DD7 /* instances */ = {
 			isa = PBXGroup;
 			children = (
 				1B5476552A68F96F003D5DD7 /* GameManager.swift */,
 			);
-			path = SingleInstances;
+			path = instances;
 			sourceTree = "<group>";
 		};
 		1B5476592A690DE0003D5DD7 /* Extensions */ = {

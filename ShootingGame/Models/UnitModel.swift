@@ -47,6 +47,12 @@ class UnitModel {
         rect.isScreenOut(screenSize: screenSize)
     }
     
+    func willScreenOut(vector:CGVector, ignore:CGRect.IgnoreDirection? = nil , padding:CGFloat = 0)->Bool {
+        let newPoint = center + vector
+        let newRect = CGRect(origin: .init(x: newPoint.x - range, y: newPoint.y - range), size: rect.size)
+        return newRect.isScreenOut(screenSize: screenSize, ignore: ignore, padding: padding)
+    }
+    
     func draw(context:GraphicsContext, screenSize : CGSize) {
         
         context.draw(image, in: rect)

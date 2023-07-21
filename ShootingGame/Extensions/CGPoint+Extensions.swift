@@ -28,4 +28,7 @@ extension CGPoint {
             lhs.y += rhs.dy
     }
     
+    func vector(to point: CGPoint) -> CGVector {
+        return CGVector(dx: point.x - self.x, dy: point.y - self.y)
+    }
 }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class GameManager {
+    
     var units:[UnitModel] = []
     var screenSize:CGSize = .zero
     var player = PlayerUnitModel(center: .init(x: 100, y: 100), range: 50)

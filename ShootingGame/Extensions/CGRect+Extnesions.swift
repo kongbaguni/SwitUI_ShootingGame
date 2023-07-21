@@ -14,19 +14,21 @@ extension CGRect {
         case right
     }
     
-    func isScreenOut(screenSize:CGSize, iGnore:IgnoreDirection? = nil)->Bool {
-        if origin.x + size.width < 0 && iGnore != .left {
+    func isScreenOut(screenSize:CGSize, ignore:IgnoreDirection? = nil, padding:CGFloat = 0 )->Bool {
+        if origin.x + size.width + padding < 0 && ignore != .left {
             return true
         }
-        if origin.y + size.height < 0 && iGnore != .top {
+        if origin.y + size.height + padding < 0 && ignore != .top {
             return true
         }
-        if origin.x > screenSize.width && iGnore != .right {
+        if origin.x > screenSize.width + padding && ignore != .right {
             return true
         }
-        if origin.y > screenSize.height && iGnore != .bottom {
+        if origin.y > screenSize.height + padding && ignore != .bottom {
             return true
         }
         return false
     }
+    
+    
 }

@@ -14,6 +14,7 @@ struct GameCanvasView : View {
     @State var count = 0
     @State var gameManager:GameManager = .init()
     
+    @State var rotationAngle:CGFloat = 0
     var body: some View {
         VStack {
             Canvas { ctx, size in
@@ -23,6 +24,20 @@ struct GameCanvasView : View {
                     count += 1
                 }
             }
+            .gesture(
+                DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
+                    .onChanged({ value in
+                        print(value.location)
+                        NotificationCenter.default.post(name: .dragPointerChanged, object: value)
+                        
+                    })
+                    .onEnded({ value in
+                        print("dragEnd")
+                        print(value.location)
+                        NotificationCenter.default.post(name: .dragEnded, object: value)
+                    })
+                
+            )
             Button {
                 gameManager.addUnit()
             } label: {

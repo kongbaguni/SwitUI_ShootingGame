@@ -16,6 +16,6 @@ class EnemyUnitModel : MovementUnitModel {
     }
     
     override var isScreenOut: Bool {
-        rect.isScreenOut(screenSize: screenSize, iGnore: .top)
+        rect.isScreenOut(screenSize: screenSize, ignore: .top)
     }
 }
