@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  ShootingGame
+
+  Created by Changyeol Seo on 2023/07/21.
+  
+*/
+"CFBundleName" = "광고뽀개기";
+"CFBundleDisplayName" = "광고뽀개기";
+"NSUserTrackingUsageDescription" = "이 식별자는 개인화된 광고를 제공하는 데 사용됩니다.";

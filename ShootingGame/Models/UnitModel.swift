@@ -54,11 +54,21 @@ class UnitModel : NSObject {
         return newRect.isScreenOut(screenSize: screenSize, ignore: ignore, padding: padding)
     }
     
+    var isDrawHP = false
+    
     func draw(context:GraphicsContext, screenSize : CGSize) {
-        
-        context.draw(image, in: rect)
+                
+        context.draw(image, in: rect)        
+        if isDrawHP {
+            let r1 = CGRect(x: center.x - range, y: center.y + range + 10, width: range * 2, height: 5)
+            let h = Double(hp - damage) / Double(hp)
+            let r2 = CGRect(origin: r1.origin, size: .init(width: range * 2 * h, height: 5))
+            context.stroke(Path(roundedRect: r1, cornerSize: .init(width: 5, height: 5)), with:.foreground)
+            context.fill(Path(roundedRect: r2, cornerSize: .init(width: 5, height: 5)), with: .color(.textColorStrong))
+        }
         self.screenSize = screenSize
         process()
+        
     }
     
     func process() {

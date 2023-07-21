@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1B3AAFF12A6A559D0092C9B8 /* PlayerShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AAFF02A6A559D0092C9B8 /* PlayerShotUnitModel.swift */; };
+		1B3AAFF42A6A6A960092C9B8 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */; };
+		1B3AAFF72A6A6B910092C9B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B3AAFF92A6A6B910092C9B8 /* InfoPlist.strings */; };
+		1B3AAFFC2A6A6BF50092C9B8 /* GoogleAdPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */; };
+		1B3AAFFE2A6A6C630092C9B8 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AAFFD2A6A6C630092C9B8 /* UIApplication+Extensions.swift */; };
 		1B5476422A68F760003D5DD7 /* ShootingGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476412A68F760003D5DD7 /* ShootingGameApp.swift */; };
 		1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476432A68F760003D5DD7 /* ContentView.swift */; };
 		1B5476462A68F762003D5DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5476452A68F762003D5DD7 /* Assets.xcassets */; };
@@ -28,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		1B3AAFF02A6A559D0092C9B8 /* PlayerShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerShotUnitModel.swift; sourceTree = "<group>"; };
+		1B3AAFF82A6A6B910092C9B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1B3AAFFA2A6A6B950092C9B8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
+		1B3AAFFD2A6A6C630092C9B8 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		1B54763E2A68F760003D5DD7 /* ShootingGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShootingGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5476412A68F760003D5DD7 /* ShootingGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootingGameApp.swift; sourceTree = "<group>"; };
 		1B5476432A68F760003D5DD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B3AAFF42A6A6A960092C9B8 /* GoogleMobileAds in Frameworks */,
 				1B54766E2A6A0C80003D5DD7 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +71,7 @@
 		1B5476352A68F760003D5DD7 = {
 			isa = PBXGroup;
 			children = (
+				1B3AAFF92A6A6B910092C9B8 /* InfoPlist.strings */,
 				1B5476402A68F760003D5DD7 /* ShootingGame */,
 				1B54763F2A68F760003D5DD7 /* Products */,
 			);
@@ -78,6 +88,7 @@
 		1B5476402A68F760003D5DD7 /* ShootingGame */ = {
 			isa = PBXGroup;
 			children = (
+				1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */,
 				1B5476672A692476003D5DD7 /* Info.plist */,
 				1B54765C2A6910B9003D5DD7 /* Models */,
 				1B5476592A690DE0003D5DD7 /* Extensions */,
@@ -119,6 +130,7 @@
 		1B5476592A690DE0003D5DD7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1B3AAFFD2A6A6C630092C9B8 /* UIApplication+Extensions.swift */,
 				1B54765A2A690DF5003D5DD7 /* Color+Extensions.swift */,
 				1B54765F2A691377003D5DD7 /* CGPoint+Extensions.swift */,
 				1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */,
@@ -157,6 +169,7 @@
 			name = ShootingGame;
 			packageProductDependencies = (
 				1B54766D2A6A0C80003D5DD7 /* Reachability */,
+				1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */,
 			);
 			productName = ShootingGame;
 			productReference = 1B54763E2A68F760003D5DD7 /* ShootingGame.app */;
@@ -184,10 +197,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 1B5476352A68F760003D5DD7;
 			packageReferences = (
 				1B54766C2A6A0C7F003D5DD7 /* XCRemoteSwiftPackageReference "Reachability" */,
+				1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 1B54763F2A68F760003D5DD7 /* Products */;
 			projectDirPath = "";
@@ -204,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B5476492A68F762003D5DD7 /* Preview Assets.xcassets in Resources */,
+				1B3AAFF72A6A6B910092C9B8 /* InfoPlist.strings in Resources */,
 				1B5476462A68F762003D5DD7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,8 +237,10 @@
 				1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */,
 				1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */,
 				1B5476642A691951003D5DD7 /* MovementUnitModel.swift in Sources */,
+				1B3AAFFE2A6A6C630092C9B8 /* UIApplication+Extensions.swift in Sources */,
 				1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */,
 				1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */,
+				1B3AAFFC2A6A6BF50092C9B8 /* GoogleAdPrompt.swift in Sources */,
 				1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */,
 				1B5476422A68F760003D5DD7 /* ShootingGameApp.swift in Sources */,
 				1B3AAFF12A6A559D0092C9B8 /* PlayerShotUnitModel.swift in Sources */,
@@ -233,6 +251,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1B3AAFF92A6A6B910092C9B8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B3AAFF82A6A6B910092C9B8 /* en */,
+				1B3AAFFA2A6A6B950092C9B8 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1B54764A2A68F762003D5DD7 /* Debug */ = {
@@ -362,6 +392,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShootingGame/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Permission is required to provide customized services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -374,6 +405,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.ShootingGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -395,6 +427,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShootingGame/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Permission is required to provide customized services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -407,6 +440,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.ShootingGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -439,6 +473,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		1B54766C2A6A0C7F003D5DD7 /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
@@ -450,6 +492,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		1B54766D2A6A0C80003D5DD7 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1B54766C2A6A0C7F003D5DD7 /* XCRemoteSwiftPackageReference "Reachability" */;

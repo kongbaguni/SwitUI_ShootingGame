@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    init() {
+        
+        GoogleAdPrompt.promptWithDelay {
+            
+        }
+    }
     var game: some View {
         GameCanvasView(fps: 60)
     }
