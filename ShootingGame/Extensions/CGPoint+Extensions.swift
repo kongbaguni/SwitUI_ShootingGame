@@ -31,4 +31,10 @@ extension CGPoint {
     func vector(to point: CGPoint) -> CGVector {
         return CGVector(dx: point.x - self.x, dy: point.y - self.y)
     }
+    
+    func distance(to point: CGPoint) -> CGFloat {
+        let dx = point.x - self.x
+        let dy = point.y - self.y
+        return sqrt(dx * dx + dy * dy)
+    }
 }

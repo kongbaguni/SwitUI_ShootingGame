@@ -8,11 +8,12 @@
 import Foundation
 import SwiftUI
 
-class UnitModel {
+class UnitModel : NSObject {
     enum Status {
         case 보통
         case 공격당함
         case 파괴직전
+        case 힐링
     }
     var status:Status = .보통
     var count = 0
@@ -73,6 +74,10 @@ class UnitModel {
     
     func addDamage(value:Int) {
         damage += value
+        status = .공격당함
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {[weak self] in
+            self?.updateStatus()
+        }
     }
     
     func healing(value:Int) {
@@ -80,8 +85,20 @@ class UnitModel {
         if(damage < 0) {
             damage = 0
         }
+        status = .힐링
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+            self?.updateStatus()            
+        }
+        updateStatus()
     }
 
+    func updateStatus() {
+        status = hp - damage > 10 ? .보통 : .파괴직전
+    }
     
+    func isCrash(unit:UnitModel)->Bool {
+        let distance = center.distance(to: unit.center)
+        return distance < range + unit.range
+    }
     
 }

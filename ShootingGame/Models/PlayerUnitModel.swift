@@ -34,5 +34,11 @@ class PlayerUnitModel : UnitModel {
         images[.파괴직전] = [Image("player3")]
         images[.공격당함] = [Image("player3"),Image("player4")]
         super.draw(context: context, screenSize: screenSize)
+        
+    }
+    override func process() {
+        super.process()
+        let shot = PlayerShotUnitModel(center: center, range: 10, movement: .init(dx: 0, dy: -10), speed: 5)
+        NotificationCenter.default.post(name: .makePlayerShot, object: shot)
     }
 }
