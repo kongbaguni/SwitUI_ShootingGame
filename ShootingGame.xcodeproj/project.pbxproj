@@ -27,7 +27,6 @@
 		1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */; };
 		1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */; };
 		1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */; };
-		1B54766E2A6A0C80003D5DD7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 1B54766D2A6A0C80003D5DD7 /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +60,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3AAFF42A6A6A960092C9B8 /* GoogleMobileAds in Frameworks */,
-				1B54766E2A6A0C80003D5DD7 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +166,6 @@
 			);
 			name = ShootingGame;
 			packageProductDependencies = (
-				1B54766D2A6A0C80003D5DD7 /* Reachability */,
 				1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */,
 			);
 			productName = ShootingGame;
@@ -201,7 +198,6 @@
 			);
 			mainGroup = 1B5476352A68F760003D5DD7;
 			packageReferences = (
-				1B54766C2A6A0C7F003D5DD7 /* XCRemoteSwiftPackageReference "Reachability" */,
 				1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 1B54763F2A68F760003D5DD7 /* Products */;
@@ -481,14 +477,6 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		1B54766C2A6A0C7F003D5DD7 /* XCRemoteSwiftPackageReference "Reachability" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -496,11 +484,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
-		};
-		1B54766D2A6A0C80003D5DD7 /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1B54766C2A6A0C7F003D5DD7 /* XCRemoteSwiftPackageReference "Reachability" */;
-			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
