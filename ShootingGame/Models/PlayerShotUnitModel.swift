@@ -8,9 +8,12 @@
 import SwiftUI
 
 class PlayerShotUnitModel : MovementUnitModel {
-    override func draw(context: GraphicsContext, screenSize: CGSize) {
+    override init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat) {
+        super.init(center: center, range: range, movement: movement, speed: speed)
         images[.보통] = [Image("shot1")]
         images[.공격당함] = [Image("shot3")]
-        super.draw(context: context, screenSize: screenSize)
-    }    
+        hp = 1
+        atteck = 1
+    }
+    
 }

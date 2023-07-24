@@ -27,6 +27,7 @@
 		1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */; };
 		1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */; };
 		1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */; };
+		1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		1B5476672A692476003D5DD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyUnitModel.swift; sourceTree = "<group>"; };
 		1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitModel.swift; sourceTree = "<group>"; };
+		1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyShotUnitModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */,
 				1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */,
 				1B3AAFF02A6A559D0092C9B8 /* PlayerShotUnitModel.swift */,
+				1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				1B5476562A68F96F003D5DD7 /* GameManager.swift in Sources */,
 				1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */,
 				1B54765B2A690DF5003D5DD7 /* Color+Extensions.swift in Sources */,
+				1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

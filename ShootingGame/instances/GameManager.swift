@@ -11,15 +11,31 @@ import SwiftUI
 class GameManager {
     init() {
         NotificationCenter.default.addObserver(forName: .makePlayerShot, object: nil, queue: nil) { [weak self] noti in
-            if let obj = noti.object as? PlayerShotUnitModel {
+            if let arr = noti.object as? [PlayerShotUnitModel] {
+                for item in arr {
+                    self?.playerShots.append(item)
+                }
+            }
+            else if let obj = noti.object as? PlayerShotUnitModel {
                 self?.playerShots.append(obj)
+            }
+        }
+        NotificationCenter.default.addObserver(forName: .makeEnemyShot, object: nil, queue: nil) { [weak self] noti in
+            if let arr = noti.object as? [EnemyShotUnitModel] {
+                for item in arr {
+                    self?.enemyShots.append(item)
+                }
+            }
+            else if let obj = noti.object as? EnemyShotUnitModel {
+                self?.enemyShots.append(obj)
             }
         }
     }
     var enemys:[EnemyUnitModel] = []
+    var enemyShots:[EnemyShotUnitModel] = []
     var playerShots:[PlayerShotUnitModel] = []
     var screenSize:CGSize = .zero
-    var player = PlayerUnitModel(center: .init(x: 100, y: 100), range: 50)
+    var player = PlayerUnitModel(center: .init(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2), range: 50)
     func addUnit() {
         let c = CGPoint(x: .random(in: 50...350), y: -100)
         let unit = EnemyUnitModel(center: c, range: .random(in: 50...70), movement: .init(dx: 0, dy: .random(in: 1...2)), speed: .random(in: 0.1...1))
@@ -29,8 +45,16 @@ class GameManager {
     
     func draw(context:GraphicsContext, screenSize:CGSize) {
         self.screenSize = screenSize
-        context.draw(Text("unitCount: \(enemys.count)\nplayerShotCount: \(playerShots.count)"), in: .init(x: 30, y: 30, width: 200, height: 100))
-            
+        let str = """
+        unitCount : \(enemys.count)
+        playerShotCount : \(playerShots.count)
+        enemyShotCount : \(enemyShots.count)
+        """
+        context.draw(Text(str), in: .init(x: 30, y: 30, width: 200, height: 100))
+                    
+        
+        player.draw(context: context, screenSize: screenSize)
+        
         for unit in enemys {
             unit.draw(context: context,screenSize: screenSize)
             if unit.isScreenOut || unit.isDie {
@@ -39,6 +63,7 @@ class GameManager {
                 }
             }
         }
+        
         for unit in playerShots {
             unit.draw(context: context,screenSize: screenSize)
             if unit.isScreenOut || unit.isDie {
@@ -55,7 +80,24 @@ class GameManager {
             }
         }
         
-        player.draw(context: context, screenSize: screenSize)
+        for unit in enemyShots {
+            unit.draw(context: context, screenSize: screenSize)
+
+            let a = unit.isScreenOut
+            let b = unit.isDie
+            if a || b {
+                if let idx = enemyShots.firstIndex(of: unit) {
+                    enemyShots.remove(at: idx)
+                }
+            }
+            
+            if(unit.isCrash(unit: player)) {
+                player.addDamage(value: unit.atteck)
+                unit.addDamage(value: player.atteck)
+            }
+            
+        }
+        
         
     }
     

@@ -16,8 +16,13 @@ fileprivate let adId = "ca-app-pub-7714069006629518/8836977450"
 
 
 class EnemyUnitModel : MovementUnitModel {
+    enum EnemyShotType {
+        case 일번샷
+    }
     let adLoader:GADAdLoader
     var nativeAd:GADNativeAd? = nil
+    let shotType:[EnemyShotType] = [.일번샷]
+    
     override init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat) {
         let option = GADMultipleAdsAdLoaderOptions()
         option.numberOfAds = 1
@@ -62,11 +67,33 @@ class EnemyUnitModel : MovementUnitModel {
             default:
                 break
             }
-            
+        }
+        if count % 10 == 0 {
+            makeShot()
         }
     }
+    
     override var isScreenOut: Bool {
         rect.isScreenOut(screenSize: screenSize, ignore: .top)
+    }
+    
+    func makeShot() {
+        var shots:[EnemyShotUnitModel] = []
+        switch shotType[count % shotType.count] {
+        case .일번샷:
+            if count % 30 == 0 {
+                for i in 0...12 {
+                    shots.append(.init(
+                        center: center,
+                        range: 5,
+                        movement: .init(dx: sin(Double(count+i)), dy: cos(Double(count+i))),
+                        speed: 2))
+                }
+            }
+            break
+        }
+        
+        NotificationCenter.default.post(name: .makeEnemyShot, object: shots)
     }
 }
 

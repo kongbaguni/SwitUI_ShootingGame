@@ -25,7 +25,10 @@ class UnitModel : NSObject {
     var count = 0
     var screenSize:CGSize = .zero
     var center:CGPoint
+    /** 뷰 사이즈*/
     var range:CGFloat
+    /** 피탄 판정 범위 */
+    var pitanRange:CGFloat
     
     var images:[Status:[Image]] = [
         .보통 :[Image("unit")]
@@ -41,6 +44,7 @@ class UnitModel : NSObject {
     init(center: CGPoint, range: CGFloat) {
         self.center = center
         self.range = range
+        self.pitanRange = range
     }
     
     var rect:CGRect {
@@ -82,7 +86,7 @@ class UnitModel : NSObject {
     
     var hp:Int = 100
     var damage:Int = 0
-    
+    var atteck:Int = 1
     var isDie : Bool {
         damage > hp
     }
@@ -109,7 +113,7 @@ class UnitModel : NSObject {
     
     func isCrash(unit:UnitModel)->Bool {
         let distance = center.distance(to: unit.center)
-        return distance < range + unit.range
+        return distance < pitanRange + unit.pitanRange
     }
     
 }

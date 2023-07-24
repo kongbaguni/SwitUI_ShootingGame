@@ -41,7 +41,9 @@ struct ContentView: View {
                     toolbarItem
                 }
             }
-        }.background(Color.backGround3)
+        }
+        .navigationViewStyle(.stack)
+        .background(Color.backGround3)
         
     }
 }
