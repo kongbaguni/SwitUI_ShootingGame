@@ -15,9 +15,9 @@ class PlayerUnitModel : UnitModel {
         super.init(center: center, range: range)
         isDrawHP = true
 
-        images[.보통] = [Image("player1"),Image("player2")]
-        images[.파괴직전] = [Image("player3")]
-        images[.공격당함] = [Image("player3"),Image("player4")]
+        imageNames[.보통] = ["player1","player2"]
+        imageNames[.파괴직전] = ["player3"]
+        imageNames[.공격당함] = ["player3","player4"]
 
         NotificationCenter.default.addObserver(forName: .dragPointerChanged, object: nil, queue: nil) { [weak self]noti in
             if let value = noti.object as? DragGesture.Value {
@@ -28,6 +28,7 @@ class PlayerUnitModel : UnitModel {
                 }
                 print("-------")
                 self?.lastTouchLocaton = value
+                NotificationCenter.default.post(name: .playerLocationWatch, object: self?.center)
             }
         }
         NotificationCenter.default.addObserver(forName: .dragEnded, object: nil, queue: nil) { [weak self] noti in

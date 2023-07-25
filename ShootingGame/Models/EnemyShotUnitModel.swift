@@ -9,14 +9,48 @@ import Foundation
 import SwiftUI
 
 class EnemyShotUnitModel : MovementUnitModel {
-    override init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat) {
+    enum ShotType {
+        case 일반
+        case 추적레이저빔
+    }
+
+    let shotType:ShotType
+    init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, type: ShotType) {
+        shotType = type
         super.init(center: center, range: range, movement: movement, speed: speed)
-        images[.보통] = [Image("shot1"),Image("shot2")]
-        images[.공격당함] = [Image("shot3")]
-        images[.파괴직전] = [Image("shot3")]
-        images[.힐링] = [Image("shot1")]
+        switch type {
+        case .일반:
+            imageNames[.보통] = ["shot1","shot2"]
+            imageNames[.공격당함] = ["shot3"]
+            imageNames[.파괴직전] = ["shot3"]
+            imageNames[.힐링] = ["shot1"]
+        case .추적레이저빔:
+            imageNames[.보통] = ["laser1"]
+            imageNames[.공격당함] = ["laser1"]
+            imageNames[.파괴직전] = ["laser1"]
+            imageNames[.힐링] = ["laser1"]
+            break
+        }
         hp = 1
         atteck = 1        
+    }
+    
+    override func draw(context: GraphicsContext, screenSize: CGSize) {
+        super.draw(context: context, screenSize: screenSize)
+        switch shotType {
+        case .일반:
+            break
+        case .추적레이저빔:
+            var path = Path()
+            path.move(to: center)
+            let a = center
+            let b = center + movement
+            let c = b + movement.rotated(by: 90)
+            let d = b + movement.rotated(by: -90)
+            
+            path.addLines([a,b,c,a,b,d,a])
+            context.fill(path, with: .color(.blue))
+        }
     }
 
 }

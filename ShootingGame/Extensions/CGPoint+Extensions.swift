@@ -37,4 +37,18 @@ extension CGPoint {
         let dy = point.y - self.y
         return sqrt(dx * dx + dy * dy)
     }
+    
+    func directionVector(to point: CGPoint, withSpeed speed: CGFloat) -> CGVector {
+           let dx = point.x - self.x
+           let dy = point.y - self.y
+           
+           // 두 점 사이의 거리를 구합니다.
+           let distance = sqrt(dx * dx + dy * dy)
+           
+           // 두 점 사이의 거리로 나누어 속도를 적용한 방향 벡터를 구합니다.
+           let scaledDx = (dx / distance) * speed
+           let scaledDy = (dy / distance) * speed
+           
+           return CGVector(dx: scaledDx, dy: scaledDy)
+       }
 }

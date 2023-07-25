@@ -18,25 +18,48 @@ fileprivate let adId = "ca-app-pub-7714069006629518/8836977450"
 class EnemyUnitModel : MovementUnitModel {
     enum EnemyShotType {
         case 일번샷
+        case 이번샷
+        case 조준샷
     }
     let adLoader:GADAdLoader
     var nativeAd:GADNativeAd? = nil
-    let shotType:[EnemyShotType] = [.일번샷]
+    let shotTypes:[EnemyShotType]
+    var target:CGPoint? = nil
+    var targetRefashPause = false
+    var targetVector:CGVector?  {
+        if let t = target {
+            return center.directionVector(to: t, withSpeed: 50)
+        }
+        return nil
+    }
     
-    override init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat) {
+    override var imageRotateAngle: CGFloat {
+        return movement.angleInRadians
+        
+    }
+
+    
+    init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, shotTypes:[EnemyShotType]) {
         let option = GADMultipleAdsAdLoaderOptions()
         option.numberOfAds = 1
         self.adLoader = GADAdLoader(adUnitID: adId,
                                     rootViewController: UIApplication.shared.lastViewController,
                                     adTypes: [.native], options: [option])
+        self.shotTypes = shotTypes
         super.init(center: center, range: range, movement: movement, speed: speed)
         isDrawHP = true
-        images[.보통] = [Image("star1")]
-        images[.공격당함] = [Image("star3")]
-        images[.파괴직전] = [Image("star2")]
+        imageNames[.보통] = ["star1"]
+        imageNames[.공격당함] = ["star3"]
+        imageNames[.파괴직전] = ["star2"]
         adLoader.delegate = self
         loadAd()
         hp = 800
+        
+        NotificationCenter.default.addObserver(forName: .playerLocationWatch, object: nil, queue: nil) { [weak self] noti in
+            if self?.targetRefashPause == false {
+                self?.target = noti.object as? CGPoint
+            }
+        }
     }
     
     func loadAd() {
@@ -68,18 +91,47 @@ class EnemyUnitModel : MovementUnitModel {
                 break
             }
         }
-        if count % 10 == 0 {
-            makeShot()
+        if let targetVector = targetVector {
+            var path = Path()
+            path.addArc(center: center, radius: 5, startAngle: .zero, endAngle: Angle(degrees: 360), clockwise: true)
+            path.addArc(center: center + targetVector, radius: 5, startAngle: .zero, endAngle: Angle(degrees: 360), clockwise: true)
+            context.fill(path, with: .color(.blue))
+
+            var path2 = Path()
+            let a = center
+            let b = center + targetVector
+            let c = b + targetVector.rotated(by: 90)
+            let d = b + targetVector.rotated(by: -90)
+            
+            path2.move(to: a)
+            path2.addLines([a,b,c,b,d,b,a])
+            context.stroke(path2 , with: .color(.blue))
         }
+        
+    }
+    
+    override func process() {
+        super.process()
+        makeShot()
     }
     
     override var isScreenOut: Bool {
         rect.isScreenOut(screenSize: screenSize, ignore: .top)
     }
     
+    var shotIdx = 0
+    
+    var nextShotIdx:Int {
+        shotIdx += 1
+        if shotIdx >= shotTypes.count {
+            shotIdx = 0
+        }
+        return shotIdx
+    }
+    
     func makeShot() {
         var shots:[EnemyShotUnitModel] = []
-        switch shotType[count % shotType.count] {
+        switch shotTypes[shotIdx] {
         case .일번샷:
             if count % 30 == 0 {
                 for i in 0...12 {
@@ -87,10 +139,42 @@ class EnemyUnitModel : MovementUnitModel {
                         center: center,
                         range: 5,
                         movement: .init(dx: sin(Double(count+i)), dy: cos(Double(count+i))),
-                        speed: 2))
+                        speed: 2,
+                        type: .일반
+                    ))
                 }
+            } else if count % 150 == 149 {
+              shotIdx = nextShotIdx
             }
-            break
+
+        case .이번샷:
+            if count % 150 < 100 {
+                shots.append(.init(
+                    center: center,
+                    range: 5,
+                    movement: .init(dx: cos(Double(count % 100)), dy: sin(Double(count % 100))),
+                    speed: 2, type: .일반))
+            } else if count % 150 == 149 {
+                shotIdx = nextShotIdx
+            }
+            
+        case .조준샷:
+            guard let t = target else {
+                return
+            }
+            if count % 150 < 100  {
+                targetRefashPause = true
+//                isMovingPause = true
+                let v = center.directionVector(to: t, withSpeed: 2)
+                shots.append(.init(center: center + v , range: 20, movement: v, speed:2, type: .추적레이저빔))
+            }
+            else if count % 150 == 149 {
+                shotIdx = nextShotIdx
+            }
+            else {
+//                isMovingPause = false
+                targetRefashPause = false                
+            }
         }
         
         NotificationCenter.default.post(name: .makeEnemyShot, object: shots)
@@ -102,13 +186,13 @@ extension EnemyUnitModel : GADNativeAdLoaderDelegate {
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         print("\(#function) \(#line)")
         if let image = nativeAd.icon?.image {
-            images[.보통] = [Image(uiImage: image)]
+            images[.보통] = [image]
         }
         if let image = nativeAd.images?.first?.image {
-            images[.공격당함] = [Image(uiImage: image)]
+            images[.공격당함] = [image]
         }
         if let image = nativeAd.images?.last?.image {
-            images[.파괴직전] = [Image(uiImage: image)]
+            images[.파괴직전] = [image]
         }
         self.nativeAd = nativeAd
     }

@@ -9,6 +9,7 @@ import Foundation
 class MovementUnitModel : UnitModel {
     var movement:CGVector
     var speed:CGFloat
+    var isMovingPause:Bool = false
     
     init(center: CGPoint, range: CGFloat, movement:CGVector, speed:CGFloat) {
         self.movement = movement
@@ -18,6 +19,8 @@ class MovementUnitModel : UnitModel {
 
     override func process() {
         super.process()
-        center += (movement * speed)
+        if isMovingPause == false {
+            center += (movement * speed)
+        }
     }
 }

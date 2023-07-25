@@ -32,7 +32,10 @@ class Particle {
     init() {        
         NotificationCenter.default.addObserver(forName: .unitDidDestoryed, object: nil, queue: nil) {[weak self] noti in
             if let obj = noti.object as? PlayerShotUnitModel {
-                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군미사일폭발, lifeLength: 30))
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군미사일폭발, lifeLength: 10))
+            }
+            if let obj = noti.object as? EnemyShotUnitModel {
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적군미사일폭발, lifeLength: 10))
             }
         }
         
@@ -42,7 +45,25 @@ class Particle {
         for (idx,item) in items.enumerated() {
             switch item.type {
             case .적군미사일폭발:
-                break
+                let c = item.count
+                var path = Path()
+                let s = Double(c) / 2
+                if c%2 == 0 {
+                    path.addRect(.init(
+                        x: item.rect.origin.x - s,
+                        y: item.rect.origin.y - s,
+                        width: item.rect.size.width + s * 2,
+                        height: item.rect.size.height + s * 2))
+                }
+                else {
+                    path.addArc(center: item.center,
+                                radius: s,
+                                startAngle: .zero,
+                                endAngle: .init(degrees: 360),
+                                clockwise: true)
+                }
+                context.stroke(path, with: .color(.blue))
+                
             case .아군미사일폭발:
                 var path = Path()
                 for i in 0...3 {

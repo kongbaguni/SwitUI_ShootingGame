@@ -10,8 +10,8 @@ import SwiftUI
 class PlayerShotUnitModel : MovementUnitModel {
     override init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat) {
         super.init(center: center, range: range, movement: movement, speed: speed)
-        images[.보통] = [Image("laser1")]
-        images[.공격당함] = [Image("laser1")]
+        imageNames[.보통] = ["laser1"]
+        imageNames[.공격당함] = ["laser1"]
         hp = 1
         atteck = 1 
     }

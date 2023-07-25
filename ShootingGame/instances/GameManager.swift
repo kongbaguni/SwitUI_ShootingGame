@@ -40,7 +40,13 @@ class GameManager {
     var player = PlayerUnitModel(center: .init(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2), range: 50)
     func addUnit() {
         let c = CGPoint(x: .random(in: 50...350), y: -100)
-        let unit = EnemyUnitModel(center: c, range: .random(in: 50...70), movement: .init(dx: 0, dy: .random(in: 1...2)), speed: .random(in: 0.1...1))
+        let unit = EnemyUnitModel(center: c,
+                                  range: .random(in: 50...70),
+                                  movement: .init(dx: 0, dy: .random(in: 1...2)),
+                                  speed: .random(in: 0.1...1),
+                                  shotTypes: [.이번샷, .이번샷, .조준샷, .일번샷]
+                                  
+        )
         enemys.append(unit)
         print(enemys.count)
     }
@@ -56,6 +62,14 @@ class GameManager {
                     
         
         player.draw(context: context, screenSize: screenSize)
+        let array:[[NSObject]] = [enemys, enemyShots, playerShots]
+        for arr in array {
+            for unit in arr {
+                if (unit as? UnitModel)?.isDie == true {
+                    NotificationCenter.default.post(name: .unitDidDestoryed, object: unit)
+                }
+            }
+        }
         
         for unit in enemys {
             unit.draw(context: context,screenSize: screenSize)
@@ -71,9 +85,6 @@ class GameManager {
             if unit.isScreenOut || unit.isDie {
                 if let idx = playerShots.firstIndex(of: unit) {
                     playerShots.remove(at: idx)
-                    if(unit.isDie) {
-                        NotificationCenter.default.post(name: .unitDidDestoryed, object: unit)
-                    }
                 }
             }
             

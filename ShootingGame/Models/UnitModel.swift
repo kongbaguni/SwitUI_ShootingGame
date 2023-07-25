@@ -30,15 +30,16 @@ class UnitModel : NSObject {
     /** 피탄 판정 범위 */
     var pitanRange:CGFloat
     
-    var images:[Status:[Image]] = [
-        .보통 :[Image("unit")]
+    var images:[Status:[UIImage]] = [:]
+    var imageNames:[Status:[String]] = [
+        .보통 :["unit"]
     ]
     
-    var image:Image {
-        if let arr = images[status] {
+    var imageName:String {
+        if let arr = imageNames[status] {
             return arr[count%arr.count]
         }
-        return Image("unit")
+        return "unit"
     }
         
     init(center: CGPoint, range: CGFloat) {
@@ -66,8 +67,18 @@ class UnitModel : NSObject {
     
     var isDrawHP = false
     
+    var imageRotateAngle:CGFloat {
+        return 0
+    }
+    
     func draw(context:GraphicsContext, screenSize : CGSize) {
-        context.draw(image, in: rect)
+        if let image = UIImage(named: imageName) {
+            context.draw(Image(uiImage: image), in: rect)
+        }
+        if let images = images[status] {
+            let image = images[count%images.count]
+            context.draw(Image(uiImage: image), in: rect)
+        }
         if isDrawHP {
             let r1 = CGRect(x: center.x - range, y: center.y + range + 10, width: range * 2, height: 5)
             let h = Double(hp - damage) / Double(hp)

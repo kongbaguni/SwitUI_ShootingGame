@@ -19,4 +19,7 @@ extension Notification.Name {
     
     /** 유닛 파괴 */
     static let unitDidDestoryed = Notification.Name("enemyDidDestoryed")
+    
+    /** 플레이어 위치 갱신됨*/
+    static let playerLocationWatch = Notification.Name("playerLocationWatch_observer")
 }
