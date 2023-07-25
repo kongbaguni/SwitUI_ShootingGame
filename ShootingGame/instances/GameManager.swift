@@ -31,6 +31,8 @@ class GameManager {
             }
         }
     }
+    let particle:Particle = .init()
+    
     var enemys:[EnemyUnitModel] = []
     var enemyShots:[EnemyShotUnitModel] = []
     var playerShots:[PlayerShotUnitModel] = []
@@ -69,6 +71,9 @@ class GameManager {
             if unit.isScreenOut || unit.isDie {
                 if let idx = playerShots.firstIndex(of: unit) {
                     playerShots.remove(at: idx)
+                    if(unit.isDie) {
+                        NotificationCenter.default.post(name: .unitDidDestoryed, object: unit)
+                    }
                 }
             }
             
@@ -97,7 +102,7 @@ class GameManager {
             }
             
         }
-        
+        particle.draw(context: context)
         
     }
     

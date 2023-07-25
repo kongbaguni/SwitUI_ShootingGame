@@ -16,6 +16,7 @@ extension Notification.Name {
     static let makePlayerShot = Notification.Name("makePlayerShot_observer")
     /** 적기의 샷 생성 */
     static let makeEnemyShot = Notification.Name("makeEnemyShot_observer")
-    /** 적기 파괴 */
-    static let enemyDidDestoryed = Notification.Name("enemyDidDestoryed")
+    
+    /** 유닛 파괴 */
+    static let unitDidDestoryed = Notification.Name("enemyDidDestoryed")
 }

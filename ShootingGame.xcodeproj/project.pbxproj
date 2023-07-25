@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B2661D72A6F4D9A002E3C7A /* Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2661D62A6F4D9A002E3C7A /* Particle.swift */; };
 		1B3AAFF12A6A559D0092C9B8 /* PlayerShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AAFF02A6A559D0092C9B8 /* PlayerShotUnitModel.swift */; };
 		1B3AAFF42A6A6A960092C9B8 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */; };
 		1B3AAFF72A6A6B910092C9B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B3AAFF92A6A6B910092C9B8 /* InfoPlist.strings */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B2661D62A6F4D9A002E3C7A /* Particle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Particle.swift; sourceTree = "<group>"; };
 		1B3AAFF02A6A559D0092C9B8 /* PlayerShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerShotUnitModel.swift; sourceTree = "<group>"; };
 		1B3AAFF82A6A6B910092C9B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B3AAFFA2A6A6B950092C9B8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				1B5476552A68F96F003D5DD7 /* GameManager.swift */,
+				1B2661D62A6F4D9A002E3C7A /* Particle.swift */,
 			);
 			path = instances;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B5476532A68F90E003D5DD7 /* Notification.Names.swift in Sources */,
+				1B2661D72A6F4D9A002E3C7A /* Particle.swift in Sources */,
 				1B5476622A6916C2003D5DD7 /* CGRect+Extnesions.swift in Sources */,
 				1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */,
 				1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */,
