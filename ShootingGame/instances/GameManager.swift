@@ -32,6 +32,7 @@ class GameManager {
         }
     }
     let particle:Particle = .init()
+    let score:Score = .init()
     
     var enemys:[EnemyUnitModel] = []
     var enemyShots:[EnemyShotUnitModel] = []
@@ -39,7 +40,7 @@ class GameManager {
     var screenSize:CGSize = .zero
     var player = PlayerUnitModel(center: .init(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2), range: 50)
     func addUnit() {
-        let c = CGPoint(x: .random(in: 50...350), y: -100)
+        let c = CGPoint(x: .random(in: 50...UIScreen.main.bounds.width - 50), y: -100)
         let types:[[EnemyUnitModel.EnemyShotType]] = [
             [.조준샷],
             [.이번샷, .일번샷, .일번샷, .조준샷],
@@ -59,12 +60,14 @@ class GameManager {
     
     func draw(context:GraphicsContext, screenSize:CGSize) {
         self.screenSize = screenSize
+        #if DEBUG
         let str = """
         unitCount : \(enemys.count)
         playerShotCount : \(playerShots.count)
         enemyShotCount : \(enemyShots.count)
         """
         context.draw(Text(str), in: .init(x: 30, y: 30, width: 200, height: 100))
+        #endif 
                     
         
         player.draw(context: context, screenSize: screenSize)
@@ -120,7 +123,7 @@ class GameManager {
             
         }
         particle.draw(context: context)
-        
+        score.draw(context: context)
     }
     
 }

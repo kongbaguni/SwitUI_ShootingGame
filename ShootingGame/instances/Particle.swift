@@ -85,7 +85,7 @@ class Particle {
                 for i in 0...3 {
                     path.addRect(item.rect + i * 10 - item.count * 10)
                 }
-                context.stroke(path, with: .color(.black.opacity(opacity)))
+                context.stroke(path, with: .color(.primary.opacity(opacity)))
             default:
                 break
             }

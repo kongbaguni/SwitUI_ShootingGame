@@ -34,16 +34,16 @@ struct ContentView: View {
                 }
                 .navigationTitle(Text("App Title"))
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    toolbarItem
-                }
+//                .toolbar {
+//                    toolbarItem
+//                }
             } else {
                 game
                     .navigationTitle(Text("App Title"))
                     .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        toolbarItem
-                    }
+//                    .toolbar {
+//                        toolbarItem
+//                    }
             }
         }
         .navigationViewStyle(.stack)

@@ -31,15 +31,20 @@ class UnitModel : NSObject {
     var pitanRange:CGFloat
     
     var images:[Status:[UIImage]] = [:]
+    
     var imageNames:[Status:[String]] = [
         .보통 :["unit"]
     ]
     
-    var imageName:String {
-        if let arr = imageNames[status] {
+    var image:UIImage {        
+        if let arr = images[status] {
             return arr[count%arr.count]
         }
-        return "unit"
+        
+        if let arr = imageNames[status] {
+            return UIImage(named: arr[count%arr.count])!
+        }
+        return UIImage(named: "unit")!
     }
         
     init(center: CGPoint, range: CGFloat) {
@@ -72,9 +77,7 @@ class UnitModel : NSObject {
     }
     
     func draw(context:GraphicsContext, screenSize : CGSize) {
-        if let image = UIImage(named: imageName) {
-            context.draw(Image(uiImage: image), in: rect)
-        }
+        context.draw(Image(uiImage: image), in: rect)
         if let images = images[status] {
             let image = images[count%images.count]
             context.draw(Image(uiImage: image), in: rect)

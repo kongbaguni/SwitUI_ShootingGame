@@ -41,7 +41,12 @@ struct GameCanvasView : View {
             Button {
                 gameManager.addUnit()
             } label: {
-                Text("add Unit")
+                Image(systemName: "plus.app")
+                    .resizable()
+                    .imageScale(.large)
+                    .scaledToFit()
+                    .frame(width: 80)
+                
             }
         }
 //        .edgesIgnoringSafeArea(.bottom)
