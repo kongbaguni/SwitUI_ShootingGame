@@ -30,4 +30,20 @@ extension CGRect {
         return false
     }
     
+    static func + (left:CGRect, right:CGFloat) -> CGRect {
+        return .init(x: left.origin.x - right / 2, y: left.origin.y - right / 2, width: left.size.width + right, height: left.size.height + right)
+    }
+    
+    static func - (left:CGRect, right:CGFloat) -> CGRect {
+        return left + -1 * right
+    }
+    
+    static func + (left:CGRect, right:Int) -> CGRect {
+        return left + CGFloat(right)
+    }
+    
+    static func - (left:CGRect, right:Int) -> CGRect {
+        return left - CGFloat(right)
+    }
+    
 }

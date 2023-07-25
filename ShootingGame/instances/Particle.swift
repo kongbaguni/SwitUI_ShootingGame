@@ -37,12 +37,17 @@ class Particle {
             if let obj = noti.object as? EnemyShotUnitModel {
                 self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적군미사일폭발, lifeLength: 10))
             }
+            if let obj = noti.object as? EnemyUnitModel {
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적기폭발, lifeLength: 30))
+            }
         }
         
     }
     
     func draw(context: GraphicsContext) {
         for (idx,item) in items.enumerated() {
+            let opacity = 1.0 - Double(item.count) / Double(item.lifeLength)
+            
             switch item.type {
             case .적군미사일폭발:
                 let c = item.count
@@ -69,11 +74,18 @@ class Particle {
                 for i in 0...3 {
                     path.addArc(center: item.center + .init(x: .random(in: -3...3), y: .random(in: -3...3)), radius: item.rect.width / 2 + CGFloat(10 * i + item.count * 5), startAngle: .zero, endAngle: Angle(degrees: 360), clockwise: true)
                 }
-                let opacity = 1.0 - Double(item.count) / Double(item.lifeLength)
+                
                 context.stroke(path, with: .color(.red.opacity(opacity)))
                 if Int.random(in: 0...10) == 0 {
                     context.fill(path, with: .color(.orange.opacity(opacity / 2)))
                 }
+                
+            case .적기폭발:
+                var path = Path()
+                for i in 0...3 {
+                    path.addRect(item.rect + i * 10 - item.count * 10)
+                }
+                context.stroke(path, with: .color(.black.opacity(opacity)))
             default:
                 break
             }

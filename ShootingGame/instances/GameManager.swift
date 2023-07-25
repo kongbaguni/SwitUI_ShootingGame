@@ -40,12 +40,18 @@ class GameManager {
     var player = PlayerUnitModel(center: .init(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2), range: 50)
     func addUnit() {
         let c = CGPoint(x: .random(in: 50...350), y: -100)
+        let types:[[EnemyUnitModel.EnemyShotType]] = [
+            [.조준샷],
+            [.이번샷, .일번샷, .일번샷, .조준샷],
+            [.이번샷, .이번샷],
+            [.일번샷]
+        ]
+        
         let unit = EnemyUnitModel(center: c,
                                   range: .random(in: 50...70),
                                   movement: .init(dx: 0, dy: .random(in: 1...2)),
                                   speed: .random(in: 0.1...1),
-                                  shotTypes: [.조준샷]
-                                  
+                                  shotTypes: types.randomElement()!                                  
         )
         enemys.append(unit)
         print(enemys.count)
