@@ -36,21 +36,30 @@ class EnemyShotUnitModel : MovementUnitModel {
     }
     
     override func draw(context: GraphicsContext, screenSize: CGSize) {
-        super.draw(context: context, screenSize: screenSize)
+        self.screenSize = screenSize
+        process()
+        
         switch shotType {
         case .일반:
+            var path = Path()
+            path.addArc(center: center, radius: range, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
+            context.fill(path, with: .color(.orange))
             break
         case .추적레이저빔:
             var path = Path()
             path.move(to: center)
             let a = center
             let b = center + movement
-            let c = b + movement.rotated(by: 90)
-            let d = b + movement.rotated(by: -90)
+            let c = b + movement.rotated(by: 90) * 10
+            let d = b + movement.rotated(by: -90) * 10
             
             path.addLines([a,b,c,a,b,d,a])
-            context.fill(path, with: .color(.blue))
+            context.fill(path, with: .color(.red))
         }
     }
 
+    override func process() {
+        super.process()
+        
+    }
 }

@@ -44,7 +44,7 @@ class GameManager {
                                   range: .random(in: 50...70),
                                   movement: .init(dx: 0, dy: .random(in: 1...2)),
                                   speed: .random(in: 0.1...1),
-                                  shotTypes: [.이번샷, .이번샷, .조준샷, .일번샷]
+                                  shotTypes: [.조준샷]
                                   
         )
         enemys.append(unit)

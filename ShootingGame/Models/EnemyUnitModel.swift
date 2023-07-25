@@ -71,7 +71,7 @@ class EnemyUnitModel : MovementUnitModel {
         super.draw(context: context, screenSize: screenSize)
         if let ad = nativeAd {
             switch status {
-            case .보통:
+            case .공격당함:
                 context.fill(Path(rect), with: .color(Color("dim")))
                 if let headline = ad.headline {
                     context.draw(Text(headline).font(.headline),
