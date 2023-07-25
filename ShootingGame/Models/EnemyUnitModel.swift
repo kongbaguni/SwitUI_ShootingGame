@@ -53,7 +53,7 @@ class EnemyUnitModel : MovementUnitModel {
         imageNames[.파괴직전] = ["star2"]
         adLoader.delegate = self
         loadAd()
-        hp = .random(in: 100..<200)
+        hp = .random(in: 200..<400)
         
         NotificationCenter.default.addObserver(forName: .playerLocationWatch, object: nil, queue: nil) { [weak self] noti in
             if self?.targetRefashPause == false {

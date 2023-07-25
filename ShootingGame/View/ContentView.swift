@@ -15,7 +15,7 @@ struct ContentView: View {
         }
     }
     var game: some View {
-        GameCanvasView(fps: 60)
+        GameCanvasView(fps: 60)            
     }
     var toolbarItem : some View {
         NavigationLink {

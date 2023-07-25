@@ -42,9 +42,9 @@ class GameManager {
     func addUnit() {
         let c = CGPoint(x: .random(in: 50...UIScreen.main.bounds.width - 50), y: -100)
         let types:[[EnemyUnitModel.EnemyShotType]] = [
-            [.조준샷],
+            [.조준샷, .조준샷, .조준샷, .이번샷],
             [.이번샷, .일번샷, .일번샷, .조준샷],
-            [.이번샷, .이번샷],
+            [.이번샷, .이번샷, .일번샷],
             [.일번샷]
         ]
         

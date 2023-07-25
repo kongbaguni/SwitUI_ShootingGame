@@ -24,6 +24,8 @@ struct GameCanvasView : View {
                     count += 1
                 }
             }
+            .background(Color.backGround2)
+            .border(Color.primary, width: 2)
             .gesture(
                 DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
                     .onChanged({ value in
@@ -50,7 +52,7 @@ struct GameCanvasView : View {
             }
         }
 //        .edgesIgnoringSafeArea(.bottom)
-        .background(Color.backGround1)
+//        .background(Color.backGround1)
     }
 }
 
