@@ -8,6 +8,18 @@
 import SwiftUI
 
 class PlayerShotUnitModel : MovementUnitModel {
+    weak var before:PlayerShotUnitModel? = nil
+    weak var next:PlayerShotUnitModel? = nil
+    
+    var points:[CGPoint] {
+        [
+            rect.origin,
+            .init(x: rect.origin.x + rect.width, y: rect.origin.y),
+            next?.points[0] ?? .init(x: rect.origin.x, y: rect.origin.y + rect.height),
+            next?.points[1] ?? .init(x: rect.origin.x + rect.width, y: rect.origin.y + rect.height),
+        ]
+    }
+    
     override init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat) {
         super.init(center: center, range: range, movement: movement, speed: speed)
         imageNames[.보통] = ["laser1"]
@@ -27,6 +39,7 @@ class PlayerShotUnitModel : MovementUnitModel {
     override func draw(context: GraphicsContext, screenSize: CGSize) {
         self.screenSize = screenSize
         process()
+
         switch status {
         case .공격당함:
             var path2 = Path()
@@ -37,17 +50,21 @@ class PlayerShotUnitModel : MovementUnitModel {
             context.fill(path1, with: .color(.blue))
             break
         default:
-            var path2 = Path()
-            path2.addRect(CGRect(x: rect.origin.x - 5, y: rect.origin.y, width: rect.width + 10, height: rect.height))
-            context.fill(path2, with: .color(.yellow))
-            
             var path1 = Path()
-            path1.addRect(rect)
-            context.fill(path1, with: .color(.blue))
+            path1.move(to: points[0])
+            path1.addLines([points[1], points[3], points[2],points[0]])
+            context.fill(path1, with: .color(.yellow))            
         }
         
         
         
+       
+//        let colors:[Color] = [.red, .red, .orange, .orange]
+//        for (idx,p) in points.enumerated() {
+//            var path = Path()
+//            path.addArc(center: p, radius: 3, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
+//            context.fill(path, with: .color(colors[idx]))
+//        }
 
     }
 }

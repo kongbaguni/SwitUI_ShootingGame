@@ -11,13 +11,15 @@ import SwiftUI
 class GameManager {
     init() {
         NotificationCenter.default.addObserver(forName: .makePlayerShot, object: nil, queue: nil) { [weak self] noti in
+            guard let s = self else {
+                return
+            }
+                    
             if let arr = noti.object as? [PlayerShotUnitModel] {
-                for item in arr {
-                    self?.playerShots.append(item)
-                }
+                self?.insertPlayerShot(arr: arr)
             }
             else if let obj = noti.object as? PlayerShotUnitModel {
-                self?.playerShots.append(obj)
+                self?.insertPlayerShot(arr: [obj])
             }
         }
         NotificationCenter.default.addObserver(forName: .makeEnemyShot, object: nil, queue: nil) { [weak self] noti in
@@ -31,12 +33,40 @@ class GameManager {
             }
         }
     }
+    
     let particle:Particle = .init()
     let score:Score = .init()
     
     var enemys:[EnemyUnitModel] = []
     var enemyShots:[EnemyShotUnitModel] = []
-    var playerShots:[PlayerShotUnitModel] = []
+    
+    private var playerShots:[[PlayerShotUnitModel]] = []
+    private var playerShotsArr:[PlayerShotUnitModel] = []
+    
+    func insertPlayerShot(arr:[PlayerShotUnitModel]) {
+        while playerShots.count < arr.count {
+            playerShots.append([])
+        }
+        for (idx, item) in arr.enumerated() {
+            playerShots[idx].last?.next = item
+            item.before = playerShots[idx].last
+            
+            playerShots[idx].append(item)
+            playerShotsArr.append(item)
+        }
+        
+    }
+    func removePlayerShot(item:PlayerShotUnitModel) {
+        for (i,arr) in playerShots.enumerated() {
+            if let j = arr.firstIndex(of: item) {
+                playerShots[i].remove(at: j)
+            }
+        }
+        if let idx = playerShotsArr.firstIndex(of: item) {
+            playerShotsArr.remove(at: idx)
+        }
+    }
+    
     var screenSize:CGSize = .zero
     var player = PlayerUnitModel(center: .init(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2), range: 50)
     func addUnit() {
@@ -71,16 +101,16 @@ class GameManager {
                     
         
         player.draw(context: context, screenSize: screenSize)
-        let array:[[NSObject]] = [enemys, enemyShots, playerShots]
-        for arr in array {
-            for unit in arr {
+        let array:[[NSObject]] = [enemys, enemyShots, playerShotsArr]
+        _ = array.map { arr in
+            _ = arr.map { unit in
                 if (unit as? UnitModel)?.isDie == true {
                     NotificationCenter.default.post(name: .unitDidDestoryed, object: unit)
                 }
             }
         }
         
-        for unit in enemys {
+        _ = enemys.map { unit in
             unit.draw(context: context,screenSize: screenSize)
             if unit.isScreenOut || unit.isDie {
                 if let idx = enemys.firstIndex(of: unit) {
@@ -88,13 +118,10 @@ class GameManager {
                 }
             }
         }
-        
-        for unit in playerShots {
+        _ = playerShotsArr.reversed().map { unit in
             unit.draw(context: context,screenSize: screenSize)
             if unit.isScreenOut || unit.isDie {
-                if let idx = playerShots.firstIndex(of: unit) {
-                    playerShots.remove(at: idx)
-                }
+                removePlayerShot(item: unit)
             }
             
             for enemy in enemys {
@@ -104,8 +131,7 @@ class GameManager {
                 }
             }
         }
-        
-        for unit in enemyShots {
+        _ = enemyShots.map { unit in
             unit.draw(context: context, screenSize: screenSize)
 
             let a = unit.isScreenOut

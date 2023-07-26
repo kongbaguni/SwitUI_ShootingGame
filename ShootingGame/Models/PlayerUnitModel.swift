@@ -26,7 +26,6 @@ class PlayerUnitModel : UnitModel {
                 if(self?.willScreenOut(vector: vec,ignore: nil,padding: -range) == false) {
                     self?.center += vec
                 }
-                print("-------")
                 self?.lastTouchLocaton = value
                 NotificationCenter.default.post(name: .playerLocationWatch, object: self?.center)
             }
@@ -39,7 +38,15 @@ class PlayerUnitModel : UnitModel {
     
     override func process() {
         super.process()
-        let shot = PlayerShotUnitModel(center: center + CGPoint(x: 0, y: -50), range: 10, movement: .init(dx: 0, dy: -10), speed: 5)
+        let shot:[PlayerShotUnitModel] =
+        [
+//            .init(center: center + CGPoint(x: 0, y: -50), range: 10, movement: .init(dx: -5, dy: -8), speed: 5),
+//            .init(center: center + CGPoint(x: 0, y: -50), range: 10, movement: .init(dx: -2.5, dy: -9), speed: 5),
+            .init(center: center + CGPoint(x: 0, y: -50), range: 10, movement: .init(dx: 0, dy: -10), speed: 5),
+//            .init(center: center + CzzGPoint(x: 0, y: -50), range: 10, movement: .init(dx: 2.5, dy: -9), speed: 5),
+//            .init(center: center + CGPoint(x: 0, y: -50), range: 10, movement: .init(dx: 5, dy: -8), speed: 5),
+        ]
+        
         NotificationCenter.default.post(name: .makePlayerShot, object: shot)
     }
     

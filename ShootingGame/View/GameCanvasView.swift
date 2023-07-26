@@ -29,13 +29,10 @@ struct GameCanvasView : View {
             .gesture(
                 DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
                     .onChanged({ value in
-                        print(value.location)
                         NotificationCenter.default.post(name: .dragPointerChanged, object: value)
                         
                     })
                     .onEnded({ value in
-                        print("dragEnd")
-                        print(value.location)
                         NotificationCenter.default.post(name: .dragEnded, object: value)
                     })
                 
