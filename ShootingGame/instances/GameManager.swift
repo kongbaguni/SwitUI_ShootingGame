@@ -19,6 +19,8 @@ class GameManager {
     var isTestMode = true
     var level = 1
     
+    var gameOverCheck = false
+    
     var stage = 1 {
         didSet {
             if isTestMode == false {
@@ -51,10 +53,14 @@ class GameManager {
                 self?.enemyShots.append(obj)
             }
         }
-        NotificationCenter.default.addObserver(forName: .makeEnemy, object: nil, queue: nil) { noti in
+        NotificationCenter.default.addObserver(forName: .makeEnemy, object: nil, queue: nil) { [weak self] noti in
             if let obj = noti.object as? EnemyUnitModel {
-                self.enemys.append(obj)
+                self?.enemys.append(obj)
             }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .stageTimeUp, object: nil, queue: nil) { [weak self] noti in
+            self?.gameOverCheck = true
         }
     }
     
@@ -188,6 +194,11 @@ class GameManager {
             context.draw(Text(str).font(.system(size: 8)), in: .init(x: UIScreen.main.bounds.width / 2, y: 30, width: 200, height: 100))
         }
 
+        if gameOverCheck {
+            if enemys.count == 0 {
+                NotificationCenter.default.post(name: .gameClear, object: nil)
+            }
+        }
     }
     
 }

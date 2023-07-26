@@ -23,4 +23,9 @@ extension Notification.Name {
     
     /** 플레이어 위치 갱신됨*/
     static let playerLocationWatch = Notification.Name("playerLocationWatch_observer")
+    
+    /** 스테이지의 적이 모두 등장했다*/
+    static let stageTimeUp = Notification.Name("stage_time_up_observer")
+    /** 게임 클리어*/
+    static let gameClear = Notification.Name("gameClear_observer")
 }

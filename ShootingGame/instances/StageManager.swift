@@ -76,6 +76,16 @@ class StageManager {
     }
     
     func process(count:UInt64) {
-        data?.process(count: count)
+        guard let data = data else {
+            return
+        }
+        
+        data.process(count: count)
+        
+        let arr = [UInt64](data.enemys.keys)
+        if arr.sorted().last! < count {
+            NotificationCenter.default.post(name: .stageTimeUp, object: nil)
+        }
+        
     }
 }
