@@ -115,10 +115,16 @@ class GameManager {
     var timeline:UInt64 = 0
     func draw(context:GraphicsContext, screenSize:CGSize) {
         timeline += 1
-        if stageManager.data == nil {
-            stageManager.makeStage(stageNumber: stage, level: level)
+        if isTestMode == false {
+            if stageManager.data == nil {
+                stageManager.makeStage(stageNumber: stage, level: level)
+            }
+            stageManager.process(count: timeline)
+        } else {
+            if player.isDie {
+                player.damage = 0
+            }
         }
-        stageManager.process(count: timeline)
         self.screenSize = screenSize
                     
         
