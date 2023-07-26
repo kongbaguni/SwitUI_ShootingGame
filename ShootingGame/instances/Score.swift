@@ -62,7 +62,7 @@ class Score {
             let w = UIScreen.main.bounds.width
             var p1 = Path()
             p1.addRect(UIScreen.main.bounds)
-            context.fill(p1, with: .color(.backGround2.opacity(0.8)))
+            context.fill(p1, with: .color(.backGround3.opacity(0.8)))
             
             context.draw(Text("Game Over").font(.system(size:40)).foregroundColor(.textColorStrong),
                          in: .init(x: 10, y: 10, width: w, height: 100))
