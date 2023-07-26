@@ -28,6 +28,9 @@ class Score {
             guard let s = self else {
                 return
             }
+            if s.gameOver {
+                return
+            }
                     
             if noti.object is PlayerShotUnitModel {
                 self?.score += 1 * Int64(s.combo)
@@ -44,6 +47,7 @@ class Score {
             if noti.object is PlayerUnitModel {
                 DispatchQueue.main.asyncAfter(wallDeadline: .now() + .seconds(3)) { [weak self] in
                     self?.gameOver = true
+                    NotificationCenter.default.post(name: .gameOver, object: nil)
                 }
             }
         }

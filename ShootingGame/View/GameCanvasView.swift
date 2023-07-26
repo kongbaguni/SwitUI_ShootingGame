@@ -13,6 +13,13 @@ struct GameCanvasView : View {
     let level:Int
     let fps:Int
     
+//    init(isTestMode: Bool, level: Int, fps: Int) {
+//        self.isTestMode = isTestMode
+//        self.level = level
+//        self.fps = fps
+//    }
+    
+    @State var gameOver = false
     @State var count = 0
     @State var gameManager:GameManager? = nil
     
@@ -71,10 +78,29 @@ struct GameCanvasView : View {
                         .frame(width: 80)
                 }
             }
+            if gameOver {
+                Button {
+                    // 게임 기록하기
+                } label: {
+                    Text("Post LeaderBoard")
+                }
+            }
         }
         .onAppear {
             gameManager = .init()
             gameManager?.level = level
+            NotificationCenter.default.addObserver(forName: .gameClear, object: nil, queue: nil) { [self] noti in
+                DispatchQueue.main.async {
+                    gameOver = true
+                }
+                
+            }
+            NotificationCenter.default.addObserver(forName: .gameOver, object: nil, queue: nil) { [self] noti in
+                DispatchQueue.main.async {
+                    gameOver = true
+                }
+            }
+
         }
         .onDisappear {
             gameManager?.clear()

@@ -32,7 +32,11 @@ class EnemyShotUnitModel : MovementUnitModel {
             break
         }
         hp = 1
-        atteck = 1        
+        atteck = 1
+        NotificationCenter.default.addObserver(forName: .gameClear, object: nil, queue: nil) { [weak self] noti in
+            self?.addDamage(value: 100)
+        }
+
     }
     
     override func draw(context: GraphicsContext, screenSize: CGSize) {

@@ -74,8 +74,11 @@ class StageManager {
             break
         }
     }
-    
+    var isTimeUp = false
     func process(count:UInt64) {
+        if isTimeUp {
+            return
+        }
         guard let data = data else {
             return
         }
@@ -83,8 +86,11 @@ class StageManager {
         data.process(count: count)
         
         let arr = [UInt64](data.enemys.keys)
-        if arr.sorted().last! < count {
+        let value = arr.sorted().last!
+        if value < count {
             NotificationCenter.default.post(name: .stageTimeUp, object: nil)
+            self.data = nil
+            isTimeUp = true 
         }
         
     }

@@ -26,6 +26,8 @@ extension Notification.Name {
     
     /** 스테이지의 적이 모두 등장했다*/
     static let stageTimeUp = Notification.Name("stage_time_up_observer")
+    /** 게임 오버 */
+    static let gameOver = Notification.Name("gameOver_observer")
     /** 게임 클리어*/
     static let gameClear = Notification.Name("gameClear_observer")
 }

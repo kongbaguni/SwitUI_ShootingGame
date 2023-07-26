@@ -197,6 +197,7 @@ class GameManager {
         if gameOverCheck {
             if enemys.count == 0 {
                 NotificationCenter.default.post(name: .gameClear, object: nil)
+                gameOverCheck = false            
             }
         }
     }
