@@ -58,8 +58,4 @@ class EnemyShotUnitModel : MovementUnitModel {
         }
     }
 
-    override func process() {
-        super.process()
-        
-    }
 }
