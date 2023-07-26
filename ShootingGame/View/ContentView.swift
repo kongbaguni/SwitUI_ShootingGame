@@ -8,47 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    init() {
-        
+    init() {        
         GoogleAdPrompt.promptWithDelay {
             
         }
-    }
-    var game: some View {
-        GameCanvasView(fps: 60)            
-    }
-    var toolbarItem : some View {
-        NavigationLink {
-            EmptyView()
-        } label: {
-            Image(systemName: "line.3.horizontal")
-                .foregroundColor(.textColorStrong)
-        }
-
     }
     var body: some View {
         NavigationView {
             if #available(iOS 16.0, *) {
                 NavigationStack {
-                    game
+                    MainView()
+                        
                 }
-                .navigationTitle(Text("App Title"))
-                .navigationBarTitleDisplayMode(.inline)
-//                .toolbar {
-//                    toolbarItem
-//                }
-            } else {
-                game
-                    .navigationTitle(Text("App Title"))
-                    .navigationBarTitleDisplayMode(.inline)
-//                    .toolbar {
-//                        toolbarItem
-//                    }
+            }
+            else {
+                MainView()
             }
         }
-        .navigationViewStyle(.stack)
-        .background(Color.backGround3)
-        
     }
 }
 

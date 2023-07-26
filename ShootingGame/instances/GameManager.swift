@@ -9,6 +9,16 @@ import Foundation
 import SwiftUI
 
 class GameManager {
+    func clear() {
+        playerShotsArr.removeAll()
+        playerShots.removeAll()
+        enemys.removeAll()
+        enemyShots.removeAll()
+    }
+    
+    var isTestMode = false
+    var level = 1
+    
     init() {
         NotificationCenter.default.addObserver(forName: .makePlayerShot, object: nil, queue: nil) { [weak self] noti in
             guard let s = self else {
@@ -16,10 +26,10 @@ class GameManager {
             }
                     
             if let arr = noti.object as? [PlayerShotUnitModel] {
-                self?.insertPlayerShot(arr: arr)
+                s.insertPlayerShot(arr: arr)
             }
             else if let obj = noti.object as? PlayerShotUnitModel {
-                self?.insertPlayerShot(arr: [obj])
+                s.insertPlayerShot(arr: [obj])
             }
         }
         NotificationCenter.default.addObserver(forName: .makeEnemyShot, object: nil, queue: nil) { [weak self] noti in
@@ -90,14 +100,6 @@ class GameManager {
     
     func draw(context:GraphicsContext, screenSize:CGSize) {
         self.screenSize = screenSize
-        #if DEBUG
-        let str = """
-        unitCount : \(enemys.count)
-        playerShotCount : \(playerShots.count)
-        enemyShotCount : \(enemyShots.count)
-        """
-        context.draw(Text(str), in: .init(x: 30, y: 30, width: 200, height: 100))
-        #endif 
                     
         
         player.draw(context: context, screenSize: screenSize)
@@ -150,6 +152,16 @@ class GameManager {
         }
         particle.draw(context: context)
         score.draw(context: context)
+        
+        if isTestMode {
+            let str = """
+        unitCount : \(enemys.count)
+        playerShotCount : \(playerShots.count)
+        enemyShotCount : \(enemyShots.count)
+        """
+            context.draw(Text(str).font(.system(size: 8)), in: .init(x: UIScreen.main.bounds.width / 2, y: 30, width: 200, height: 100))
+        }
+
     }
     
 }
