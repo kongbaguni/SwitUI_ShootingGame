@@ -40,6 +40,12 @@ class PlayerShotUnitModel : MovementUnitModel {
         self.screenSize = screenSize
         process()
 
+        if next == nil {
+            var path2 = Path()
+            path2.addArc(center: .init(x: center.x, y: center.y + range), radius: range * 2, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
+            context.fill(path2, with: .color(.yellow))
+        }
+        
         switch status {
         case .공격당함:
             var path2 = Path()
@@ -48,23 +54,13 @@ class PlayerShotUnitModel : MovementUnitModel {
             var path1 = Path()
             path1.addArc(center: center, radius: 25, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
             context.fill(path1, with: .color(.blue))
-            break
+
         default:
             var path1 = Path()
             path1.move(to: points[0])
             path1.addLines([points[1], points[3], points[2],points[0]])
             context.fill(path1, with: .color(.yellow))            
         }
-        
-        
-        
        
-//        let colors:[Color] = [.red, .red, .orange, .orange]
-//        for (idx,p) in points.enumerated() {
-//            var path = Path()
-//            path.addArc(center: p, radius: 3, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
-//            context.fill(path, with: .color(colors[idx]))
-//        }
-
     }
 }

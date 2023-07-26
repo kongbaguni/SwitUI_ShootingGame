@@ -16,8 +16,17 @@ class GameManager {
         enemyShots.removeAll()
     }
     
-    var isTestMode = false
+    var isTestMode = true
     var level = 1
+    
+    var stage = 1 {
+        didSet {
+            if isTestMode == false {
+                timeline = 0
+                stageManager.makeStage(stageNumber: stage, level: level)
+            }
+        }
+    }
     
     init() {
         NotificationCenter.default.addObserver(forName: .makePlayerShot, object: nil, queue: nil) { [weak self] noti in
@@ -42,11 +51,16 @@ class GameManager {
                 self?.enemyShots.append(obj)
             }
         }
+        NotificationCenter.default.addObserver(forName: .makeEnemy, object: nil, queue: nil) { noti in
+            if let obj = noti.object as? EnemyUnitModel {
+                self.enemys.append(obj)
+            }
+        }
     }
     
     let particle:Particle = .init()
     let score:Score = .init()
-    
+    let stageManager:StageManager = .init()
     var enemys:[EnemyUnitModel] = []
     var enemyShots:[EnemyShotUnitModel] = []
     
@@ -98,7 +112,13 @@ class GameManager {
         print(enemys.count)
     }
     
+    var timeline:UInt64 = 0
     func draw(context:GraphicsContext, screenSize:CGSize) {
+        timeline += 1
+        if stageManager.data == nil {
+            stageManager.makeStage(stageNumber: stage, level: level)
+        }
+        stageManager.process(count: timeline)
         self.screenSize = screenSize
                     
         
@@ -144,7 +164,7 @@ class GameManager {
                 }
             }
             
-            if(unit.isCrash(unit: player)) {
+            if(unit.isCrash(unit: player) && player.isDie == false) {
                 player.addDamage(value: unit.atteck)
                 unit.addDamage(value: player.atteck)
             }

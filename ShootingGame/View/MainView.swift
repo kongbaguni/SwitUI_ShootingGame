@@ -11,12 +11,6 @@ struct MainView: View {
     var body: some View {
         List {
             NavigationLink {
-                GameCanvasView(isTestMode:true, level: 1,fps: 60)
-            } label: {
-                Text("Test Mode")
-            }
-            
-            NavigationLink {
                 GameCanvasView(isTestMode:false, level: 1,fps: 60)
             } label : {
                 Text("Easy")
@@ -40,8 +34,15 @@ struct MainView: View {
             } label : {
                 Text("Hell")
             }
+            
+            NavigationLink {
+                GameCanvasView(isTestMode:true, level: 1,fps: 60)
+            } label: {
+                Text("Test Mode")
+            }
+
         }
-        .navigationTitle(Text("App Title"))
+        .navigationTitle(Text("Home title"))
     }
 }
 

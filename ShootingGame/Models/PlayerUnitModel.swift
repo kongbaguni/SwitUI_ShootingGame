@@ -36,6 +36,18 @@ class PlayerUnitModel : UnitModel {
         pitanRange = 5
     }
     
+    override func addDamage(value: Int) {
+        if isDie {
+            return
+        }
+        
+        super.addDamage(value: value)
+        
+        if isDie {
+            NotificationCenter.default.post(name: .unitDidDestoryed, object: self)
+        }
+    }
+    
     override func process() {
         super.process()
         let shot:[PlayerShotUnitModel] =
@@ -46,11 +58,15 @@ class PlayerUnitModel : UnitModel {
 //            .init(center: center + CzzGPoint(x: 0, y: -50), range: 10, movement: .init(dx: 2.5, dy: -9), speed: 5),
 //            .init(center: center + CGPoint(x: 0, y: -50), range: 10, movement: .init(dx: 5, dy: -8), speed: 5),
         ]
-        
-        NotificationCenter.default.post(name: .makePlayerShot, object: shot)
+        if isDie == false {
+            NotificationCenter.default.post(name: .makePlayerShot, object: shot)
+        }
     }
     
     override func draw(context: GraphicsContext, screenSize: CGSize) {
+        if isDie {
+            return
+        }
         super.draw(context: context, screenSize: screenSize)
         var path = Path()
         path.addArc(center: center, radius: pitanRange, startAngle: .zero, endAngle: .degrees(360), clockwise: true)

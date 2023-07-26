@@ -11,7 +11,8 @@ extension Notification.Name {
     static let dragPointerChanged = Notification.Name("dragPointerChanged_observer")
     /** 터치 끝남 */
     static let dragEnded = Notification.Name("dragEnded_observer")
-    
+    /** 적기 생성*/
+    static let makeEnemy = Notification.Name("makeEnemy_observer")
     /** 플레이어 샷 생성*/
     static let makePlayerShot = Notification.Name("makePlayerShot_observer")
     /** 적기의 샷 생성 */

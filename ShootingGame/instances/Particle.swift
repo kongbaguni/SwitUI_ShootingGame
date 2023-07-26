@@ -40,6 +40,9 @@ class Particle {
             if let obj = noti.object as? EnemyUnitModel {
                 self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적기폭발, lifeLength: 30))
             }
+            if let obj = noti.object as? PlayerUnitModel {
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군기폭발, lifeLength: 50))
+            }
         }
         
     }
@@ -86,8 +89,13 @@ class Particle {
                     path.addRect(item.rect + i * 10 - item.count * 10)
                 }
                 context.stroke(path, with: .color(.primary.opacity(opacity)))
-            default:
-                break
+            case .아군기폭발:
+                var path = Path()
+                for i in 0...3 {
+                    path.addRect(item.rect + i * 20 - item.count * 10)
+                }
+                context.stroke(path, with: .color(.primary.opacity(opacity)))
+                               
             }
             if idx < items.count {
                 items[idx].count += 1
