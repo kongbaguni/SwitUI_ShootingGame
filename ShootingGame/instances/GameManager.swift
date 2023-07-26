@@ -60,7 +60,9 @@ class GameManager {
         }
         
         NotificationCenter.default.addObserver(forName: .stageTimeUp, object: nil, queue: nil) { [weak self] noti in
-            self?.gameOverCheck = true
+            if self?.isTestMode == false {
+                self?.gameOverCheck = true
+            }
         }
     }
     
@@ -126,10 +128,6 @@ class GameManager {
                 stageManager.makeStage(stageNumber: stage, level: level)
             }
             stageManager.process(count: timeline)
-        } else {
-            if player.isDie {
-                player.damage = 0
-            }
         }
         self.screenSize = screenSize
                     
@@ -177,7 +175,9 @@ class GameManager {
             }
             
             if(unit.isCrash(unit: player) && player.isDie == false) {
-                player.addDamage(value: unit.atteck)
+                if isTestMode == false {
+                    player.addDamage(value: unit.atteck)
+                }
                 unit.addDamage(value: player.atteck)
             }
             

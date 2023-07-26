@@ -36,7 +36,7 @@ class UnitModel : NSObject {
         .보통 :["unit"]
     ]
     
-    var image:UIImage {        
+    var image:UIImage {
         if let arr = images[status] {
             return arr[count%arr.count]
         }

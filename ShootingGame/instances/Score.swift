@@ -21,6 +21,7 @@ class Score {
     var comboChangeDate:Date? = nil
     var missCount = 0
     let comboLimit:TimeInterval = 20
+    var finalPoint:Int64? = nil
     
     init() {
         NotificationCenter.default.addObserver(forName: .unitDidDestoryed, object: nil, queue: nil) { [weak self] noti in
@@ -64,15 +65,16 @@ class Score {
             
             context.draw(Text("Score : \(score)").font(.system(size:20)).foregroundColor(.textColorNormal),
                          in: .init(x: 10, y: 70, width: w, height: 40))
+            finalPoint = score
             if missCount == 0 {
                 let bonus = score / 2
                 context.draw(Text("No Miss Bonnus : \(bonus)"),
                              in: .init(x: 10, y: 100, width: w, height: 40))
                 context.draw(Text("Total Score : \(score + bonus)"),
                              in: .init(x: 10, y: 140, width: w, height: 40))
+                finalPoint = score + bonus
             }
-            
-            
+            //TODO : GameCenter 포인트 보고하기
         } else {
             var path2 = Path()
             let bgRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80)
