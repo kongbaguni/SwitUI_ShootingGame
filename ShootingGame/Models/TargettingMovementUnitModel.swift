@@ -24,7 +24,7 @@ class TargettingMovementUnitModel : MovementUnitModel {
             let a = targettingRange == nil
             let b = targettingRange != nil ? center.distance(to: unit.center) < targettingRange! : false
             if a || b {
-                movement = center.directionVector(to: unit.center, withSpeed: speed * 0.5)
+                movement = center.directionVector(to: unit.center, withSpeed: speed)
             }
         }
         super.process()

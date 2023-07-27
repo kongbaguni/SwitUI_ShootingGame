@@ -14,6 +14,7 @@ struct EnemyData {
     let shotTypes:[EnemyUnitModel.EnemyShotType]
     let hp:Int
     let atteck:Int
+    let dropItems:[ItemUnitModel.ItemType]
 }
 
 
@@ -34,7 +35,8 @@ class StageModel {
                     range: data.range,
                     movement: data.movement,
                     speed: data.speed,
-                    shotTypes: data.shotTypes)
+                    shotTypes: data.shotTypes,
+                    dropItem: data.dropItems)
                 enemy.atteck = data.atteck * level
                 enemy.hp = data.hp * level
                 NotificationCenter.default.post(name: .makeEnemy, object: enemy)

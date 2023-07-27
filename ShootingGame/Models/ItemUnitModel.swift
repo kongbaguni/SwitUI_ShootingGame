@@ -25,7 +25,7 @@ class ItemUnitModel : TargettingMovementUnitModel {
             setTargettingRange(range: 300)
         case .point:
             imageNames[.보통] = ["point"]
-            atteck = 100
+            atteck = 500
             setTargettingRange(range: 100)
         case .powerup:
             imageNames[.보통] = ["powerup"]

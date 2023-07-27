@@ -64,6 +64,23 @@ class GameManager {
                 self?.gameOverCheck = true
             }
         }
+        
+        NotificationCenter.default.addObserver(forName: .unitDidDestoryed, object: nil, queue: nil) { [weak self] noti in
+            if let enemy = noti.object as? EnemyUnitModel {
+                for type in enemy.dropItem {
+                    let item = ItemUnitModel(
+                        itemType: type,
+                        center: enemy.center + .init(x: .random(in: -50...50), y: .random(in: -50...50)),
+                        range: enemy.range / 2,
+                        movement: .init(dx: 0, dy: 2),
+                        speed: 2)
+                    if let p = self?.player {
+                        item.setTarget(unit: p)
+                    }
+                    self?.items.append(item)
+                }
+            }
+        }
     }
     
     let particle:Particle = .init()
@@ -115,7 +132,8 @@ class GameManager {
                                   range: .random(in: 50...70),
                                   movement: .init(dx: 0, dy: .random(in: 1...2)),
                                   speed: .random(in: 0.1...1),
-                                  shotTypes: types.randomElement()!                                  
+                                  shotTypes: types.randomElement()!,
+                                  dropItem: [.point,.point]
         )
         enemys.append(unit)
         print(enemys.count)
@@ -151,10 +169,16 @@ class GameManager {
                 case .hp:
                     player.healing(value: item.atteck)
                 case .point:
-                    NotificationCenter.default.post(name: .pointItemGet, object: item)
+                    break
                 case .powerup:
                     player.powerUp(value: item.atteck)
                 }
+                if let idx = items.firstIndex(of: item) {
+                    items.remove(at: idx)
+                }
+                NotificationCenter.default.post(name: .itemGet, object: item)
+            }
+            if item.isScreenOut {
                 if let idx = items.firstIndex(of: item) {
                     items.remove(at: idx)
                 }
@@ -224,7 +248,7 @@ class GameManager {
         }
 
         if gameOverCheck {
-            if enemys.count == 0 {
+            if enemys.count == 0 && items.count == 0 {
                 NotificationCenter.default.post(name: .gameClear, object: nil)
                 gameOverCheck = false            
             }

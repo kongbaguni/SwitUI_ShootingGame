@@ -44,5 +44,7 @@ extension Notification.Name {
     static let playerPowerDown = Notification.Name("playerPowerReset_down_observer")
     
     /** 포인트업 아이템 겟 */
-    static let pointItemGet = Notification.Name("pointItemGet_observer")
+    static let itemGet = Notification.Name("itemGet_observer")
+    
+    
 }

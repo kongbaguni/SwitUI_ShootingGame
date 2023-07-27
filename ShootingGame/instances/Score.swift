@@ -24,7 +24,7 @@ class Score {
     var finalPoint:Int64? = nil
     
     init() {
-        NotificationCenter.default.addObserver(forName: .pointItemGet, object: nil, queue: nil) { [weak self] noti in
+        NotificationCenter.default.addObserver(forName: .itemGet, object: nil, queue: nil) { [weak self] noti in
             if let item = noti.object as? ItemUnitModel {
                 let value = item.atteck * (self?.combo ?? 0)
                 self?.score += Int64(value)

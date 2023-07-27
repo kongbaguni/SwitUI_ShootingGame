@@ -33,13 +33,16 @@ class EnemyUnitModel : MovementUnitModel {
         return nil
     }
     
+    let dropItem:[ItemUnitModel.ItemType]
+    
     override var imageRotateAngle: CGFloat {
         return movement.angleInRadians
         
     }
 
     
-    init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, shotTypes:[EnemyShotType]) {
+    init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, shotTypes:[EnemyShotType], dropItem:[ItemUnitModel.ItemType]) {
+        self.dropItem = dropItem
         let option = GADMultipleAdsAdLoaderOptions()
         option.numberOfAds = 1
         self.adLoader = GADAdLoader(adUnitID: adId,

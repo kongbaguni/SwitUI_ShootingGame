@@ -26,7 +26,8 @@ class StageManager {
                           speed: 1,
                           shotTypes: [.일번샷],
                           hp: 50,
-                          atteck: 1
+                          atteck: 1,
+                          dropItems: [.point]
                          ),
                 ],
                 
@@ -37,7 +38,8 @@ class StageManager {
                           speed: 1,
                           shotTypes: [.조준샷,.조준샷,.조준샷,.일번샷],
                           hp: 100,
-                          atteck:2                            
+                          atteck:2,
+                          dropItems: [.point]
                          ),
                     .init(center: p3,
                           range: 30,
@@ -45,7 +47,8 @@ class StageManager {
                           speed: 1,
                           shotTypes: [.일번샷, .이번샷, .조준샷],
                           hp: 100,
-                          atteck: 2
+                          atteck: 2,
+                          dropItems: [.point]
                          ),
                 ],
                 
@@ -56,7 +59,8 @@ class StageManager {
                           speed: 1,
                           shotTypes: [.조준샷,.조준샷,.조준샷,.일번샷],
                           hp: 100,
-                          atteck:2
+                          atteck:2,
+                          dropItems: [.powerup]
                          ),
                     .init(center: p3,
                           range: 30,
@@ -64,7 +68,8 @@ class StageManager {
                           speed: 1,
                           shotTypes: [.일번샷, .이번샷, .조준샷],
                           hp: 100,
-                          atteck: 2
+                          atteck: 2,
+                          dropItems: [.point]
                          ),
                 ],
                 

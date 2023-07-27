@@ -17,12 +17,14 @@ struct ParticleItem : Equatable{
         case 적군미사일폭발
         case 적기폭발
         case 아군기폭발
+        case 아이템먹었다
     }
     let uuid = "\(UUID().uuidString)\(Date().timeIntervalSince1970)"
     let center:CGPoint
     let rect:CGRect
     let type:ParticleType
     let lifeLength:Int
+    let text:String?
     var count:Int = 0
 }
 
@@ -32,19 +34,30 @@ class Particle {
     init() {        
         NotificationCenter.default.addObserver(forName: .unitDidDestoryed, object: nil, queue: nil) {[weak self] noti in
             if let obj = noti.object as? PlayerShotUnitModel {
-                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군미사일폭발, lifeLength: 10))
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군미사일폭발, lifeLength: 10, text: nil))
             }
             if let obj = noti.object as? EnemyShotUnitModel {
-                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적군미사일폭발, lifeLength: 10))
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적군미사일폭발, lifeLength: 10, text: nil))
             }
             if let obj = noti.object as? EnemyUnitModel {
-                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적기폭발, lifeLength: 30))
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .적기폭발, lifeLength: 30, text: nil))
             }
             if let obj = noti.object as? PlayerUnitModel {
-                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군기폭발, lifeLength: 50))
+                self?.items.append(.init(center: obj.center, rect: obj.rect, type: .아군기폭발, lifeLength: 20, text: nil))
             }
         }
         
+        NotificationCenter.default.addObserver(forName: .itemGet, object: nil, queue: nil) { [weak self]  noti in
+            if let item = noti.object as? ItemUnitModel {
+                self?.items.append(.init(center: item.center,
+                                         rect: item.rect,
+                                         type: .아이템먹었다,
+                                         lifeLength: 50,
+                                         text : "\(item.atteck)"
+                                        ))
+            }
+                
+        }
     }
     
     func draw(context: GraphicsContext) {
@@ -52,6 +65,15 @@ class Particle {
             let opacity = 1.0 - Double(item.count) / Double(item.lifeLength)
             
             switch item.type {
+            case .아이템먹었다:
+                if let txt = item.text {
+                    context.draw(
+                        Text(txt)
+                            .font(.system(size: 5 + CGFloat(item.count) * 0.5))
+                            .foregroundColor(.textColorStrong.opacity(opacity)),
+                        in: item.rect + CGFloat(item.count))
+                }
+                
             case .적군미사일폭발:
                 let c = item.count
                 var path = Path()
