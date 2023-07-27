@@ -36,6 +36,7 @@ class PlayerUnitModel : UnitModel {
         super.init(center: center, range: range)
         isDrawHP = true
 
+        imageNames[.힐링] = ["player2","player3"]
         imageNames[.보통] = ["player1","player2"]
         imageNames[.파괴직전] = ["player3"]
         imageNames[.공격당함] = ["player3","player4"]

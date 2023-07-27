@@ -71,6 +71,7 @@ class GameManager {
     let stageManager:StageManager = .init()
     var enemys:[EnemyUnitModel] = []
     var enemyShots:[EnemyShotUnitModel] = []
+    var items:[ItemUnitModel] = []
     
     private var playerShots:[[PlayerShotUnitModel]] = []
     private var playerShotsArr:[PlayerShotUnitModel] = []
@@ -120,6 +121,18 @@ class GameManager {
         print(enemys.count)
     }
     
+    func dropItem() {
+        let type:ItemUnitModel.ItemType = .allCases.randomElement()!
+        
+        let item:ItemUnitModel = .init(
+            itemType: type,
+            center: .init(x: .random(in: 50...UIScreen.main.bounds.width - 50), y: 0),
+            range: 30,
+            movement: .init(dx: 0, dy: 1), speed: 5)
+        item.setTarget(unit: player)
+        items.append(item)
+    }
+    
     var timeline:UInt64 = 0
     func draw(context:GraphicsContext, screenSize:CGSize) {
         timeline += 1
@@ -131,7 +144,22 @@ class GameManager {
         }
         self.screenSize = screenSize
                     
-        
+        _ = items.map({ item in
+            item.draw(context: context, screenSize: screenSize)
+            if item.isCrash(unit: player) {
+                switch item.itemType {
+                case .hp:
+                    player.healing(value: item.atteck)
+                case .point:
+                    NotificationCenter.default.post(name: .pointItemGet, object: item)
+                case .powerup:
+                    player.powerUp(value: item.atteck)
+                }
+                if let idx = items.firstIndex(of: item) {
+                    items.remove(at: idx)
+                }
+            }
+        })
         player.draw(context: context, screenSize: screenSize)
         let array:[[NSObject]] = [enemys, enemyShots, playerShotsArr]
         _ = array.map { arr in
@@ -190,8 +218,9 @@ class GameManager {
         unitCount : \(enemys.count)
         playerShotCount : \(playerShots.count)
         enemyShotCount : \(enemyShots.count)
+        missCount : \(score.missCount)
         """
-            context.draw(Text(str).font(.system(size: 8)), in: .init(x: UIScreen.main.bounds.width / 2, y: 30, width: 200, height: 100))
+            context.draw(Text(str).font(.system(size: 8)), in: .init(x: UIScreen.main.bounds.width / 2 + 20, y: 10, width: 200, height: 100))
         }
 
         if gameOverCheck {

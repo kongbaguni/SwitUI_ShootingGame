@@ -24,6 +24,12 @@ class Score {
     var finalPoint:Int64? = nil
     
     init() {
+        NotificationCenter.default.addObserver(forName: .pointItemGet, object: nil, queue: nil) { [weak self] noti in
+            if let item = noti.object as? ItemUnitModel {
+                let value = item.atteck * (self?.combo ?? 0)
+                self?.score += Int64(value)
+            }
+        }
         NotificationCenter.default.addObserver(forName: .unitDidDestoryed, object: nil, queue: nil) { [weak self] noti in
             guard let s = self else {
                 return
@@ -87,10 +93,11 @@ class Score {
 
             context.draw(Text("\(score)").font(.system(size: 30)), in: .init(x: 10, y: 10, width: 300, height: 30))
             
-            let comboRect = CGRect(x: 10, y: 50, width: UIScreen.main.bounds.width * 0.25, height: 20)
+            let comboRect = CGRect(x: 10, y: 45, width: UIScreen.main.bounds.width * 0.5, height: 30)
+            let comboTextRect = CGRect(x: 15, y: 50, width: UIScreen.main.bounds.width * 0.5 - 10 , height: 20)
             var path = Path()
             path.addRect(comboRect)
-            context.fill(path, with: .color(.blue))
+            context.fill(path, with: .color(.textColorStrong))
             
             if let d = comboChangeDate {
                 let distance = Date().timeIntervalSince1970 - d.timeIntervalSince1970
@@ -105,7 +112,7 @@ class Score {
                     combo = 1
                 }
             }
-            context.draw(Text("combo : \(combo)"), in: comboRect)
+            context.draw(Text("combo : \(combo)").foregroundColor(.backGround3), in: comboTextRect)
 
         }
                 

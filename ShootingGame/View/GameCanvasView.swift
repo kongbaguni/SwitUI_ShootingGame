@@ -79,6 +79,15 @@ struct GameCanvasView : View {
                             .frame(width: 50)
                     }
                     Button {
+                        gameManager?.dropItem()
+                    } label: {
+                        Image(systemName: "square.and.arrow.down")
+                            .resizable()
+                            .imageScale(.large)
+                            .scaledToFit()
+                            .frame(width: 50)
+                    }
+                    Button {
                         NotificationCenter.default.post(name: .playerPowerUp, object: nil)
                     } label: {
                         Image(systemName: "plus.diamond")
