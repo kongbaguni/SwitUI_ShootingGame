@@ -71,7 +71,7 @@ class GameManager {
                     let item = ItemUnitModel(
                         itemType: type,
                         center: enemy.center + .init(x: .random(in: -50...50), y: .random(in: -50...50)),
-                        range: enemy.range / 2,
+                        range: 50,
                         movement: .init(dx: 0, dy: 2),
                         speed: 2)
                     if let p = self?.player {

@@ -8,9 +8,13 @@
 import Foundation
 import SwiftUI
 
-fileprivate let p1 = CGPoint(x: UIScreen.main.bounds.width * 0.25, y: -50)
-fileprivate let p2 = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: -50)
-fileprivate let p3 = CGPoint(x: UIScreen.main.bounds.width * 0.75, y: -50)
+fileprivate let p1 = CGPoint(x: UIScreen.main.bounds.width * 0.125, y: -50)
+fileprivate let p2 = CGPoint(x: UIScreen.main.bounds.width * 0.25, y: -50)
+fileprivate let p3 = CGPoint(x: UIScreen.main.bounds.width * 0.375, y: -50)
+fileprivate let p4 = CGPoint(x: UIScreen.main.bounds.width * 0.625, y: -50)
+fileprivate let p5 = CGPoint(x: UIScreen.main.bounds.width * 0.75, y: -50)
+fileprivate let p6 = CGPoint(x: UIScreen.main.bounds.width * 0.875, y: -50)
+
 
 class StageManager {
     var data:StageModel? = nil
@@ -70,6 +74,27 @@ class StageManager {
                           hp: 100,
                           atteck: 2,
                           dropItems: [.point]
+                         ),
+                ],
+                
+                400 : [
+                    .init(center: p2,
+                          range: 100,
+                          movement: .init(dx: 0, dy: 1),
+                          speed: 0.5,
+                          shotTypes: [.일번샷, .이번샷],
+                          hp: 500,
+                          atteck:3,
+                          dropItems: [.hp, .point, .point]
+                         ),
+                    .init(center: p5,
+                          range: 100,
+                          movement: .init(dx: 0, dy: 1),
+                          speed: 0.5,
+                          shotTypes: [.일번샷, .이번샷, .조준샷],
+                          hp: 500,
+                          atteck: 3,
+                          dropItems: [.point, .point, .point]
                          ),
                 ],
                 
