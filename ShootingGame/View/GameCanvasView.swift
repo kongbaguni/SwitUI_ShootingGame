@@ -117,11 +117,11 @@ struct GameCanvasView : View {
                 }
             }
             if gameOver {
-                Button {
-                    // 게임 기록하기
-                } label: {
-                    Text("Post LeaderBoard")
-                }
+//                Button {
+//                    // TODO: 게임 기록하기
+//                } label: {
+//                    Text("Post LeaderBoard")
+//                }
             }
         }
         .onAppear {
