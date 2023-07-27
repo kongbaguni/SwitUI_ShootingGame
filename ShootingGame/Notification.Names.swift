@@ -30,4 +30,16 @@ extension Notification.Name {
     static let gameOver = Notification.Name("gameOver_observer")
     /** 게임 클리어*/
     static let gameClear = Notification.Name("gameClear_observer")
+    
+    /** 플레이어 샷 타입 토글*/
+    static let togglePlayerShotType = Notification.Name("togglePlayerShotType_observer")
+    
+    /** 플레이어 파워 업 */
+    static let playerPowerUp = Notification.Name("playerPowerUp_observer")
+    
+    /** 플레이어 파워 초기화 */
+    static let playerPowerReset = Notification.Name("playerPowerReset_observer")
+    
+    /** 플레이어 파워 다운*/
+    static let playerPowerDown = Notification.Name("playerPowerReset_down")
 }

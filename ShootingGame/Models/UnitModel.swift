@@ -130,4 +130,9 @@ class UnitModel : NSObject {
         return distance < pitanRange + unit.pitanRange
     }
     
+    func isCrash(point:CGPoint, range:CGFloat) -> Bool {
+        let distance = center.distance(to: point)
+        return distance < pitanRange + range
+    }
+    
 }

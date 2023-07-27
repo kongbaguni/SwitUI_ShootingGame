@@ -32,8 +32,8 @@ class Score {
                 return
             }
                     
-            if noti.object is PlayerShotUnitModel {
-                self?.score += 1 * Int64(s.combo)
+            if let shot = noti.object as? PlayerShotUnitModel {
+                self?.score += 1 * Int64(s.combo) * Int64(shot.atteck)
             }
             if noti.object is EnemyUnitModel {
                 self?.combo += 1

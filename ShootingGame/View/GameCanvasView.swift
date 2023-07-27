@@ -65,17 +65,46 @@ struct GameCanvasView : View {
                     .onEnded({ value in
                         NotificationCenter.default.post(name: .dragEnded, object: value)
                     })
-                
             )
+            
             if isTestMode {
-                Button {
-                    gameManager?.addUnit()
-                } label: {
-                    Image(systemName: "plus.app")
-                        .resizable()
-                        .imageScale(.large)
-                        .scaledToFit()
-                        .frame(width: 80)
+                HStack {
+                    Button {
+                        gameManager?.addUnit()
+                    } label: {
+                        Image(systemName: "plus.app")
+                            .resizable()
+                            .imageScale(.large)
+                            .scaledToFit()
+                            .frame(width: 50)
+                    }
+                    Button {
+                        NotificationCenter.default.post(name: .playerPowerUp, object: nil)
+                    } label: {
+                        Image(systemName: "plus.diamond")
+                            .resizable()
+                            .imageScale(.large)
+                            .scaledToFit()
+                            .frame(width: 50)
+                    }
+                    Button {
+                        NotificationCenter.default.post(name: .playerPowerDown, object: nil)
+                    } label: {
+                        Image(systemName: "minus.diamond")
+                            .resizable()
+                            .imageScale(.large)
+                            .scaledToFit()
+                            .frame(width: 50)
+                    }
+                    Button {
+                        NotificationCenter.default.post(name: .playerPowerReset, object: nil)
+                    } label: {
+                        Image(systemName: "diamond")
+                            .resizable()
+                            .imageScale(.large)
+                            .scaledToFit()
+                            .frame(width: 50)
+                    }
                 }
             }
             if gameOver {

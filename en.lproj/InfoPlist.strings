@@ -5,6 +5,6 @@
   Created by Changyeol Seo on 2023/07/21.
   
 */
-"CFBundleName" = "CrashAd";
-"CFBundleDisplayName" = "CrashAd";
+"CFBundleName" = "Ad Breaker";
+"CFBundleDisplayName" = "Ad Breaker";
 "NSUserTrackingUsageDescription" = "This identifier will be used to deliver personalized ads to you.";
