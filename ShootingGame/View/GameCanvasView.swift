@@ -12,18 +12,19 @@ struct GameCanvasView : View {
     let isTestMode:Bool
     let level:Int
     let fps:Int
-    
-//    init(isTestMode: Bool, level: Int, fps: Int) {
-//        self.isTestMode = isTestMode
-//        self.level = level
-//        self.fps = fps
-//    }
-    
+        
     @State var gameOver = false
     @State var count = 0
     @State var gameManager:GameManager? = nil
     
     @State var rotationAngle:CGFloat = 0
+    @State var isPause = false {
+        didSet {
+            if oldValue == true && isPause == false {
+                count += 1
+            }
+        }
+    }
     
     var navigationTitle:Text {
         if isTestMode {
@@ -45,13 +46,30 @@ struct GameCanvasView : View {
     
     var body: some View {
         VStack {
-            Canvas { ctx, size in
-                gameManager?.isTestMode = isTestMode
-                
-                ctx.draw(Text("\(count)"), in: .init(origin: .init(x: -100, y: -100), size: .zero))
-                gameManager?.draw(context: ctx, screenSize: size)
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000 / fps)) {
-                    count += 1
+            ZStack {
+                Canvas { ctx, size in
+                    gameManager?.isTestMode = isTestMode
+                    
+                    ctx.draw(Text("\(count)"), in: .init(origin: .init(x: -100, y: -100), size: .zero))
+                    gameManager?.draw(context: ctx, screenSize: size)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000 / fps)) {
+                        if isPause == false {
+                            count += 1
+                        }
+                    }
+                }
+                if isPause {
+                    VStack {
+                        Spacer()
+                        Button {
+                            isPause = false 
+                        } label : {
+                            Text("PAUSE")
+                        }
+                        Spacer()
+                    }
+                    .frame(width: UIScreen.main.bounds.width)
+                    .background(Color.backGround3.opacity(0.8))
                 }
             }
             .background(Color.backGround2)
@@ -127,6 +145,12 @@ struct GameCanvasView : View {
         .onAppear {
             gameManager = .init()
             gameManager?.level = level
+            NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [self] noti in
+                DispatchQueue.main.async{
+                    isPause = true
+                }
+            }
+
             NotificationCenter.default.addObserver(forName: .gameClear, object: nil, queue: nil) { [self] noti in
                 DispatchQueue.main.async {
                     gameOver = true
@@ -145,6 +169,14 @@ struct GameCanvasView : View {
         }
         .navigationTitle(navigationTitle)        
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button {
+                isPause.toggle()
+            } label: {
+                Image(systemName: isPause ? "play.fill" : "pause.fill")
+            }
+
+        }
 
     }
     

@@ -8,12 +8,6 @@
 import Foundation
 import SwiftUI
 import GoogleMobileAds
-#if DEBUG
-fileprivate let adId = "ca-app-pub-3940256099942544/3986624511"
-#else
-fileprivate let adId = "ca-app-pub-7714069006629518/8836977450"
-#endif
-
 
 class EnemyUnitModel : MovementUnitModel {
     enum EnemyShotType {
@@ -21,8 +15,6 @@ class EnemyUnitModel : MovementUnitModel {
         case 이번샷
         case 조준샷
     }
-    let adLoader:GADAdLoader
-    var nativeAd:GADNativeAd? = nil
     let shotTypes:[EnemyShotType]
     var target:CGPoint? = nil
     var targetRefashPause = false
@@ -34,6 +26,7 @@ class EnemyUnitModel : MovementUnitModel {
     }
     
     let dropItem:[ItemUnitModel.ItemType]
+    var nativeAd:GADNativeAd? = nil
     
     override var imageRotateAngle: CGFloat {
         return movement.angleInRadians
@@ -43,19 +36,13 @@ class EnemyUnitModel : MovementUnitModel {
     
     init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, shotTypes:[EnemyShotType], dropItem:[ItemUnitModel.ItemType]) {
         self.dropItem = dropItem
-        let option = GADMultipleAdsAdLoaderOptions()
-        option.numberOfAds = 1
-        self.adLoader = GADAdLoader(adUnitID: adId,
-                                    rootViewController: UIApplication.shared.lastViewController,
-                                    adTypes: [.native], options: [option])
         self.shotTypes = shotTypes
         super.init(center: center, range: range, movement: movement, speed: speed)
         isDrawHP = true
         imageNames[.보통] = ["star1"]
         imageNames[.공격당함] = ["star3"]
         imageNames[.파괴직전] = ["star2"]
-        adLoader.delegate = self
-        loadAd()
+
         hp = .random(in: 200..<400)
         
         NotificationCenter.default.addObserver(forName: .playerLocationWatch, object: nil, queue: nil) { [weak self] noti in
@@ -65,14 +52,22 @@ class EnemyUnitModel : MovementUnitModel {
         }
     }
     
-    func loadAd() {
-        adLoader.delegate = self
-        adLoader.load(.init())
-    }
     
     override func draw(context: GraphicsContext, screenSize: CGSize) {
         super.draw(context: context, screenSize: screenSize)
+        if nativeAd == nil {
+            nativeAd = AdLoader.shared.nativeAds.randomElement()?.value
+        }
         if let ad = nativeAd {
+            if let img = ad.icon?.image {
+                images[.보통] = [img]
+            }
+            if let img = ad.images?.first?.image {
+                images[.공격당함] = [img]
+            }
+            if let img = ad.images?.last?.image {
+                images[.파괴직전] = [img]
+            }
             switch status {
             case .공격당함:
                 context.fill(Path(rect), with: .color(Color("dim")))
@@ -184,25 +179,3 @@ class EnemyUnitModel : MovementUnitModel {
     }
 }
 
-extension EnemyUnitModel : GADNativeAdLoaderDelegate {
-    
-    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
-        print("\(#function) \(#line)")
-        if let image = nativeAd.icon?.image {
-            images[.보통] = [image]
-        }
-        if let image = nativeAd.images?.first?.image {
-            images[.공격당함] = [image]
-        }
-        if let image = nativeAd.images?.last?.image {
-            images[.파괴직전] = [image]
-        }
-        self.nativeAd = nativeAd
-    }
-    
-    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
-        print("\(#function) \(#line)")
-        print(error.localizedDescription)
-    }
-
-}

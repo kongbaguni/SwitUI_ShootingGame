@@ -15,7 +15,7 @@ class GameManager {
         enemys.removeAll()
         enemyShots.removeAll()
     }
-    
+    var isGamePause = false
     var isTestMode = true
     var level = 1
     

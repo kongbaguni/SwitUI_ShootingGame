@@ -12,6 +12,7 @@ struct ContentView: View {
         GoogleAdPrompt.promptWithDelay {
             
         }
+        _ = AdLoader.shared
     }
     var body: some View {
         NavigationView {
