@@ -28,8 +28,10 @@ class EnemyUnitModel : MovementUnitModel {
     let dropItem:[ItemUnitModel.ItemType]
     var nativeAd:GADNativeAd? = nil {
         didSet {
-            nativeAd?.delegate = self
-            nativeAd?.rootViewController = UIApplication.shared.lastViewController
+            if let ad = nativeAd {
+                ad.delegate = self
+                ad.rootViewController = UIApplication.shared.lastViewController
+            }
         }
     }
     
@@ -38,7 +40,15 @@ class EnemyUnitModel : MovementUnitModel {
         
     }
 
-    
+    override func addDamage(value: Int) {
+        if isDie {
+            return
+        }
+        super.addDamage(value: value)
+        if isDie {
+            NotificationCenter.default.post(name: .setNativeAd, object: nativeAd)
+        }
+    }
     init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, shotTypes:[EnemyShotType], dropItem:[ItemUnitModel.ItemType]) {
         self.dropItem = dropItem
         self.shotTypes = shotTypes
@@ -116,7 +126,6 @@ class EnemyUnitModel : MovementUnitModel {
     override func process() {
         super.process()
         makeShot()
-        
         
     }
     

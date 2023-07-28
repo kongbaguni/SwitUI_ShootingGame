@@ -13,19 +13,23 @@ struct CoinView: View {
     
     var body: some View {
         HStack {
-            Text("coin : \(coin)")
-            Button {
-                ad.showAd { isSucess in
-                    if isSucess {
-                        coin += 1
+            if coin == 0 {
+                Button {
+                    ad.showAd { isSucess in
+                        if isSucess {
+                            coin += 5
+                        }
                     }
+                } label: {
+                    Text("watch Ad and take coin")
+                        .font(.system(size: 20).bold())
+                        .foregroundColor(.textColorStrong)
                 }
-            } label: {
-                Text("show Ad")
-                    .font(.system(size: 20).bold())
-                    .foregroundColor(.textColorStrong)
+            } else {
+                Text("Coin : \(coin)")
             }
         }
+        .padding(20)
     }
 }
 

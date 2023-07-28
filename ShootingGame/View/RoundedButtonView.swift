@@ -10,6 +10,7 @@ import SwiftUI
 struct RoundedButtonView: View {
     let image:Image?
     let text:Text
+    let backgroundColor:Color
     let action:()->Void
     var body: some View {
         Button {
@@ -25,7 +26,7 @@ struct RoundedButtonView: View {
             }
         }
         .padding(10)
-        .background(Color.backGround3)
+        .background(backgroundColor)
         .cornerRadius(10)
         .shadow(radius: 10,x: 5, y:5)
         .overlay(
@@ -38,9 +39,9 @@ struct RoundedButtonView: View {
 
 struct RoundedButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RoundedButtonView(image:Image(systemName: "circle"),  text: Text("test")) {
+        RoundedButtonView(image:Image(systemName: "circle"),  text: Text("test"), backgroundColor: .white) {
         }
-        RoundedButtonView(image:nil,  text: Text("test")) {
+        RoundedButtonView(image:nil,  text: Text("test"), backgroundColor: .white) {
             
         }
 

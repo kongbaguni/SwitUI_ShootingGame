@@ -26,7 +26,9 @@ struct MainView: View {
         ScrollView {
             CoinView(coin:$coin)
             
-            RoundedButtonView(image: nil, text: Text("Easy")) {
+            RoundedButtonView(image: nil,
+                              text: Text("Easy").foregroundColor(.white),
+                              backgroundColor: .blue) {
                 if coin > 0 {
                     coin -= 1
                     easy = true
@@ -34,7 +36,9 @@ struct MainView: View {
                     alertMessage = Text("coin empty desc");
                 }
             }
-            RoundedButtonView(image: nil, text: Text("Normal")) {
+            RoundedButtonView(image: nil,
+                              text: Text("Normal").foregroundColor(.white),
+                              backgroundColor: .green) {
                 if coin > 0 {
                     coin -= 1
                     normal = true
@@ -42,7 +46,9 @@ struct MainView: View {
                     alertMessage = Text("coin empty desc");
                 }
             }
-            RoundedButtonView(image: nil, text: Text("Hard")) {
+            RoundedButtonView(image: nil,
+                              text: Text("Hard").foregroundColor(.black),
+                              backgroundColor: .orange) {
                 if coin > 0 {
                     coin -= 1
                     hard = true
@@ -52,7 +58,9 @@ struct MainView: View {
                     
                     
             }
-            RoundedButtonView(image: nil, text: Text("Hell")) {
+            RoundedButtonView(image: nil,
+                              text: Text("Hell").foregroundColor(.white),
+                              backgroundColor: .red) {
                 if coin > 0 {
                     coin -= 1
                     hell = true
@@ -61,8 +69,6 @@ struct MainView: View {
                 }
             }
             
-            BannerAdView(sizeType: .GADAdSizeLargeBanner)
-                .padding(.top, 30)
             
             NavigationLink {
                 GameCanvasView(isTestMode:true, level: 1,fps: 60)

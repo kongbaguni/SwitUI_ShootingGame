@@ -46,5 +46,7 @@ extension Notification.Name {
     /** 포인트업 아이템 겟 */
     static let itemGet = Notification.Name("itemGet_observer")
     
+    /** 네이티브 광고 설정됨 */
+    static let setNativeAd = Notification.Name("setNativeAd_observer")
     
 }

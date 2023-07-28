@@ -46,6 +46,9 @@ struct GameCanvasView : View {
     
     var body: some View {
         VStack {
+            BannerAdView(sizeType: .GADAdSizeBanner)
+                .frame(height: 50)
+            NaticeAdClidkView(size: .init(width: 200, height: 50)).frame(height: 50)
             ZStack {
                 Canvas { ctx, size in
                     gameManager?.isTestMode = isTestMode

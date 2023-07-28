@@ -46,6 +46,8 @@
 		1BF1B3662A73833B00E983E3 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B3652A73833B00E983E3 /* UserDefaults+Extensions.swift */; };
 		1BF1B36A2A7390D800E983E3 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B3692A7390D800E983E3 /* CoinView.swift */; };
 		1BF1B36C2A739B0000E983E3 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */; };
+		1BF1B36E2A73A9A200E983E3 /* NativeAdClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B36D2A73A9A200E983E3 /* NativeAdClickView.swift */; };
+		1BF1B3712A73B68F00E983E3 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF1B3702A73B68F00E983E3 /* MarqueeLabel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,7 @@
 		1BF1B3652A73833B00E983E3 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		1BF1B3692A7390D800E983E3 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
+		1BF1B36D2A73A9A200E983E3 /* NativeAdClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdClickView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,7 @@
 			files = (
 				1BF1B3622A73821400E983E3 /* ActivityIndicatorView in Frameworks */,
 				1B3AAFF42A6A6A960092C9B8 /* GoogleMobileAds in Frameworks */,
+				1BF1B3712A73B68F00E983E3 /* MarqueeLabel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +216,7 @@
 				1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */,
 				1BF1B35B2A73811300E983E3 /* GoogleAd.swift */,
 				1BF1B35D2A73813300E983E3 /* BannerAdView.swift */,
+				1BF1B36D2A73A9A200E983E3 /* NativeAdClickView.swift */,
 			);
 			path = GoogleAd;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			packageProductDependencies = (
 				1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */,
 				1BF1B3612A73821400E983E3 /* ActivityIndicatorView */,
+				1BF1B3702A73B68F00E983E3 /* MarqueeLabel */,
 			);
 			productName = ShootingGame;
 			productReference = 1B54763E2A68F760003D5DD7 /* ShootingGame.app */;
@@ -268,6 +274,7 @@
 			packageReferences = (
 				1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				1BF1B3602A73821400E983E3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				1BF1B36F2A73B68F00E983E3 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 			);
 			productRefGroup = 1B54763F2A68F760003D5DD7 /* Products */;
 			projectDirPath = "";
@@ -323,6 +330,7 @@
 				1B3AAFF12A6A559D0092C9B8 /* PlayerShotUnitModel.swift in Sources */,
 				1B5476562A68F96F003D5DD7 /* GameManager.swift in Sources */,
 				1B2661ED2A70F186002E3C7A /* StageManager.swift in Sources */,
+				1BF1B36E2A73A9A200E983E3 /* NativeAdClickView.swift in Sources */,
 				1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */,
 				1BF1B36C2A739B0000E983E3 /* RoundedButtonView.swift in Sources */,
 				1B54765B2A690DF5003D5DD7 /* Color+Extensions.swift in Sources */,
@@ -587,6 +595,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		1BF1B36F2A73B68F00E983E3 /* XCRemoteSwiftPackageReference "MarqueeLabel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cbpowell/MarqueeLabel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -599,6 +615,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1BF1B3602A73821400E983E3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
+		};
+		1BF1B3702A73B68F00E983E3 /* MarqueeLabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BF1B36F2A73B68F00E983E3 /* XCRemoteSwiftPackageReference "MarqueeLabel" */;
+			productName = MarqueeLabel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

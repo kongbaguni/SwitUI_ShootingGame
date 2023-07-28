@@ -55,6 +55,7 @@ extension AdLoader : GADNativeAdLoaderDelegate {
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
+        nativeAd.rootViewController = UIApplication.shared.lastViewController
         nativeAds.append(nativeAd)
     }
     
