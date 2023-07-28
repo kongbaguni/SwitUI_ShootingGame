@@ -13,3 +13,5 @@
 "Hell" = "지옥";
 
 "Test Mode" = "테스트 모드";
+"coin empty desc" = "잔여 코인이 없습니다.";
+"alert" = "알림";

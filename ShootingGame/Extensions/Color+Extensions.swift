@@ -16,5 +16,15 @@ extension Color {
     static let textColorNormal = Color("TextColorNormal")
     static let textColorStrong = Color("TextColorStrong")
     static let textColorWeak = Color("TextColorWeak")
-    
+ 
+    var ciColor : CIColor {
+#if canImport(UIKit)
+        typealias NativeColor = UIColor
+#elseif canImport(AppKit)
+        typealias NativeColor = NSColor
+#endif
+        
+        let cgColor = NativeColor(self).cgColor
+        return CIColor(cgColor: cgColor)
+    }
 }

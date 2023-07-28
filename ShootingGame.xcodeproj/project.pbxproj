@@ -39,6 +39,13 @@
 		1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */; };
 		1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */; };
 		1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */; };
+		1BF1B35C2A73811300E983E3 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B35B2A73811300E983E3 /* GoogleAd.swift */; };
+		1BF1B35E2A73813300E983E3 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B35D2A73813300E983E3 /* BannerAdView.swift */; };
+		1BF1B3622A73821400E983E3 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF1B3612A73821400E983E3 /* ActivityIndicatorView */; };
+		1BF1B3642A73825A00E983E3 /* MultiColorAnimeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B3632A73825A00E983E3 /* MultiColorAnimeTextView.swift */; };
+		1BF1B3662A73833B00E983E3 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B3652A73833B00E983E3 /* UserDefaults+Extensions.swift */; };
+		1BF1B36A2A7390D800E983E3 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B3692A7390D800E983E3 /* CoinView.swift */; };
+		1BF1B36C2A739B0000E983E3 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +85,12 @@
 		1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyUnitModel.swift; sourceTree = "<group>"; };
 		1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitModel.swift; sourceTree = "<group>"; };
 		1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyShotUnitModel.swift; sourceTree = "<group>"; };
+		1BF1B35B2A73811300E983E3 /* GoogleAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
+		1BF1B35D2A73813300E983E3 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		1BF1B3632A73825A00E983E3 /* MultiColorAnimeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiColorAnimeTextView.swift; sourceTree = "<group>"; };
+		1BF1B3652A73833B00E983E3 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		1BF1B3692A7390D800E983E3 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BF1B3622A73821400E983E3 /* ActivityIndicatorView in Frameworks */,
 				1B3AAFF42A6A6A960092C9B8 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				1B2661F02A71EA60002E3C7A /* ShootingGame.entitlements */,
-				1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */,
+				1BF1B35F2A73814200E983E3 /* GoogleAd */,
 				1B5476672A692476003D5DD7 /* Info.plist */,
 				1B54765C2A6910B9003D5DD7 /* Models */,
 				1B5476592A690DE0003D5DD7 /* Extensions */,
@@ -140,9 +154,12 @@
 		1B5476512A68F797003D5DD7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1BF1B3632A73825A00E983E3 /* MultiColorAnimeTextView.swift */,
 				1B5476432A68F760003D5DD7 /* ContentView.swift */,
 				1B54764F2A68F78A003D5DD7 /* GameCanvasView.swift */,
 				1B2661E82A70E4EA002E3C7A /* MainView.swift */,
+				1BF1B3692A7390D800E983E3 /* CoinView.swift */,
+				1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +185,7 @@
 				1B5476612A6916C2003D5DD7 /* CGRect+Extnesions.swift */,
 				1B5476652A691A26003D5DD7 /* CGVector+Extensions.swift */,
 				1B2661E42A70B4A4002E3C7A /* Array+Extensions.swift */,
+				1BF1B3652A73833B00E983E3 /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -188,6 +206,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1BF1B35F2A73814200E983E3 /* GoogleAd */ = {
+			isa = PBXGroup;
+			children = (
+				1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */,
+				1BF1B35B2A73811300E983E3 /* GoogleAd.swift */,
+				1BF1B35D2A73813300E983E3 /* BannerAdView.swift */,
+			);
+			path = GoogleAd;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,6 +234,7 @@
 			name = ShootingGame;
 			packageProductDependencies = (
 				1B3AAFF32A6A6A960092C9B8 /* GoogleMobileAds */,
+				1BF1B3612A73821400E983E3 /* ActivityIndicatorView */,
 			);
 			productName = ShootingGame;
 			productReference = 1B54763E2A68F760003D5DD7 /* ShootingGame.app */;
@@ -238,6 +267,7 @@
 			mainGroup = 1B5476352A68F760003D5DD7;
 			packageReferences = (
 				1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				1BF1B3602A73821400E983E3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = 1B54763F2A68F760003D5DD7 /* Products */;
 			projectDirPath = "";
@@ -271,6 +301,7 @@
 				1B5476532A68F90E003D5DD7 /* Notification.Names.swift in Sources */,
 				1B2661E92A70E4EA002E3C7A /* MainView.swift in Sources */,
 				1B2661D72A6F4D9A002E3C7A /* Particle.swift in Sources */,
+				1BF1B35E2A73813300E983E3 /* BannerAdView.swift in Sources */,
 				1B5476622A6916C2003D5DD7 /* CGRect+Extnesions.swift in Sources */,
 				1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */,
 				1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */,
@@ -279,6 +310,8 @@
 				1B5476642A691951003D5DD7 /* MovementUnitModel.swift in Sources */,
 				1B3AAFFE2A6A6C630092C9B8 /* UIApplication+Extensions.swift in Sources */,
 				1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */,
+				1BF1B36A2A7390D800E983E3 /* CoinView.swift in Sources */,
+				1BF1B35C2A73811300E983E3 /* GoogleAd.swift in Sources */,
 				1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */,
 				1B3AAFFC2A6A6BF50092C9B8 /* GoogleAdPrompt.swift in Sources */,
 				1B2661F42A7239C2002E3C7A /* TargettingMovementUnitModel.swift in Sources */,
@@ -291,9 +324,12 @@
 				1B5476562A68F96F003D5DD7 /* GameManager.swift in Sources */,
 				1B2661ED2A70F186002E3C7A /* StageManager.swift in Sources */,
 				1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */,
+				1BF1B36C2A739B0000E983E3 /* RoundedButtonView.swift in Sources */,
 				1B54765B2A690DF5003D5DD7 /* Color+Extensions.swift in Sources */,
 				1B2661F22A723984002E3C7A /* ItemUnitModel.swift in Sources */,
 				1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */,
+				1BF1B3662A73833B00E983E3 /* UserDefaults+Extensions.swift in Sources */,
+				1BF1B3642A73825A00E983E3 /* MultiColorAnimeTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +494,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,7 +532,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,6 +579,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		1BF1B3602A73821400E983E3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -550,6 +594,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B3AAFF22A6A6A960092C9B8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		1BF1B3612A73821400E983E3 /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BF1B3602A73821400E983E3 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

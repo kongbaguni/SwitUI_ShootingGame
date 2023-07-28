@@ -7,3 +7,5 @@
 */
 "App Title" = "Ad Breaker";
 "Home title" = "Difficulty selection";
+"coin empty desc" = "There are no coins left.";
+"alert" = "alert";
