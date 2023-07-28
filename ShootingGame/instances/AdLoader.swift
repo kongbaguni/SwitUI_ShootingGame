@@ -16,48 +16,55 @@ class AdLoader : NSObject {
     static let shared = AdLoader()
     
     private let adLoader:GADAdLoader
-    public var nativeAds:[String:GADNativeAd] = [:]
-    private var isPause = false
+    
+    
+    private var nativeAds:[GADNativeAd] = []
+    
+    public var nativeAd:GADNativeAd? {
+        if let ad = nativeAds.first {
+            nativeAds.removeFirst()
+            return ad
+        }
+        loadAd()
+        return nil
+    }
+    
     
     override init() {
         let option = GADMultipleAdsAdLoaderOptions()
-        option.numberOfAds = 10
+        option.numberOfAds = 4
         adLoader = GADAdLoader(adUnitID: adId,
                                     rootViewController: UIApplication.shared.lastViewController,
                                     adTypes: [.native], options: [option])
         super.init()
         adLoader.delegate = self
         loadAd()
-        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: nil) { [weak self] noti in
-            self?.isPause = true
-        }
-        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) {[weak self] noti in
-            self?.isPause = false
-            self?.loadAd()
-        }
     }
     
-    func loadAd() {
-        if isPause == false {
+    var isRequest = false
+    private func loadAd() {
+        if isRequest == false {
+            isRequest = true
             adLoader.load(.init())
         }
-    }    
+    }
     
 }
 
 extension AdLoader : GADNativeAdLoaderDelegate {
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
-        print("\(#function) \(#line)")
-        nativeAds[nativeAd.headline ?? nativeAd.description] = nativeAd
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(30)) { [self] in
-            loadAd()
-        }
+        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
+        nativeAds.append(nativeAd)
+    }
+    
+    func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
+        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
+        isRequest = false
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
-        print("\(#function) \(#line)")
-        print(error.localizedDescription)
+        print("\(#function) \(#line) \(error.localizedDescription)")
     }
     
 }

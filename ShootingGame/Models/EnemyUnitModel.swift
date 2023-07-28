@@ -26,7 +26,12 @@ class EnemyUnitModel : MovementUnitModel {
     }
     
     let dropItem:[ItemUnitModel.ItemType]
-    var nativeAd:GADNativeAd? = nil
+    var nativeAd:GADNativeAd? = nil {
+        didSet {
+            nativeAd?.delegate = self
+            nativeAd?.rootViewController = UIApplication.shared.lastViewController
+        }
+    }
     
     override var imageRotateAngle: CGFloat {
         return movement.angleInRadians
@@ -56,7 +61,7 @@ class EnemyUnitModel : MovementUnitModel {
     override func draw(context: GraphicsContext, screenSize: CGSize) {
         super.draw(context: context, screenSize: screenSize)
         if nativeAd == nil {
-            nativeAd = AdLoader.shared.nativeAds.randomElement()?.value
+            nativeAd = AdLoader.shared.nativeAd
         }
         if let ad = nativeAd {
             if let img = ad.icon?.image {
@@ -111,6 +116,8 @@ class EnemyUnitModel : MovementUnitModel {
     override func process() {
         super.process()
         makeShot()
+        
+        
     }
     
     override var isScreenOut: Bool {
@@ -179,3 +186,36 @@ class EnemyUnitModel : MovementUnitModel {
     }
 }
 
+
+
+extension EnemyUnitModel : GADNativeAdDelegate {
+    func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    func nativeAdWillPresentScreen(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    func nativeAdWillDismissScreen(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    func nativeAdDidDismissScreen(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    func nativeAdDidRecordSwipeGestureClick(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    func nativeAdIsMuted(_ nativeAd: GADNativeAd) {
+        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
+    }
+    
+    
+}
