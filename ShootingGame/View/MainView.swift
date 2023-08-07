@@ -29,7 +29,7 @@ struct MainView: View {
             RoundedButtonView(image: nil,
                               text: Text("Easy").foregroundColor(.white),
                               backgroundColor: .blue) {
-                if coin > 0 {
+                if coin > 0 || AdLoader.shared.nativeAdsCount == 0 {
                     coin -= 1
                     easy = true
                 } else {
@@ -39,7 +39,7 @@ struct MainView: View {
             RoundedButtonView(image: nil,
                               text: Text("Normal").foregroundColor(.white),
                               backgroundColor: .green) {
-                if coin > 0 {
+                if coin > 0 || AdLoader.shared.nativeAdsCount == 0 {
                     coin -= 1
                     normal = true
                 } else {
@@ -49,7 +49,7 @@ struct MainView: View {
             RoundedButtonView(image: nil,
                               text: Text("Hard").foregroundColor(.black),
                               backgroundColor: .orange) {
-                if coin > 0 {
+                if coin > 0 || AdLoader.shared.nativeAdsCount == 0 {
                     coin -= 1
                     hard = true
                 } else {
@@ -61,7 +61,7 @@ struct MainView: View {
             RoundedButtonView(image: nil,
                               text: Text("Hell").foregroundColor(.white),
                               backgroundColor: .red) {
-                if coin > 0 {
+                if coin > 0 || AdLoader.shared.nativeAdsCount == 0 {
                     coin -= 1
                     hell = true
                 } else {

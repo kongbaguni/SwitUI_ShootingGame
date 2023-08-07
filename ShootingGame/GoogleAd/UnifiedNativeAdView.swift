@@ -34,7 +34,7 @@ class UnifiedNativeAdView : GADNativeAdView {
         
         (iconView as! UIImageView).image = nativeAd?.icon?.image
         (headlineView as! UILabel).text = nativeAd?.headline
-        (advertiserView as! UILabel).text = nativeAd?.advertiser
+        (advertiserView as! UILabel).text = nativeAd?.advertiser ?? " "
         (bodyView as! UILabel).text = nativeAd?.body
         mediaView?.mediaContent = nativeAd?.mediaContent
         nativeAd?.delegate = self
