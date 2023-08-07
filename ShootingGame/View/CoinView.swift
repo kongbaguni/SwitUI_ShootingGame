@@ -13,7 +13,7 @@ struct CoinView: View {
     
     var body: some View {
         HStack {
-            if coin == 0 {
+            if coin <= 0 {
                 Button {
                     ad.showAd { isSucess in
                         if isSucess {
