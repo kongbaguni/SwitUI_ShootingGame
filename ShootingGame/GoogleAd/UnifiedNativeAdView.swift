@@ -15,6 +15,8 @@ class UnifiedNativeAdView : GADNativeAdView {
         loadXib()
         nativeAd = ad
         initUI()
+        ad.delegate = self
+        ad.unconfirmedClickDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,6 +33,9 @@ class UnifiedNativeAdView : GADNativeAdView {
     }
     
     func initUI() {
+        if nativeAd == nil {
+            abort()
+        }
         
         (iconView as! UIImageView).image = nativeAd?.icon?.image
         (headlineView as! UILabel).text = nativeAd?.headline

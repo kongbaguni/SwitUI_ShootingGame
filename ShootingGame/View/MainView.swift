@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 struct MainView: View {
     @AppStorage("coin") var coin:Int = 0
@@ -21,6 +22,7 @@ struct MainView: View {
         }
     }
     @State var alert = false
+    @State var nativeAd:GADNativeAd? = nil
     let ad = GoogleAd()
     var body: some View {
         ScrollView {
@@ -75,12 +77,14 @@ struct MainView: View {
             } label: {
                 Text("Test Mode")
             }.padding(.top, 30)
-            
-            NaticeAdClidkView(size: .init(width: UIScreen.main.bounds.width - 10, height: 250))
+
+            if nativeAd != nil {
+                BannerAdView(sizeType: .GADAdSizeMediumRectangle)
+            }
         }
         .onAppear {
             AdLoader.shared.getNativeAd { ad in
-                NotificationCenter.default.post(name: .setNativeAd, object: ad)
+                nativeAd = ad
             }
         }
         .alert(isPresented: $alert, content: {

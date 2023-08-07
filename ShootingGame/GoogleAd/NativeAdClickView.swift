@@ -23,7 +23,7 @@ struct NaticeAdClidkView : UIViewRepresentable {
                     view.removeFromSuperview()
                 }
                 let view = UnifiedNativeAdView(ad: ad, frame: .init(origin: .zero, size: .init(width: size.width, height: size.height)))
-                btn.addSubview(view)
+                btn.addSubview(view)                
             }
         }
         return btn
