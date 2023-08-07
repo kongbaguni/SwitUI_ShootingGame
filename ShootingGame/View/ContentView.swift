@@ -16,6 +16,7 @@ struct ContentView: View {
         _ = AdLoader.shared
         FirebaseApp.configure()
     }
+    
     var body: some View {
         NavigationView {
             NavigationStack {
