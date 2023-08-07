@@ -16,8 +16,7 @@ class AdLoader : NSObject {
     static let shared = AdLoader()
     
     private let adLoader:GADAdLoader
-    
-    
+        
     private var nativeAds:[GADNativeAd] = []
     
     public var nativeAd:GADNativeAd? {
@@ -29,6 +28,16 @@ class AdLoader : NSObject {
         return nil
     }
     
+    public func getNativeAd(getAd:@escaping(_ ad:GADNativeAd)->Void) {
+        if let ad = nativeAd {
+            getAd(ad)
+            return
+        }
+        loadAd()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {[weak self] in
+            self?.getNativeAd(getAd: getAd)
+        }
+    }
     
     override init() {
         let option = GADMultipleAdsAdLoaderOptions()
@@ -41,27 +50,21 @@ class AdLoader : NSObject {
         loadAd()
     }
     
-    var isRequest = false
     private func loadAd() {
-        if isRequest == false {
-            isRequest = true
-            adLoader.load(.init())
-        }
+        adLoader.load(.init())
     }
-    
+        
 }
 
 extension AdLoader : GADNativeAdLoaderDelegate {
     
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
-        nativeAd.rootViewController = UIApplication.shared.lastViewController
         nativeAds.append(nativeAd)
     }
     
     func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
         print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
-        isRequest = false
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {

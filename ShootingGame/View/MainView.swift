@@ -69,7 +69,6 @@ struct MainView: View {
                 }
             }
             
-            BannerAdView(sizeType: .GADAdSizeLargeBanner)
 
             NavigationLink {
                 GameCanvasView(isTestMode:true, level: 1,fps: 60)
@@ -77,6 +76,12 @@ struct MainView: View {
                 Text("Test Mode")
             }.padding(.top, 30)
             
+            NaticeAdClidkView(size: .init(width: UIScreen.main.bounds.width - 10, height: 250))
+        }
+        .onAppear {
+            AdLoader.shared.getNativeAd { ad in
+                NotificationCenter.default.post(name: .setNativeAd, object: ad)
+            }
         }
         .alert(isPresented: $alert, content: {
             .init(title: Text("alert"), message: alertMessage)

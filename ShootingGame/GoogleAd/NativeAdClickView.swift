@@ -12,7 +12,8 @@ import GoogleMobileAds
 import MarqueeLabel
 
 struct NaticeAdClidkView : UIViewRepresentable {
-    let size:CGSize
+    let size:CGSize    
+    
     func makeUIView(context: Context) -> some UIView {
         let btn = UIView()
         btn.frame.size = size
@@ -21,7 +22,7 @@ struct NaticeAdClidkView : UIViewRepresentable {
                 for view in btn.subviews {
                     view.removeFromSuperview()
                 }
-                let view = UnifiedNativeAdView(ad: ad, frame: .init(origin: .zero, size: .init(width: UIScreen.main.bounds.width, height: size.height)))
+                let view = UnifiedNativeAdView(ad: ad, frame: .init(origin: .zero, size: .init(width: size.width, height: size.height)))
                 btn.addSubview(view)
             }
         }
