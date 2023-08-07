@@ -46,7 +46,9 @@ struct GameCanvasView : View {
     
     var body: some View {
         VStack {
-            NaticeAdClidkView(size: .init(width: UIScreen.main.bounds.width, height: 180)).frame(height: 180)
+            if AdLoader.shared.nativeAdsCount > 0 {
+                NaticeAdClidkView(size: .init(width: UIScreen.main.bounds.width, height: 180)).frame(height: 180)
+            }
             ZStack {
                 Canvas { ctx, size in
                     gameManager?.isTestMode = isTestMode

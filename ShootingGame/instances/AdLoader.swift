@@ -28,6 +28,10 @@ class AdLoader : NSObject {
         return nil
     }
     
+    public var nativeAdsCount:Int {
+        return nativeAds.count
+    }
+    
     public func getNativeAd(getAd:@escaping(_ ad:GADNativeAd)->Void) {
         if let ad = nativeAd {
             getAd(ad)
