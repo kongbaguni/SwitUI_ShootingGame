@@ -39,6 +39,8 @@
 		1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */; };
 		1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */; };
 		1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */; };
+		1BA533032A8083F700C908F5 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */; };
+		1BA533042A8083F700C908F5 /* UnifiedNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA533022A8083F700C908F5 /* UnifiedNativeAdView.swift */; };
 		1BF1B35C2A73811300E983E3 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B35B2A73811300E983E3 /* GoogleAd.swift */; };
 		1BF1B35E2A73813300E983E3 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B35D2A73813300E983E3 /* BannerAdView.swift */; };
 		1BF1B3622A73821400E983E3 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF1B3612A73821400E983E3 /* ActivityIndicatorView */; };
@@ -63,7 +65,7 @@
 		1B2661F12A723984002E3C7A /* ItemUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemUnitModel.swift; sourceTree = "<group>"; };
 		1B2661F32A7239C2002E3C7A /* TargettingMovementUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargettingMovementUnitModel.swift; sourceTree = "<group>"; };
 		1B2661F52A725EFA002E3C7A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		1B2661F72A7266EC002E3C7A /* AdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdLoader.swift; sourceTree = "<group>"; };
+		1B2661F72A7266EC002E3C7A /* AdLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdLoader.swift; path = ../instances/AdLoader.swift; sourceTree = "<group>"; };
 		1B3AAFF02A6A559D0092C9B8 /* PlayerShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerShotUnitModel.swift; sourceTree = "<group>"; };
 		1B3AAFF82A6A6B910092C9B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1B3AAFFA2A6A6B950092C9B8 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -87,6 +89,8 @@
 		1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyUnitModel.swift; sourceTree = "<group>"; };
 		1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitModel.swift; sourceTree = "<group>"; };
 		1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyShotUnitModel.swift; sourceTree = "<group>"; };
+		1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
+		1BA533022A8083F700C908F5 /* UnifiedNativeAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedNativeAdView.swift; sourceTree = "<group>"; };
 		1BF1B35B2A73811300E983E3 /* GoogleAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
 		1BF1B35D2A73813300E983E3 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		1BF1B3632A73825A00E983E3 /* MultiColorAnimeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiColorAnimeTextView.swift; sourceTree = "<group>"; };
@@ -175,7 +179,6 @@
 				1B2661D62A6F4D9A002E3C7A /* Particle.swift */,
 				1B2661E22A6FAEC5002E3C7A /* Score.swift */,
 				1B2661EC2A70F186002E3C7A /* StageManager.swift */,
-				1B2661F72A7266EC002E3C7A /* AdLoader.swift */,
 			);
 			path = instances;
 			sourceTree = "<group>";
@@ -213,10 +216,13 @@
 		1BF1B35F2A73814200E983E3 /* GoogleAd */ = {
 			isa = PBXGroup;
 			children = (
+				1B2661F72A7266EC002E3C7A /* AdLoader.swift */,
 				1B3AAFFB2A6A6BF50092C9B8 /* GoogleAdPrompt.swift */,
 				1BF1B35B2A73811300E983E3 /* GoogleAd.swift */,
 				1BF1B35D2A73813300E983E3 /* BannerAdView.swift */,
 				1BF1B36D2A73A9A200E983E3 /* NativeAdClickView.swift */,
+				1BA533022A8083F700C908F5 /* UnifiedNativeAdView.swift */,
+				1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */,
 			);
 			path = GoogleAd;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B5476492A68F762003D5DD7 /* Preview Assets.xcassets in Resources */,
+				1BA533032A8083F700C908F5 /* UnifiedNativeAdView.xib in Resources */,
 				1B2661DE2A6F974E002E3C7A /* Localizable.strings in Resources */,
 				1B3AAFF72A6A6B910092C9B8 /* InfoPlist.strings in Resources */,
 				1B2661F62A725EFA002E3C7A /* Launch Screen.storyboard in Resources */,
@@ -320,6 +327,7 @@
 				1BF1B36A2A7390D800E983E3 /* CoinView.swift in Sources */,
 				1BF1B35C2A73811300E983E3 /* GoogleAd.swift in Sources */,
 				1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */,
+				1BA533042A8083F700C908F5 /* UnifiedNativeAdView.swift in Sources */,
 				1B3AAFFC2A6A6BF50092C9B8 /* GoogleAdPrompt.swift in Sources */,
 				1B2661F42A7239C2002E3C7A /* TargettingMovementUnitModel.swift in Sources */,
 				1B2661E52A70B4A4002E3C7A /* Array+Extensions.swift in Sources */,

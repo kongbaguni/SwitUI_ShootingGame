@@ -29,7 +29,6 @@ class EnemyUnitModel : MovementUnitModel {
     var nativeAd:GADNativeAd? = nil {
         didSet {
             if let ad = nativeAd {
-                ad.delegate = self
                 ad.rootViewController = UIApplication.shared.lastViewController
             }
         }
@@ -195,36 +194,3 @@ class EnemyUnitModel : MovementUnitModel {
     }
 }
 
-
-
-extension EnemyUnitModel : GADNativeAdDelegate {
-    func nativeAdDidRecordClick(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    func nativeAdDidRecordImpression(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    func nativeAdWillPresentScreen(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    func nativeAdWillDismissScreen(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    func nativeAdDidDismissScreen(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    func nativeAdDidRecordSwipeGestureClick(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    func nativeAdIsMuted(_ nativeAd: GADNativeAd) {
-        print("\(#function) \(#line) \(nativeAd.headline ?? "헤드라인 없는 광고")")
-    }
-    
-    
-}

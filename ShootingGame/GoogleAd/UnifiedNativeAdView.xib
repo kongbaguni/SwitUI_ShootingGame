@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment version="2048" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UnifiedNativeAdView" customModule="ShootingGame" customModuleProvider="target">
+            <connections>
+                <outlet property="advertiserView" destination="GTT-Yh-eSq" id="qFU-f5-8nz"/>
+                <outlet property="bodyView" destination="PEQ-D9-2Vv" id="ssb-zR-DJl"/>
+                <outlet property="headlineView" destination="beR-eV-DX1" id="by9-rf-id3"/>
+                <outlet property="iconView" destination="iNa-bH-h1m" id="uGX-IF-70i"/>
+                <outlet property="mediaView" destination="fNp-yu-K4i" id="6CT-l1-LzM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="fNp-yu-K4i" customClass="GADMediaView">
+                    <rect key="frame" x="5" y="50" width="365" height="612"/>
+                    <color key="backgroundColor" systemColor="systemTealColor"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iNa-bH-h1m">
+                    <rect key="frame" x="15" y="15" width="30" height="30"/>
+                    <color key="backgroundColor" systemColor="systemTealColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="0RT-Hk-zao"/>
+                        <constraint firstAttribute="width" constant="30" id="qf3-Rv-bsB"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advertiser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTT-Yh-eSq">
+                    <rect key="frame" x="303.5" y="5" width="66.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" systemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Headline" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beR-eV-DX1">
+                    <rect key="frame" x="50" y="15" width="320" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" systemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lp1-oz-XOs">
+                    <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Body that is really really long and can take up to two lines or sometimes even more." textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEQ-D9-2Vv" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                    <rect key="frame" x="50" y="30.5" width="320" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" systemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.98303861469999998" blue="0.92887652860000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="PEQ-D9-2Vv" secondAttribute="trailing" constant="5" id="AW0-0n-XSy"/>
+                <constraint firstAttribute="trailing" secondItem="GTT-Yh-eSq" secondAttribute="trailing" constant="5" id="BXA-Gu-wDm"/>
+                <constraint firstItem="beR-eV-DX1" firstAttribute="leading" secondItem="iNa-bH-h1m" secondAttribute="trailing" constant="5" id="PZG-iB-HLl"/>
+                <constraint firstItem="PEQ-D9-2Vv" firstAttribute="leading" secondItem="iNa-bH-h1m" secondAttribute="trailing" constant="5" id="Pte-Cg-BNU"/>
+                <constraint firstItem="GTT-Yh-eSq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="TKb-LT-l1e"/>
+                <constraint firstItem="iNa-bH-h1m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="V18-Ge-rXD"/>
+                <constraint firstAttribute="bottom" secondItem="fNp-yu-K4i" secondAttribute="bottom" constant="5" id="W9G-9B-0Ez"/>
+                <constraint firstItem="iNa-bH-h1m" firstAttribute="top" secondItem="beR-eV-DX1" secondAttribute="top" id="aqK-eN-xh6"/>
+                <constraint firstItem="PEQ-D9-2Vv" firstAttribute="bottom" secondItem="iNa-bH-h1m" secondAttribute="bottom" id="c5b-v9-kHw"/>
+                <constraint firstItem="iNa-bH-h1m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="jrH-yN-q61"/>
+                <constraint firstAttribute="trailing" secondItem="beR-eV-DX1" secondAttribute="trailing" constant="5" id="lKL-KM-y0D"/>
+                <constraint firstItem="fNp-yu-K4i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="lO9-Gh-e9m"/>
+                <constraint firstItem="fNp-yu-K4i" firstAttribute="top" secondItem="iNa-bH-h1m" secondAttribute="bottom" constant="5" id="rAd-OG-OpM"/>
+                <constraint firstAttribute="trailing" secondItem="fNp-yu-K4i" secondAttribute="trailing" constant="5" id="vd5-fh-gBZ"/>
+            </constraints>
+            <point key="canvasLocation" x="13.6" y="-6.746626686656672"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -69,7 +69,8 @@ struct MainView: View {
                 }
             }
             
-            
+            BannerAdView(sizeType: .GADAdSizeLargeBanner)
+
             NavigationLink {
                 GameCanvasView(isTestMode:true, level: 1,fps: 60)
             } label: {
