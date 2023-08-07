@@ -26,7 +26,9 @@ struct MainView: View {
     let ad = GoogleAd()
     var body: some View {
         ScrollView {
-            CoinView(coin:$coin)
+            if AdLoader.shared.nativeAdsCount > 0 {
+                CoinView(coin:$coin)
+            }
             
             RoundedButtonView(image: nil,
                               text: Text("Easy").foregroundColor(.white),
