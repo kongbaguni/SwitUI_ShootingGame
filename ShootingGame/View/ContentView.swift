@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct ContentView: View {
     init() {        
@@ -13,6 +14,7 @@ struct ContentView: View {
             
         }
         _ = AdLoader.shared
+        FirebaseApp.configure()
     }
     var body: some View {
         NavigationView {
