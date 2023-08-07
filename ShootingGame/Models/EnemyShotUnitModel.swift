@@ -48,7 +48,8 @@ class EnemyShotUnitModel : MovementUnitModel {
             var path = Path()
             path.addArc(center: center, radius: range, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
             context.fill(path, with: .color(.orange))
-            break
+            context.stroke(path, with: .color(.red))
+
         case .추적레이저빔:
             var path = Path()
             path.move(to: center)
@@ -59,6 +60,7 @@ class EnemyShotUnitModel : MovementUnitModel {
             
             path.addLines([a,b,c,a,b,d,a])
             context.fill(path, with: .color(.red))
+            context.stroke(path, with: .color(.yellow))
         }
     }
 
