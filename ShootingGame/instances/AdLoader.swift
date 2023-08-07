@@ -17,7 +17,13 @@ class AdLoader : NSObject {
     
     private let adLoader:GADAdLoader
         
-    private var nativeAds:[GADNativeAd] = []
+    private var nativeAds:[GADNativeAd] = [] {
+        didSet {
+            if nativeAds.count > _adsCountMax {
+                _adsCountMax = nativeAds.count
+            }
+        }
+    }
     
     public var nativeAd:GADNativeAd? {
         if let ad = nativeAds.first {
@@ -28,8 +34,10 @@ class AdLoader : NSObject {
         return nil
     }
     
+    private var _adsCountMax:Int = 0
+    
     public var nativeAdsCount:Int {
-        return nativeAds.count
+        return _adsCountMax
     }
     
     public func getNativeAd(getAd:@escaping(_ ad:GADNativeAd)->Void) {
