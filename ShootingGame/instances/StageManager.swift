@@ -15,6 +15,71 @@ fileprivate let p4 = CGPoint(x: UIScreen.main.bounds.width * 0.625, y: -50)
 fileprivate let p5 = CGPoint(x: UIScreen.main.bounds.width * 0.75, y: -50)
 fileprivate let p6 = CGPoint(x: UIScreen.main.bounds.width * 0.875, y: -50)
 
+func makeEnemyData(num:Int,pos:CGPoint)->EnemyData {
+    switch num {
+    case 0:
+        return .init(center: pos,
+                     range: 30,
+                     movement: .init(dx: 0, dy: 1),
+                     speed: 1,
+                     shotTypes: [.삼번샷],
+                     hp: 40,
+                     atteck: 2,
+                     dropItems: [.point])
+    case 1:
+        return .init(center: pos,
+                     range: 40,
+                     movement: .init(dx: 0, dy: 1),
+                     speed: 1,
+                     shotTypes: [.조준샷,.조준샷,.조준샷,.일번샷],
+                     hp: 100,
+                     atteck:2,
+                     dropItems: [.point]
+        )
+        
+    case 2:
+        return .init(center: pos,
+                  range: 50,
+                  movement: .init(dx: 0, dy: 1),
+                  speed: 1,
+                  shotTypes: [.일번샷, .이번샷, .조준샷],
+                  hp: 150,
+                  atteck: 2,
+                  dropItems: [.point]
+            )
+    case 3:
+        return .init(center: pos,
+                  range: 60,
+                  movement: .init(dx: 0, dy: 1),
+                  speed: 1,
+                  shotTypes: [.조준샷,.조준샷,.조준샷,.일번샷],
+                  hp: 100,
+                  atteck:2,
+                  dropItems: [.powerup]
+                 )
+        
+    case 4:
+        return .init(center: pos,
+                  range: 200,
+                  movement: .init(dx: 0, dy: 1),
+                  speed: 0.5,
+                  shotTypes: [.일번샷, .이번샷],
+                  hp: 500,
+                  atteck:3,
+                  dropItems: [.hp, .point, .point]
+                 )
+    default:
+        return .init(center: pos,
+                     range: 30,
+                     movement: .init(dx: 0.1, dy: 1),
+                     speed: 1,
+                     shotTypes: [.일번샷],
+                     hp: 10,
+                     atteck: 1,
+                     dropItems: [.point])
+        
+    }
+}
 
 class StageManager {
     var data:StageModel? = nil
@@ -24,78 +89,33 @@ class StageManager {
         case 1:
             data = StageModel(level:level, enemys: [
                 50 : [
-                    .init(center: p2,
-                          range: 50,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 1,
-                          shotTypes: [.일번샷],
-                          hp: 50,
-                          atteck: 1,
-                          dropItems: [.point]
-                         ),
+                    makeEnemyData(num: 0, pos: p1),
+                    makeEnemyData(num: 0, pos: p2),
+                    makeEnemyData(num: 1, pos: p3),
+                    makeEnemyData(num: 1, pos: p4),
+                    makeEnemyData(num: 0, pos: p5),
+                    makeEnemyData(num: 0, pos: p6)
                 ],
-                
                 100 : [
-                    .init(center: p1,
-                          range: 30,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 1,
-                          shotTypes: [.조준샷,.조준샷,.조준샷,.일번샷],
-                          hp: 100,
-                          atteck:2,
-                          dropItems: [.point]
-                         ),
-                    .init(center: p3,
-                          range: 30,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 1,
-                          shotTypes: [.일번샷, .이번샷, .조준샷],
-                          hp: 100,
-                          atteck: 2,
-                          dropItems: [.point]
-                         ),
+                    makeEnemyData(num: 0, pos: p1),
+                    makeEnemyData(num: 0, pos: p6)
                 ],
-                
+                150 : [
+                    makeEnemyData(num: 0, pos: p1),
+                    makeEnemyData(num: 0, pos: p6)
+                ],
+
                 200 : [
-                    .init(center: p1,
-                          range: 30,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 1,
-                          shotTypes: [.조준샷,.조준샷,.조준샷,.일번샷],
-                          hp: 100,
-                          atteck:2,
-                          dropItems: [.powerup]
-                         ),
-                    .init(center: p3,
-                          range: 30,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 1,
-                          shotTypes: [.일번샷, .이번샷, .조준샷],
-                          hp: 100,
-                          atteck: 2,
-                          dropItems: [.point]
-                         ),
+                    makeEnemyData(num: 2, pos: p3)
                 ],
                 
-                400 : [
-                    .init(center: p2,
-                          range: 100,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 0.5,
-                          shotTypes: [.일번샷, .이번샷],
-                          hp: 500,
-                          atteck:3,
-                          dropItems: [.hp, .point, .point]
-                         ),
-                    .init(center: p5,
-                          range: 100,
-                          movement: .init(dx: 0, dy: 1),
-                          speed: 0.5,
-                          shotTypes: [.일번샷, .이번샷, .조준샷],
-                          hp: 500,
-                          atteck: 3,
-                          dropItems: [.point, .point, .point]
-                         ),
+                250 : [
+                    makeEnemyData(num: 3, pos: p4)
+                ],
+                
+                400 : [                   
+                   makeEnemyData(num: 4, pos: p2),
+                   makeEnemyData(num: 4, pos: p4)
                 ],
                 
             ])

@@ -13,6 +13,7 @@ class EnemyUnitModel : MovementUnitModel {
     enum EnemyShotType {
         case 일번샷
         case 이번샷
+        case 삼번샷
         case 조준샷
     }
     let shotTypes:[EnemyShotType]
@@ -153,7 +154,8 @@ class EnemyUnitModel : MovementUnitModel {
                         range: 5,
                         movement: .init(dx: sin(Double(count+i)), dy: cos(Double(count+i))),
                         speed: 2,
-                        type: .일반
+                        type: .일반,
+                        colors: (.yellow,.red)
                     ))
                 }
             } else if count % 150 == 149 {
@@ -166,9 +168,22 @@ class EnemyUnitModel : MovementUnitModel {
                     center: center,
                     range: 5,
                     movement: .init(dx: cos(Double(count % 100)), dy: sin(Double(count % 100))),
-                    speed: 2, type: .일반))
+                    speed: 2, type: .일반,
+                    colors: (.orange,.black)
+                ))
             } else if count % 150 == 149 {
                 shotIdx = nextShotIdx
+            }
+            
+        case .삼번샷:
+            if count % 200 < 50 {
+                shots.append(.init(center: center + .random(range: -10..<10),
+                                   range: .random(in: 5..<10),
+                                   movement: .init(dx: tan(Double(count)), dy: cos(Double(count))),
+                                   speed: .random(in: 2...4),
+                                   type: .일반,
+                                   colors: (.blue,.gray)
+                                  ))
             }
             
         case .조준샷:
@@ -179,7 +194,7 @@ class EnemyUnitModel : MovementUnitModel {
                 targetRefashPause = true
 //                isMovingPause = true
                 let v = center.directionVector(to: t, withSpeed: 2)
-                shots.append(.init(center: center + v , range: 20, movement: v, speed:2, type: .추적레이저빔))
+                shots.append(.init(center: center + v , range: 20, movement: v, speed:2, type: .추적레이저빔, colors: (.mint,.indigo)))
             }
             else if count % 150 == 149 {
                 shotIdx = nextShotIdx

@@ -73,12 +73,13 @@ struct MainView: View {
                 }
             }
             
-
+            #if DEBUG
             NavigationLink {
                 GameCanvasView(isTestMode:true, level: 1,fps: 60)
             } label: {
                 Text("Test Mode")
             }.padding(.top, 30)
+            #endif 
 
             if nativeAd != nil {
                 BannerAdView(sizeType: .GADAdSizeMediumRectangle)
