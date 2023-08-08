@@ -75,15 +75,22 @@ class Score {
             
             context.draw(Text("Score : \(score)").font(.system(size:20)).foregroundColor(.textColorNormal),
                          in: .init(x: 10, y: 70, width: w, height: 40))
-            finalPoint = score
-            if missCount == 0 {
-                let bonus = score / 2
-                context.draw(Text("No Miss Bonnus : \(bonus)"),
-                             in: .init(x: 10, y: 100, width: w, height: 40))
-                context.draw(Text("Total Score : \(score + bonus)"),
-                             in: .init(x: 10, y: 140, width: w, height: 40))
-                finalPoint = score + bonus
+            
+            if finalPoint == nil {
+                if missCount == 0 {
+                    let bonus = score / 2
+                    context.draw(Text("No Miss Bonnus : \(bonus)"),
+                                 in: .init(x: 10, y: 100, width: w, height: 40))
+                    context.draw(Text("Total Score : \(score + bonus)"),
+                                 in: .init(x: 10, y: 140, width: w, height: 40))
+                    finalPoint = score + bonus
+                } else {
+                    finalPoint = score
+                }
+                
+                NotificationCenter.default.post(name: .gameOver, object: finalPoint)
             }
+            
             //TODO : GameCenter 포인트 보고하기
         } else {
             var path2 = Path()

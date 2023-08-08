@@ -7,8 +7,15 @@
 
 import SwiftUI
 import GoogleMobileAds
+import GameKit
 
 struct MainView: View {
+    struct GameCenterProfile {
+        let displayName:String
+        let gamePlayerID:String
+        let teamPlayerID:String
+    }
+    
     @AppStorage("coin") var coin:Int = 0
     @State var easy = false
     @State var normal = false
@@ -23,11 +30,36 @@ struct MainView: View {
     }
     @State var alert = false
     @State var nativeAd:GADNativeAd? = nil
+    @State var gameCenterProfile:GameCenterProfile? = nil
+    
     let ad = GoogleAd()
     var body: some View {
         ScrollView {
             if AdLoader.shared.nativeAdsCount > 0 {
                 CoinView(coin:$coin)
+            }
+            if let profile = gameCenterProfile {
+                VStack {
+                    HStack {
+                        Text("GameCenter SignIn").font(.headline)
+                        Text(":").font(.headline)
+                        Text(profile.displayName).font(.headline)
+                    }.foregroundColor(.white)
+                    HStack {
+                        Text("gamePlayerID").font(.caption)
+                        Text(":").font(.caption)
+                        Text(profile.gamePlayerID).font(.caption)
+                    }.foregroundColor(.yellow.opacity(0.5))
+                    HStack {
+                        Text("teamPlayerID").font(.caption)
+                        Text(":").font(.caption)
+                        Text(profile.teamPlayerID).font(.caption)
+                    }.foregroundColor(.yellow.opacity(0.5))
+                }
+                .padding(10)
+                .background(.gray)
+                .cornerRadius(10)
+                .shadow(radius: 10,x:5,y:5)
             }
             
             RoundedButtonView(image: nil,
@@ -79,7 +111,7 @@ struct MainView: View {
             } label: {
                 Text("Test Mode")
             }.padding(.top, 30)
-            #endif 
+            #endif
 
             if nativeAd != nil {
                 BannerAdView(sizeType: .GADAdSizeMediumRectangle)
@@ -88,6 +120,23 @@ struct MainView: View {
         .onAppear {
             AdLoader.shared.getNativeAd { ad in
                 nativeAd = ad
+            }
+            GKLocalPlayer.local.authenticateHandler = { viewController, error in
+                
+                if let err = error {
+                    print(err.localizedDescription)
+                }
+                
+                if let vc = viewController {
+                    UIApplication.shared.lastViewController?.present(vc, animated: true)
+                }
+                
+                if GKLocalPlayer.local.isAuthenticated {
+                    gameCenterProfile = .init(
+                        displayName: GKLocalPlayer.local.displayName,
+                        gamePlayerID: GKLocalPlayer.local.gamePlayerID,
+                        teamPlayerID: GKLocalPlayer.local.teamPlayerID)
+                }
             }
         }
         .alert(isPresented: $alert, content: {

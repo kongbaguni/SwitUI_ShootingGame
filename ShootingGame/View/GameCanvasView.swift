@@ -7,12 +7,15 @@
 
 import Foundation
 import SwiftUI
+import GameKit
 
 struct GameCanvasView : View {
     let isTestMode:Bool
     let level:Int
     let fps:Int
         
+    let gameCenterControllerDelegate = GameCenterControllerDelegate()
+    
     @State var gameOver = false
     @State var count = 0
     @State var gameManager:GameManager? = nil
@@ -25,6 +28,10 @@ struct GameCanvasView : View {
             }
         }
     }
+    @State var isPresentLeaderBoard = false
+    @State var isAlert = false
+    @State var alertMessage:Text? = nil
+    
     
     var navigationTitle:Text {
         if isTestMode {
@@ -41,6 +48,21 @@ struct GameCanvasView : View {
             return Text("Hell")
         default:
             return Text("")
+        }
+    }
+    
+    var gameCenterLeaderboardID:String {
+        switch level {
+        case 1:
+            return "easy"
+        case 2:
+            return "normal"
+        case 3:
+            return "hard"
+        case 4:
+            return "hell"
+        default:
+            return ""
         }
     }
     
@@ -137,12 +159,14 @@ struct GameCanvasView : View {
                     }
                 }
             }
-            if gameOver {
-//                Button {
-//                    // TODO: 게임 기록하기
-//                } label: {
-//                    Text("Post LeaderBoard")
-//                }
+            if gameOver && gameManager?.score.score ?? 0 > 0 {
+                Button {
+                    if let score = gameManager?.score.score {
+                        reportScore(score: Int(score))
+                    }
+                } label: {
+                    Text("Post LeaderBoard")
+                }
             }
         }
         .onAppear {
@@ -164,6 +188,8 @@ struct GameCanvasView : View {
                 DispatchQueue.main.async {
                     gameOver = true
                 }
+                
+              
             }
 
         }
@@ -180,9 +206,33 @@ struct GameCanvasView : View {
             }
 
         }
+        .alert(isPresented: $isAlert) {
+            Alert(title: Text("alert"), message: alertMessage)
+        }
+        .sheet(isPresented: $isPresentLeaderBoard) {
+            LeaderBoardView(leaderBoardId: gameCenterLeaderboardID)
+        }
 
     }
     
+    func reportScore(score:Int) {
+        GKLeaderboard.submitScore(
+            score,
+            context: 0,
+            player: GKLocalPlayer.local,
+            leaderboardIDs: [gameCenterLeaderboardID]) { error in
+                
+                if error == nil {
+                    gameManager?.score.score = 0
+                    
+                    let vc = GKGameCenterViewController(leaderboardID: gameCenterLeaderboardID, playerScope: .global, timeScope: .allTime)
+                    UIApplication.shared.lastViewController?.present(vc, animated: true)
+                    vc.gameCenterDelegate = gameCenterControllerDelegate
+                    gameCenterControllerDelegate.leaderboardController = vc                    
+                }
+                
+            }
+    }
 }
 
 struct GameCanvasView_Previews: PreviewProvider {
@@ -191,3 +241,9 @@ struct GameCanvasView_Previews: PreviewProvider {
     }
 }
 
+class GameCenterControllerDelegate : NSObject, GKGameCenterControllerDelegate {
+    weak var leaderboardController : UIViewController? = nil
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        leaderboardController?.dismiss(animated: true)
+    }
+}
