@@ -11,6 +11,11 @@
 "Normal" = "보통";
 "Hard" = "어려움";
 "Hell" = "지옥";
+"easy" = "쉬움";
+"normal" = "보통";
+"hard" = "어려움";
+"hell" = "지옥";
+
 
 "Test Mode" = "커스텀 모드";
 "coin empty desc" = "잔여 코인이 없습니다.";
