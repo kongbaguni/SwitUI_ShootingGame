@@ -12,8 +12,6 @@ import GameKit
 struct MainView: View {
     struct GameCenterProfile {
         let displayName:String
-        let gamePlayerID:String
-        let teamPlayerID:String
     }
     
     @AppStorage("coin") var coin:Int = 0
@@ -47,16 +45,6 @@ struct MainView: View {
                         Text(":").font(.headline)
                         Text(profile.displayName).font(.headline)
                     }.foregroundColor(.white)
-                    HStack {
-                        Text("gamePlayerID").font(.caption)
-                        Text(":").font(.caption)
-                        Text(profile.gamePlayerID).font(.caption)
-                    }.foregroundColor(.yellow.opacity(0.5))
-                    HStack {
-                        Text("teamPlayerID").font(.caption)
-                        Text(":").font(.caption)
-                        Text(profile.teamPlayerID).font(.caption)
-                    }.foregroundColor(.yellow.opacity(0.5))
                 }
                 .padding(10)
                 .background(.gray)
@@ -160,9 +148,7 @@ struct MainView: View {
                 
                 if GKLocalPlayer.local.isAuthenticated {
                     gameCenterProfile = .init(
-                        displayName: GKLocalPlayer.local.displayName,
-                        gamePlayerID: GKLocalPlayer.local.gamePlayerID,
-                        teamPlayerID: GKLocalPlayer.local.teamPlayerID)
+                        displayName: GKLocalPlayer.local.displayName)
                 }
             }
         }

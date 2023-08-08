@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import GameKit
 
+
 struct GameCanvasView : View {
     let isTestMode:Bool
     let level:Int
@@ -28,6 +29,7 @@ struct GameCanvasView : View {
             }
         }
     }
+    @State var isLoading = false
     @State var isPresentLeaderBoard = false
     @State var isAlert = false
     @State var alertMessage:Text? = nil
@@ -67,107 +69,114 @@ struct GameCanvasView : View {
     }
     
     var body: some View {
-        VStack {
-            if AdLoader.shared.nativeAdsCount > 0 {
-                NaticeAdClidkView(size: .init(width: UIScreen.main.bounds.width, height: 180)).frame(height: 180)
-            }
-            ZStack {
-                Canvas { ctx, size in
-                    gameManager?.isTestMode = isTestMode
-                    
-                    ctx.draw(Text("\(count)"), in: .init(origin: .init(x: -100, y: -100), size: .zero))
-                    gameManager?.draw(context: ctx, screenSize: size)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000 / fps)) {
-                        if isPause == false {
-                            count += 1
-                        }
-                    }
+        ZStack {
+            VStack {
+                if AdLoader.shared.nativeAdsCount > 0 {
+                    NaticeAdClidkView(size: .init(width: UIScreen.main.bounds.width, height: 180)).frame(height: 180)
                 }
-                if isPause {
-                    VStack {
-                        Spacer()
-                        Button {
-                            isPause = false 
-                        } label : {
-                            Text("PAUSE")
-                        }
-                        Spacer()
-                    }
-                    .frame(width: UIScreen.main.bounds.width)
-                    .background(Color.backGround3.opacity(0.8))
-                }
-            }
-            .background(Color.backGround2)
-            .border(Color.primary, width: 2)
-            .gesture(
-                DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
-                    .onChanged({ value in
-                        NotificationCenter.default.post(name: .dragPointerChanged, object: value)
+                ZStack {
+                    Canvas { ctx, size in
+                        gameManager?.isTestMode = isTestMode
                         
-                    })
-                    .onEnded({ value in
-                        NotificationCenter.default.post(name: .dragEnded, object: value)
-                    })
+                        ctx.draw(Text("\(count)"), in: .init(origin: .init(x: -100, y: -100), size: .zero))
+                        gameManager?.draw(context: ctx, screenSize: size)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000 / fps)) {
+                            if isPause == false {
+                                count += 1
+                            }
+                        }
+                    }
+                    if isPause {
+                        VStack {
+                            Spacer()
+                            Button {
+                                isPause = false
+                            } label : {
+                                Text("PAUSE")
+                            }
+                            Spacer()
+                        }
+                        .frame(width: UIScreen.main.bounds.width)
+                        .background(Color.backGround3.opacity(0.8))
+                    }
+                }
+                .background(Color.backGround2)
+                .border(Color.primary, width: 2)
+                .gesture(
+                    DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
+                        .onChanged({ value in
+                            NotificationCenter.default.post(name: .dragPointerChanged, object: value)
+                            
+                        })
+                        .onEnded({ value in
+                            NotificationCenter.default.post(name: .dragEnded, object: value)
+                        })
+                )
+                
+                if isTestMode {
+                    HStack {
+                        Button {
+                            gameManager?.addUnit()
+                        } label: {
+                            Image(systemName: "plus.app")
+                                .resizable()
+                                .imageScale(.large)
+                                .scaledToFit()
+                                .frame(width: 50)
+                        }
+                        Button {
+                            gameManager?.dropItem()
+                        } label: {
+                            Image(systemName: "square.and.arrow.down")
+                                .resizable()
+                                .imageScale(.large)
+                                .scaledToFit()
+                                .frame(width: 50)
+                        }
+                        Button {
+                            NotificationCenter.default.post(name: .playerPowerUp, object: nil)
+                        } label: {
+                            Image(systemName: "plus.diamond")
+                                .resizable()
+                                .imageScale(.large)
+                                .scaledToFit()
+                                .frame(width: 50)
+                        }
+                        Button {
+                            NotificationCenter.default.post(name: .playerPowerDown, object: nil)
+                        } label: {
+                            Image(systemName: "minus.diamond")
+                                .resizable()
+                                .imageScale(.large)
+                                .scaledToFit()
+                                .frame(width: 50)
+                        }
+                        Button {
+                            NotificationCenter.default.post(name: .playerPowerReset, object: nil)
+                        } label: {
+                            Image(systemName: "diamond")
+                                .resizable()
+                                .imageScale(.large)
+                                .scaledToFit()
+                                .frame(width: 50)
+                        }
+                    }
+                }
+                if gameOver && gameManager?.score.score ?? 0 > 0 {
+                    Button {
+                        if let score = gameManager?.score.score {
+                            reportScore(score: Int(score))
+                        }
+                    } label: {
+                        Text("Post LeaderBoard")
+                    }
+                }
+            }
+            DimActivityIndicatorView(
+                isLoading: $isLoading,
+                backgroundColor: .black.opacity(0.8),
+                forgroundColor: .white
             )
-            
-            if isTestMode {
-                HStack {
-                    Button {
-                        gameManager?.addUnit()
-                    } label: {
-                        Image(systemName: "plus.app")
-                            .resizable()
-                            .imageScale(.large)
-                            .scaledToFit()
-                            .frame(width: 50)
-                    }
-                    Button {
-                        gameManager?.dropItem()
-                    } label: {
-                        Image(systemName: "square.and.arrow.down")
-                            .resizable()
-                            .imageScale(.large)
-                            .scaledToFit()
-                            .frame(width: 50)
-                    }
-                    Button {
-                        NotificationCenter.default.post(name: .playerPowerUp, object: nil)
-                    } label: {
-                        Image(systemName: "plus.diamond")
-                            .resizable()
-                            .imageScale(.large)
-                            .scaledToFit()
-                            .frame(width: 50)
-                    }
-                    Button {
-                        NotificationCenter.default.post(name: .playerPowerDown, object: nil)
-                    } label: {
-                        Image(systemName: "minus.diamond")
-                            .resizable()
-                            .imageScale(.large)
-                            .scaledToFit()
-                            .frame(width: 50)
-                    }
-                    Button {
-                        NotificationCenter.default.post(name: .playerPowerReset, object: nil)
-                    } label: {
-                        Image(systemName: "diamond")
-                            .resizable()
-                            .imageScale(.large)
-                            .scaledToFit()
-                            .frame(width: 50)
-                    }
-                }
-            }
-            if gameOver && gameManager?.score.score ?? 0 > 0 {
-                Button {
-                    if let score = gameManager?.score.score {
-                        reportScore(score: Int(score))
-                    }
-                } label: {
-                    Text("Post LeaderBoard")
-                }
-            }
         }
         .onAppear {
             gameManager = .init()
@@ -216,6 +225,7 @@ struct GameCanvasView : View {
     }
     
     func reportScore(score:Int) {
+        isLoading = true
         GKLeaderboard.submitScore(
             score,
             context: 0,
@@ -224,7 +234,12 @@ struct GameCanvasView : View {
                 
                 if error == nil {
                     gameManager?.score.score = 0
-                    presentLeaderBoard()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                        presentLeaderBoard()
+                        isLoading = false
+                    }
+                } else {
+                    isLoading = false
                 }
                 
             }
