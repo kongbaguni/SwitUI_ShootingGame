@@ -31,6 +31,8 @@ struct MainView: View {
     @State var alert = false
     @State var nativeAd:GADNativeAd? = nil
     @State var gameCenterProfile:GameCenterProfile? = nil
+    let gameCenterControllerDelegate = GameCenterControllerDelegate()
+    
     
     let ad = GoogleAd()
     var body: some View {
@@ -41,7 +43,7 @@ struct MainView: View {
             if let profile = gameCenterProfile {
                 VStack {
                     HStack {
-                        Text("GameCenter SignIn").font(.headline)
+                        Text("GameCenter Profile").font(.headline)
                         Text(":").font(.headline)
                         Text(profile.displayName).font(.headline)
                     }.foregroundColor(.white)
@@ -62,6 +64,31 @@ struct MainView: View {
                 .shadow(radius: 10,x:5,y:5)
             }
             
+            HStack {
+                Text("leaderboards")
+                Text(":")
+                Button {
+                    presentLeaderBoard(id: "easy")
+                } label: {
+                    Text("easy")
+                }
+                Button {
+                    presentLeaderBoard(id: "normal")
+                } label: {
+                    Text("normal")
+                }
+                Button {
+                    presentLeaderBoard(id: "hard")
+                } label: {
+                    Text("hard")
+                }
+                Button {
+                    presentLeaderBoard(id: "hell")
+                } label: {
+                    Text("hell")
+                }
+            }
+
             RoundedButtonView(image: nil,
                               text: Text("Easy").foregroundColor(.white),
                               backgroundColor: .blue) {
@@ -156,6 +183,13 @@ struct MainView: View {
         })
 
         .navigationTitle(Text("Home title"))
+    }
+    
+    func presentLeaderBoard(id:String) {
+        let vc = GKGameCenterViewController(leaderboardID: id, playerScope: .global, timeScope: .allTime)
+        UIApplication.shared.lastViewController?.present(vc, animated: true)
+        vc.gameCenterDelegate = gameCenterControllerDelegate
+        gameCenterControllerDelegate.leaderboardController = vc
     }
 }
 

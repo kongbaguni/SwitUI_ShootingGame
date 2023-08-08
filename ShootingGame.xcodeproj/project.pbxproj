@@ -40,6 +40,7 @@
 		1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */; };
 		1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */; };
 		1B7261152A81FAD300D74B03 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7261142A81FAD300D74B03 /* LeaderBoardView.swift */; };
+		1B7261172A82046800D74B03 /* GameCenterControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7261162A82046800D74B03 /* GameCenterControllerDelegate.swift */; };
 		1BA533032A8083F700C908F5 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */; };
 		1BA533042A8083F700C908F5 /* UnifiedNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA533022A8083F700C908F5 /* UnifiedNativeAdView.swift */; };
 		1BA533082A80B85700C908F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA533072A80B85600C908F5 /* GoogleService-Info.plist */; };
@@ -95,6 +96,7 @@
 		1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitModel.swift; sourceTree = "<group>"; };
 		1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyShotUnitModel.swift; sourceTree = "<group>"; };
 		1B7261142A81FAD300D74B03 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
+		1B7261162A82046800D74B03 /* GameCenterControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterControllerDelegate.swift; sourceTree = "<group>"; };
 		1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
 		1BA533022A8083F700C908F5 /* UnifiedNativeAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedNativeAdView.swift; sourceTree = "<group>"; };
 		1BA533072A80B85600C908F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				1B2661D62A6F4D9A002E3C7A /* Particle.swift */,
 				1B2661E22A6FAEC5002E3C7A /* Score.swift */,
 				1B2661EC2A70F186002E3C7A /* StageManager.swift */,
+				1B7261162A82046800D74B03 /* GameCenterControllerDelegate.swift */,
 			);
 			path = instances;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */,
 				1BF1B36A2A7390D800E983E3 /* CoinView.swift in Sources */,
 				1BF1B35C2A73811300E983E3 /* GoogleAd.swift in Sources */,
+				1B7261172A82046800D74B03 /* GameCenterControllerDelegate.swift in Sources */,
 				1B5476442A68F760003D5DD7 /* ContentView.swift in Sources */,
 				1BA533042A8083F700C908F5 /* UnifiedNativeAdView.swift in Sources */,
 				1B3AAFFC2A6A6BF50092C9B8 /* GoogleAdPrompt.swift in Sources */,

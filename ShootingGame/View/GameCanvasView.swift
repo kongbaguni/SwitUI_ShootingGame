@@ -224,26 +224,22 @@ struct GameCanvasView : View {
                 
                 if error == nil {
                     gameManager?.score.score = 0
-                    
-                    let vc = GKGameCenterViewController(leaderboardID: gameCenterLeaderboardID, playerScope: .global, timeScope: .allTime)
-                    UIApplication.shared.lastViewController?.present(vc, animated: true)
-                    vc.gameCenterDelegate = gameCenterControllerDelegate
-                    gameCenterControllerDelegate.leaderboardController = vc                    
+                    presentLeaderBoard()
                 }
                 
             }
+    }
+    
+    func presentLeaderBoard() {
+        let vc = GKGameCenterViewController(leaderboardID: gameCenterLeaderboardID, playerScope: .global, timeScope: .allTime)
+        UIApplication.shared.lastViewController?.present(vc, animated: true)
+        vc.gameCenterDelegate = gameCenterControllerDelegate
+        gameCenterControllerDelegate.leaderboardController = vc
     }
 }
 
 struct GameCanvasView_Previews: PreviewProvider {
     static var previews: some View {
         GameCanvasView(isTestMode: true,level: 1, fps: 60)
-    }
-}
-
-class GameCenterControllerDelegate : NSObject, GKGameCenterControllerDelegate {
-    weak var leaderboardController : UIViewController? = nil
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        leaderboardController?.dismiss(animated: true)
     }
 }
