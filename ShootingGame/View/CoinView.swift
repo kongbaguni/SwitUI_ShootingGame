@@ -26,7 +26,11 @@ struct CoinView: View {
                         .foregroundColor(.textColorStrong)
                 }
             } else {
-                Text("Coin : \(coin)")
+                HStack {
+                    Text("Coin")
+                    Text(":")
+                    Text("\(coin)")
+                }
             }
         }
         .padding(20)
