@@ -219,7 +219,7 @@ struct GameCanvasView : View {
             Alert(title: Text("alert"), message: alertMessage)
         }
         .sheet(isPresented: $isPresentLeaderBoard) {
-            GameCenterViewController(state: .leaderboards)
+            GameCenterViewController(state: .leaderboards,leaderBoardId: gameCenterLeaderboardID)
         }
 
     }

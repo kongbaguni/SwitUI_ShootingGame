@@ -10,13 +10,21 @@ import GameKit
 
 struct GameCenterViewController: UIViewControllerRepresentable {
     let state:GKGameCenterViewControllerState
+    let leaderBoardId:String?
     let delegate = GameCenterControllerDelegate()
 
     func makeUIViewController(context: Context) -> UIViewController {
-        let vc = GKGameCenterViewController(state: state)
-        vc.gameCenterDelegate = delegate
-        delegate.vc = vc
-        return vc
+        if let id = leaderBoardId {
+            let vc = GKGameCenterViewController(leaderboardID: id, playerScope: .global, timeScope: .allTime)
+            vc.gameCenterDelegate = delegate
+            delegate.vc = vc
+            return vc
+        } else {
+            let vc = GKGameCenterViewController(state: state)
+            vc.gameCenterDelegate = delegate
+            delegate.vc = vc
+            return vc
+        }
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

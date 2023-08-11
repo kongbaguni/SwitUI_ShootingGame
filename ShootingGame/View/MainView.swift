@@ -30,8 +30,8 @@ struct MainView: View {
     @State var nativeAd:GADNativeAd? = nil
     @State var gameCenterProfile:GameCenterProfile? = nil
     let gameCenterControllerDelegate = GameCenterControllerDelegate()
-    
-    
+    @State var isPresentGaneCenterView = false
+    @State var leaderBoardId:String? = nil
     let ad = GoogleAd()
     var body: some View {
         ScrollView {
@@ -167,15 +167,15 @@ struct MainView: View {
         .navigationDestination(isPresented: $hell, destination: {
             GameCanvasView(isTestMode:false, level: 4,fps: 60)
         })
-
         .navigationTitle(Text("Home title"))
+        .sheet(isPresented: $isPresentGaneCenterView) {
+            GameCenterViewController(state: .leaderboards, leaderBoardId: leaderBoardId)
+        }
     }
     
     func presentLeaderBoard(id:String) {
-        let vc = GKGameCenterViewController(leaderboardID: id, playerScope: .global, timeScope: .allTime)
-        UIApplication.shared.lastViewController?.present(vc, animated: true)
-        vc.gameCenterDelegate = gameCenterControllerDelegate
-        gameCenterControllerDelegate.leaderboardController = vc
+        isPresentGaneCenterView = true
+        leaderBoardId = id
     }
 }
 
