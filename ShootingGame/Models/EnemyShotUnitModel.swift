@@ -15,22 +15,11 @@ class EnemyShotUnitModel : MovementUnitModel {
     }
 
     let shotType:ShotType
-    init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, type: ShotType) {
+    let colors:(Color,Color)
+    init(center: CGPoint, range: CGFloat, movement: CGVector, speed: CGFloat, type: ShotType, colors:(Color,Color)) {
         shotType = type
+        self.colors = colors
         super.init(center: center, range: range, movement: movement, speed: speed)
-        switch type {
-        case .일반:
-            imageNames[.보통] = ["shot1","shot2"]
-            imageNames[.공격당함] = ["shot3"]
-            imageNames[.파괴직전] = ["shot3"]
-            imageNames[.힐링] = ["shot1"]
-        case .추적레이저빔:
-            imageNames[.보통] = ["laser1"]
-            imageNames[.공격당함] = ["laser1"]
-            imageNames[.파괴직전] = ["laser1"]
-            imageNames[.힐링] = ["laser1"]
-            break
-        }
         hp = 1
         atteck = 1
         NotificationCenter.default.addObserver(forName: .gameClear, object: nil, queue: nil) { [weak self] noti in
@@ -47,8 +36,9 @@ class EnemyShotUnitModel : MovementUnitModel {
         case .일반:
             var path = Path()
             path.addArc(center: center, radius: range, startAngle: .zero, endAngle: .degrees(360), clockwise: true)
-            context.fill(path, with: .color(.orange))
-            break
+            context.fill(path, with: .color(colors.0))
+            context.stroke(path, with: .color(colors.1))
+
         case .추적레이저빔:
             var path = Path()
             path.move(to: center)
@@ -58,7 +48,8 @@ class EnemyShotUnitModel : MovementUnitModel {
             let d = b + movement.rotated(by: -90) * 10
             
             path.addLines([a,b,c,a,b,d,a])
-            context.fill(path, with: .color(.red))
+            context.fill(path, with: .color(colors.0))
+            context.stroke(path, with: .color(colors.1))
         }
     }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>591892338584-7ca67db3c6pn1b6kq685up9uvrsjelkr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.591892338584-7ca67db3c6pn1b6kq685up9uvrsjelkr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDrcrAiutHuNOvy3pad7njLTTlrMoFw38s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>591892338584</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>net.kongbaguni.ShootingGame</string>
+	<key>PROJECT_ID</key>
+	<string>ad-breaker</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ad-breaker.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:591892338584:ios:8d7b4658a71e30ca48bded</string>
+</dict>
+</plist>

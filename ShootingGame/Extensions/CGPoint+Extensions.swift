@@ -7,6 +7,10 @@
 
 import Foundation
 extension CGPoint {
+    static func random(range:Range<CGFloat>)->CGPoint {
+        return .init(x: .random(in: range), y: .random(in: range))
+    }
+    
     static func + (left:CGPoint, right:CGPoint) -> CGPoint {
         return .init(x: left.x + right.x, y: left.y + right.y)
     }

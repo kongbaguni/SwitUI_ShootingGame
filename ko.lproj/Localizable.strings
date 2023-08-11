@@ -11,5 +11,18 @@
 "Normal" = "보통";
 "Hard" = "어려움";
 "Hell" = "지옥";
+"easy" = "쉬움";
+"normal" = "보통";
+"hard" = "어려움";
+"hell" = "지옥";
 
-"Test Mode" = "테스트 모드";
+
+"Test Mode" = "커스텀 모드";
+"coin empty desc" = "잔여 코인이 없습니다.";
+"alert" = "알림";
+"watch Ad and take coin" = "광고보고 코인받기";
+
+"GameCenter Profile" = "게임센터 프로필";
+
+"leaderboards" = "순위표";
+"Coin" = "코인";

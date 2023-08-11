@@ -16,9 +16,14 @@ class AdLoader : NSObject {
     static let shared = AdLoader()
     
     private let adLoader:GADAdLoader
-    
-    
-    private var nativeAds:[GADNativeAd] = []
+        
+    private var nativeAds:[GADNativeAd] = [] {
+        didSet {
+            if nativeAds.count > _adsCountMax {
+                _adsCountMax = nativeAds.count
+            }
+        }
+    }
     
     public var nativeAd:GADNativeAd? {
         if let ad = nativeAds.first {
@@ -29,6 +34,22 @@ class AdLoader : NSObject {
         return nil
     }
     
+    private var _adsCountMax:Int = 0
+    
+    public var nativeAdsCount:Int {
+        return _adsCountMax
+    }
+    
+    public func getNativeAd(getAd:@escaping(_ ad:GADNativeAd)->Void) {
+        if let ad = nativeAd {
+            getAd(ad)
+            return
+        }
+        loadAd()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {[weak self] in
+            self?.getNativeAd(getAd: getAd)
+        }
+    }
     
     override init() {
         let option = GADMultipleAdsAdLoaderOptions()
@@ -41,14 +62,10 @@ class AdLoader : NSObject {
         loadAd()
     }
     
-    var isRequest = false
     private func loadAd() {
-        if isRequest == false {
-            isRequest = true
-            adLoader.load(.init())
-        }
+        adLoader.load(.init())
     }
-    
+        
 }
 
 extension AdLoader : GADNativeAdLoaderDelegate {
@@ -60,7 +77,6 @@ extension AdLoader : GADNativeAdLoaderDelegate {
     
     func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
         print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
-        isRequest = false
     }
     
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {

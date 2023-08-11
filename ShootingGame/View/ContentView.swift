@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct ContentView: View {
     init() {        
@@ -13,17 +14,14 @@ struct ContentView: View {
             
         }
         _ = AdLoader.shared
+        FirebaseApp.configure()
     }
+    
     var body: some View {
         NavigationView {
-            if #available(iOS 16.0, *) {
-                NavigationStack {
-                    MainView()
-                        
-                }
-            }
-            else {
+            NavigationStack {
                 MainView()
+                
             }
         }.navigationViewStyle(.stack)
     }
