@@ -219,7 +219,7 @@ struct GameCanvasView : View {
             Alert(title: Text("alert"), message: alertMessage)
         }
         .sheet(isPresented: $isPresentLeaderBoard) {
-            LeaderBoardView(leaderBoardId: gameCenterLeaderboardID)
+            GameCenterViewController(state: .leaderboards)
         }
 
     }
@@ -246,10 +246,7 @@ struct GameCanvasView : View {
     }
     
     func presentLeaderBoard() {
-        let vc = GKGameCenterViewController(leaderboardID: gameCenterLeaderboardID, playerScope: .global, timeScope: .allTime)
-        UIApplication.shared.lastViewController?.present(vc, animated: true)
-        vc.gameCenterDelegate = gameCenterControllerDelegate
-        gameCenterControllerDelegate.leaderboardController = vc
+        isPresentLeaderBoard = true
     }
 }
 

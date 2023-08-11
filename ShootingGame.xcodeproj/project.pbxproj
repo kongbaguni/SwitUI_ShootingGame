@@ -39,7 +39,6 @@
 		1B5476692A6926D0003D5DD7 /* EnemyUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */; };
 		1B54766B2A692BAB003D5DD7 /* PlayerUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */; };
 		1B5DEB652A6E51A80026B180 /* EnemyShotUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */; };
-		1B7261152A81FAD300D74B03 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7261142A81FAD300D74B03 /* LeaderBoardView.swift */; };
 		1B7261172A82046800D74B03 /* GameCenterControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7261162A82046800D74B03 /* GameCenterControllerDelegate.swift */; };
 		1B7261192A8207B300D74B03 /* DimActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7261182A8207B300D74B03 /* DimActivityIndicatorView.swift */; };
 		1BA533032A8083F700C908F5 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */; };
@@ -57,6 +56,7 @@
 		1BF1B36C2A739B0000E983E3 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */; };
 		1BF1B36E2A73A9A200E983E3 /* NativeAdClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1B36D2A73A9A200E983E3 /* NativeAdClickView.swift */; };
 		1BF1B3712A73B68F00E983E3 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF1B3702A73B68F00E983E3 /* MarqueeLabel */; };
+		8D3D9F8B2A85EE9500DC9897 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D9F8A2A85EE9500DC9897 /* GameCenterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +96,6 @@
 		1B5476682A6926D0003D5DD7 /* EnemyUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyUnitModel.swift; sourceTree = "<group>"; };
 		1B54766A2A692BAB003D5DD7 /* PlayerUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnitModel.swift; sourceTree = "<group>"; };
 		1B5DEB642A6E51A80026B180 /* EnemyShotUnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyShotUnitModel.swift; sourceTree = "<group>"; };
-		1B7261142A81FAD300D74B03 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		1B7261162A82046800D74B03 /* GameCenterControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterControllerDelegate.swift; sourceTree = "<group>"; };
 		1B7261182A8207B300D74B03 /* DimActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimActivityIndicatorView.swift; sourceTree = "<group>"; };
 		1BA533012A8083F700C908F5 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
@@ -109,6 +108,7 @@
 		1BF1B3692A7390D800E983E3 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
 		1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		1BF1B36D2A73A9A200E983E3 /* NativeAdClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdClickView.swift; sourceTree = "<group>"; };
+		8D3D9F8A2A85EE9500DC9897 /* GameCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,13 +177,13 @@
 		1B5476512A68F797003D5DD7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D3D9F8A2A85EE9500DC9897 /* GameCenterViewController.swift */,
 				1BF1B3632A73825A00E983E3 /* MultiColorAnimeTextView.swift */,
 				1B5476432A68F760003D5DD7 /* ContentView.swift */,
 				1B54764F2A68F78A003D5DD7 /* GameCanvasView.swift */,
 				1B2661E82A70E4EA002E3C7A /* MainView.swift */,
 				1BF1B3692A7390D800E983E3 /* CoinView.swift */,
 				1BF1B36B2A739B0000E983E3 /* RoundedButtonView.swift */,
-				1B7261142A81FAD300D74B03 /* LeaderBoardView.swift */,
 				1B7261182A8207B300D74B03 /* DimActivityIndicatorView.swift */,
 			);
 			path = View;
@@ -365,10 +365,10 @@
 				1B5476622A6916C2003D5DD7 /* CGRect+Extnesions.swift in Sources */,
 				1B54765E2A6910CA003D5DD7 /* UnitModel.swift in Sources */,
 				1B5476602A691377003D5DD7 /* CGPoint+Extensions.swift in Sources */,
+				8D3D9F8B2A85EE9500DC9897 /* GameCenterViewController.swift in Sources */,
 				1B5476662A691A26003D5DD7 /* CGVector+Extensions.swift in Sources */,
 				1B7261192A8207B300D74B03 /* DimActivityIndicatorView.swift in Sources */,
 				1B2661F82A7266EC002E3C7A /* AdLoader.swift in Sources */,
-				1B7261152A81FAD300D74B03 /* LeaderBoardView.swift in Sources */,
 				1B5476642A691951003D5DD7 /* MovementUnitModel.swift in Sources */,
 				1B3AAFFE2A6A6C630092C9B8 /* UIApplication+Extensions.swift in Sources */,
 				1B5476502A68F78A003D5DD7 /* GameCanvasView.swift in Sources */,
@@ -565,7 +565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.ShootingGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -603,7 +603,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.ShootingGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
