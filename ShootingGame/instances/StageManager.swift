@@ -60,7 +60,7 @@ func makeEnemyData(num:Int,pos:CGPoint)->EnemyData {
         
     case 4:
         return .init(center: pos,
-                  range: 200,
+                  range: 150,
                   movement: .init(dx: 0, dy: 1),
                   speed: 0.5,
                   shotTypes: [.일번샷, .이번샷],
@@ -68,6 +68,17 @@ func makeEnemyData(num:Int,pos:CGPoint)->EnemyData {
                   atteck:3,
                   dropItems: [.hp, .point, .point]
                  )
+    case 5:
+            return .init(
+                center: pos,
+                range: 200,
+                movement: .init(dx: 0, dy: 1),
+                speed: 0.1,
+                shotTypes: [.이번샷,.삼번샷,.조준샷,.조준샷,.이번샷],
+                hp: 800,
+                atteck: 4,
+                dropItems: [.point, .point, .point, .point, .point, .point, .point])
+            
     default:
         return .init(center: pos,
                      range: 30,
@@ -117,7 +128,29 @@ class StageManager {
                    makeEnemyData(num: 4, pos: p2),
                    makeEnemyData(num: 4, pos: p4)
                 ],
-                
+                500 : [
+                    makeEnemyData(num: 0, pos: p1),
+                ],
+                510 : [
+                    makeEnemyData(num: 0, pos: p2),
+                ],
+                520 : [
+                    makeEnemyData(num: 0, pos: p3),
+                ],
+                530 : [
+                    makeEnemyData(num: 0, pos: p4),
+                ],
+                540 : [
+                    makeEnemyData(num: 0, pos: p5),
+                ],
+                550 : [
+                    makeEnemyData(num: 0, pos: p6),
+                ],
+                600 : [
+                    makeEnemyData(num: 5, pos: p4),
+                ],
+
+
             ])
             
         default:
