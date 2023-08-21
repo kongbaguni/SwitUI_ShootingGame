@@ -22,6 +22,9 @@
 "alert" = "알림";
 "watch Ad and take coin" = "광고보고 코인받기";
 
+"watch ad alert title" = "광고보기";
+"watch ad alert msg" = "광고를 시청하고 10코인을 받으세요";
+
 "GameCenter Profile" = "게임센터 프로필";
 
 "leaderboards" = "순위표";
