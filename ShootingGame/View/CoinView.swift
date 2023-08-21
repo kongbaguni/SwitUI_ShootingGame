@@ -10,12 +10,12 @@ import SwiftUI
 struct CoinView: View {
     let ad = GoogleAd()
     @Binding var coin:Int
-    @State var alert = false
+    @Binding var alert:Bool
     var body: some View {
         HStack {
             if coin <= 0 {
                 Button {
-                    alert = true                  
+                    alert = true
                 } label: {
                     Text("watch Ad and take coin")
                         .font(.system(size: 20).bold())
@@ -30,15 +30,7 @@ struct CoinView: View {
             }
         }
         .padding(20)
-        .alert(isPresented: $alert) {
-            .init(title: Text("watch ad alert title"), message: Text("watch ad alert msg"), primaryButton: .default(Text("confirm"), action:{
-                ad.showAd { isSucess in
-                    if isSucess {
-                        coin += 10
-                    }
-                }
-            }), secondaryButton: .cancel())
-        }
+      
     }
 }
 

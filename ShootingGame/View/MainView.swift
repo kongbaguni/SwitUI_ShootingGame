@@ -32,11 +32,12 @@ struct MainView: View {
     let gameCenterControllerDelegate = GameCenterControllerDelegate()
     @State var isPresentGaneCenterView = false
     @State var leaderBoardId:String? = nil
+    @State var adAlert = false
     let ad = GoogleAd()
     var body: some View {
         ScrollView {
             if AdLoader.shared.nativeAdsCount > 0 {
-                CoinView(coin:$coin)
+                CoinView(coin:$coin, alert:$adAlert)
             }
             if let profile = gameCenterProfile {
                 VStack {
@@ -154,6 +155,15 @@ struct MainView: View {
         }
         .alert(isPresented: $alert, content: {
             .init(title: Text("alert"), message: alertMessage)
+        })
+        .alert(isPresented: $adAlert, content: {
+            .init(title: Text("watch ad alert title"), message: Text("watch ad alert msg"), primaryButton: .default(Text("confirm"), action:{
+                ad.showAd { isSucess in
+                    if isSucess {
+                        coin += 10
+                    }
+                }
+            }), secondaryButton: .cancel())
         })
         .navigationDestination(isPresented: $easy, destination: {
             GameCanvasView(isTestMode:false, level: 1,fps: 60)
