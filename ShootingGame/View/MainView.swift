@@ -10,6 +10,11 @@ import GoogleMobileAds
 import GameKit
 
 struct MainView: View {
+    enum AlertType {
+        case adwatch
+        case normal
+    }
+    
     struct GameCenterProfile {
         let displayName:String
     }
@@ -19,25 +24,29 @@ struct MainView: View {
     @State var normal = false
     @State var hard = false
     @State var hell = false
+    
+    @State var alertType:MainView.AlertType = .normal
     @State var alertMessage:Text? = nil {
         willSet {
             if newValue != nil {
                 alert = true
+                alertType = .normal
             }
         }
     }
+    
     @State var alert = false
     @State var nativeAd:GADNativeAd? = nil
     @State var gameCenterProfile:GameCenterProfile? = nil
     let gameCenterControllerDelegate = GameCenterControllerDelegate()
     @State var isPresentGaneCenterView = false
     @State var leaderBoardId:String? = nil
-    @State var adAlert = false
+    
     let ad = GoogleAd()
     var body: some View {
         ScrollView {
             if AdLoader.shared.nativeAdsCount > 0 {
-                CoinView(coin:$coin, alert:$adAlert)
+                CoinView(coin:$coin, alert:$alert, alertType: $alertType)
             }
             if let profile = gameCenterProfile {
                 VStack {
@@ -154,16 +163,19 @@ struct MainView: View {
             }
         }
         .alert(isPresented: $alert, content: {
-            .init(title: Text("alert"), message: alertMessage)
-        })
-        .alert(isPresented: $adAlert, content: {
-            .init(title: Text("watch ad alert title"), message: Text("watch ad alert msg"), primaryButton: .default(Text("confirm"), action:{
-                ad.showAd { isSucess in
-                    if isSucess {
-                        coin += 10
-                    }
-                }
-            }), secondaryButton: .cancel())
+            switch alertType {
+            case .adwatch:
+                    return .init(title: Text("watch ad alert title"), message: Text("watch ad alert msg"), primaryButton: .default(Text("confirm"), action:{
+                        ad.showAd { isSucess in
+                            if isSucess {
+                                coin += 10
+                            }
+                        }
+                    }), secondaryButton: .cancel())
+
+            case .normal:
+                    return .init(title: Text("alert"), message: alertMessage)
+            }
         })
         .navigationDestination(isPresented: $easy, destination: {
             GameCanvasView(isTestMode:false, level: 1,fps: 60)
